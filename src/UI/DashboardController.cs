@@ -1,7 +1,7 @@
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -27,14 +27,6 @@ namespace PsychoBuddy.UI
     public class DashboardController : INotifyPropertyChanged
     {
         private const int MaxFleetSlots = 4;
-
-        private static readonly (string Name, BotRole Role, float Health, float Mana, int Level)[] DemoSlots =
-        {
-            ("Ares", BotRole.DPS, 100, 50, 85),
-            ("Luna", BotRole.Healer, 100, 100, 82),
-            ("Atlas", BotRole.Tank, 80, 20, 85),
-            ("Nyx", BotRole.DPS, 60, 70, 82)
-        };
 
         private readonly Orchestrator _orchestrator;
         private readonly AttachmentManager _attachment;
@@ -298,7 +290,7 @@ namespace PsychoBuddy.UI
             if (!card.IsRealClient)
             {
                 StatusMessage = "Selected fleet slot is not attached to a real client.";
-                AddLog("Detach skipped: selected slot is demo/empty, not a real attached client.");
+                AddLog("Detach skipped: selected slot is empty/offline, not a real attached client.");
                 return;
             }
 
@@ -382,11 +374,11 @@ namespace PsychoBuddy.UI
             RefreshSelectionText();
         }
 
-        public void LoadStandbyFleet(string statusMessage = "Standby/demo fleet slots loaded.")
+        public void LoadStandbyFleet(string statusMessage = "Empty/offline fleet slots loaded.")
         {
             if (Fleet.Any(f => f.IsRealClient))
             {
-                StatusMessage = "Demo fleet cannot be loaded while real clients are attached. Detach clients first.";
+                StatusMessage = "Empty slots cannot be reset while real clients are attached. Detach clients first.";
                 AddLog(StatusMessage);
                 return;
             }
@@ -394,12 +386,12 @@ namespace PsychoBuddy.UI
             Fleet.Clear();
             for (int i = 0; i < MaxFleetSlots; i++)
             {
-                AddDemoSlot(i);
+                Fleet.Add(CreateEmptySlot(i));
             }
 
             SelectedFleetCard = Fleet.FirstOrDefault();
             StatusMessage = statusMessage;
-            AddLog("Standby fleet slots loaded in fixed 2x2 layout.");
+            AddLog("Empty fleet slots loaded in fixed 2x2 layout.");
         }
 
         public void Tick()
@@ -449,7 +441,7 @@ namespace PsychoBuddy.UI
                 if (!quiet)
                 {
                     StatusMessage = "Selected fleet slot is not attached to a real client.";
-                    AddLog("Start skipped: selected slot is demo/empty, not a real attached client.");
+                    AddLog("Start skipped: selected slot is empty/offline, not a real attached client.");
                 }
                 return false;
             }
@@ -490,7 +482,7 @@ namespace PsychoBuddy.UI
                 if (!quiet)
                 {
                     StatusMessage = "Selected fleet slot is not attached to a real client.";
-                    AddLog("Stop skipped: selected slot is demo/empty, not a registered client.");
+                    AddLog("Stop skipped: selected slot is empty/offline, not a registered client.");
                 }
                 return false;
             }
@@ -525,57 +517,23 @@ namespace PsychoBuddy.UI
             }
         }
 
-        private void AddDemoSlot(int slotIndex) => Fleet.Add(CreateDemoSlot(slotIndex));
-
-        private FleetCardViewModel CreateDemoSlot(int slotIndex)
-        {
-            var demo = DemoSlots[slotIndex % DemoSlots.Length];
-            var card = new FleetCardViewModel
-            {
-                Binding = new ClientBinding
-                {
-                    CharacterName = demo.Name,
-                    Status = BotStatus.Disconnected,
-                    WindowHandle = IntPtr.Zero,
-                    Pid = 0,
-                    AssignedProfile = "Demo"
-                },
-                SlotNumber = slotIndex + 1,
-                Role = demo.Role.ToString(),
-                AssignedProfile = "Demo",
-                Level = demo.Level,
-                Status = "Demo / Waiting"
-            };
-
-            card.Update(new UnitData
-            {
-                HealthCurrent = demo.Health,
-                HealthMax = 100,
-                ManaCurrent = demo.Mana,
-                ManaMax = 100,
-                Level = demo.Level
-            });
-
-            return card;
-        }
-
         private FleetCardViewModel CreateEmptySlot(int slotIndex)
         {
             var card = new FleetCardViewModel
             {
                 Binding = new ClientBinding
                 {
-                    CharacterName = $"Empty Slot {slotIndex + 1}",
+                    CharacterName = "Awaiting Client",
                     Status = BotStatus.Disconnected,
                     WindowHandle = IntPtr.Zero,
                     Pid = 0,
-                    AssignedProfile = "None"
+                    AssignedProfile = "No Profile"
                 },
                 SlotNumber = slotIndex + 1,
-                Role = "Empty",
+                Role = "No Session",
                 AssignedProfile = "No Profile",
                 Level = 0,
-                Status = "Empty"
+                Status = "Offline"
             };
 
             card.Update(new UnitData

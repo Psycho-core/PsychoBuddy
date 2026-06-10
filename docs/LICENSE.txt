@@ -1,7 +1,7 @@
 NOTE: The canonical repository-root copy of this license is ../LICENSE.MYCODE.txt. This docs copy is retained for reference.
 
 PSYCHOBUDDY SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 
 1. GRANT OF EVALUATION USE
 The author grants a limited, non-exclusive, and non-transferable permission to the public and automated AI tools to download, view, compile, and execute the Software and its constituent Source Code for personal evaluation, testing, and debugging purposes ONLY while the project is in active development.

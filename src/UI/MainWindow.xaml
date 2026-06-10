@@ -1,3 +1,11 @@
+<!--
+========================================================================
+SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
+Refer to LICENSE.MYCODE.txt for full terms.
+========================================================================
+-->
+
 <Window x:Class="PsychoBuddy.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -108,7 +116,7 @@
                 <Button Content="SENSES" Style="{StaticResource FantasyButton}" Click="SensesNavButton_Click"/>
                 <Button Content="SETTINGS" Style="{StaticResource FantasyButton}" Click="SettingsButton_Click"/>
                 <Button Content="SCAN" Style="{StaticResource FantasyButton}" Click="ScanButton_Click" Margin="0,22,0,8"/>
-                <Button Content="DEMO" Style="{StaticResource FantasyButton}" Click="DemoButton_Click"/>
+                <Button Content="EMPTY" Style="{StaticResource FantasyButton}" Click="EmptyButton_Click"/>
                 <Button Content="TICK" Style="{StaticResource FantasyButton}" Click="TickButton_Click"/>
             </StackPanel>
 
@@ -167,7 +175,20 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <!-- Portrait / level block -->
-                                                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Width="68" Height="86" Background="#2E1E18" BorderBrush="{StaticResource GoldBrush}" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0" VerticalAlignment="Top">
+                                                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Width="68" Height="86" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0" VerticalAlignment="Top">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="Background" Value="#2E1E18"/>
+                                                            <Setter Property="BorderBrush" Value="{StaticResource GoldBrush}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsRealClient}" Value="False">
+                                                                    <Setter Property="Background" Value="#202020"/>
+                                                                    <Setter Property="BorderBrush" Value="#666666"/>
+                                                                    <Setter Property="Opacity" Value="0.70"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
                                                     <Grid>
                                                         <TextBlock Text="{Binding PortraitGlyph}" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12"/>
                                                         <Border VerticalAlignment="Bottom" Background="#AA000000" Padding="2">
@@ -179,7 +200,7 @@
                                                 <!-- Header -->
                                                 <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,4,0">
                                                     <DockPanel LastChildFill="False">
-                                                        <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="17" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" ToolTip="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="38"/>
                                                         <Ellipse DockPanel.Dock="Right" Width="8" Height="8" Fill="#00FF55" Margin="6,0,0,0" VerticalAlignment="Center"/>
                                                     </DockPanel>
                                                     <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
@@ -195,16 +216,26 @@
                                                 <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,8,0,0" VerticalAlignment="Top">
                                                     <DockPanel>
                                                         <TextBlock Text="Health" Foreground="#D8D0C7" Width="52" FontSize="11"/>
-                                                        <TextBlock Text="{Binding HealthPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
+                                                        <TextBlock Text="{Binding HealthText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
                                                     </DockPanel>
                                                     <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="10"/>
                                                     <DockPanel Margin="0,4,0,0">
                                                         <TextBlock Text="Mana" Foreground="#D8D0C7" Width="52" FontSize="11"/>
-                                                        <TextBlock Text="{Binding ManaPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
+                                                        <TextBlock Text="{Binding ManaText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
                                                     </DockPanel>
                                                     <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="10"/>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                                        <StackPanel.Style>
+                                                            <Style TargetType="StackPanel">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsRealClient}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </StackPanel.Style>
                                                         <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1" Margin="0,0,4,0">
                                                             <TextBlock Text="✦" Foreground="#D9E65B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>

@@ -1,7 +1,7 @@
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -39,6 +39,8 @@ namespace PsychoBuddy.UI
                 OnPropertyChanged(nameof(IsRealClient));
                 OnPropertyChanged(nameof(LevelText));
                 OnPropertyChanged(nameof(PortraitGlyph));
+                OnPropertyChanged(nameof(HealthText));
+                OnPropertyChanged(nameof(ManaText));
             }
         }
 
@@ -56,11 +58,41 @@ namespace PsychoBuddy.UI
 
         public string SlotLabel => SlotNumber > 0 ? $"Slot {SlotNumber}" : "Fleet Slot";
         public string CharacterName => Binding?.CharacterName ?? "Unknown";
-        public string ProcessIdText => Binding?.Pid > 0 ? $"PID {Binding.Pid}" : "No client attached";
-        public string WindowHandleText => Binding?.WindowHandle != IntPtr.Zero ? $"HWND 0x{Binding.WindowHandle.ToInt64():X}" : "No window handle";
-        public bool IsRealClient => Binding?.Pid > 0 && Binding.WindowHandle != IntPtr.Zero;
-        public string LevelText => IsRealClient ? "CLIENT" : (Level > 0 ? $"LEVEL {Level}" : "EMPTY");
-        public string PortraitGlyph => IsRealClient ? "◉" : (Role.Equals("Empty", StringComparison.OrdinalIgnoreCase) ? "◇" : "☠");
+        public string ProcessIdText
+        {
+            get
+            {
+                ClientBinding? binding = Binding;
+                return binding != null && binding.Pid > 0 ? $"PID {binding.Pid}" : "No client attached";
+            }
+        }
+
+        public string WindowHandleText
+        {
+            get
+            {
+                ClientBinding? binding = Binding;
+                if (binding == null || binding.WindowHandle == IntPtr.Zero)
+                {
+                    return "No window handle";
+                }
+
+                return $"HWND 0x{binding.WindowHandle.ToInt64():X}";
+            }
+        }
+
+        public bool IsRealClient
+        {
+            get
+            {
+                ClientBinding? binding = Binding;
+                return binding != null && binding.Pid > 0 && binding.WindowHandle != IntPtr.Zero;
+            }
+        }
+        public string LevelText => IsRealClient ? "CLIENT" : "OFFLINE";
+        public string HealthText => IsRealClient ? $"{HealthPercent:0}%" : "—";
+        public string ManaText => IsRealClient ? $"{ManaPercent:0}%" : "—";
+        public string PortraitGlyph => IsRealClient ? "◉" : "◇";
         public string RoleIcon => Role.ToLowerInvariant() switch
         {
             "tank" => "🛡",
@@ -116,6 +148,7 @@ namespace PsychoBuddy.UI
                 if (_healthPercent.Equals(value)) return;
                 _healthPercent = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(HealthText));
             }
         }
 
@@ -127,6 +160,7 @@ namespace PsychoBuddy.UI
                 if (_manaPercent.Equals(value)) return;
                 _manaPercent = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ManaText));
             }
         }
 
@@ -145,9 +179,10 @@ namespace PsychoBuddy.UI
 
         public void SetStatus(BotStatus status, string? uiStatus = null)
         {
-            if (Binding != null)
+            ClientBinding? binding = Binding;
+            if (binding != null)
             {
-                Binding.Status = status;
+                binding.Status = status;
             }
 
             Status = uiStatus ?? status.ToString();

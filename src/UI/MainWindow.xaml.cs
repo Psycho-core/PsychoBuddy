@@ -1,7 +1,7 @@
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -105,7 +105,7 @@ namespace PsychoBuddy.UI
             _controller.RefreshClientScan();
         }
 
-        private void DemoButton_Click(object sender, RoutedEventArgs e)
+        private void EmptyButton_Click(object sender, RoutedEventArgs e)
         {
             _controller.LoadStandbyFleet();
         }

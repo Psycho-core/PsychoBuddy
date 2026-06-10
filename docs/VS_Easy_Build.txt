@@ -76,9 +76,9 @@ For the first dashboard-only test:
    - A custom WPF Command Center window opens.
    - The window icon should use the Psycho icon from assets/PsychoBuddy.ico.
    - The Fleet Monitor shows four fixed slots in a 2x2 layout.
-   - Demo/standby fleet cards appear if no WoW clients are open, and empty slots remain visible when fewer than four real clients are attached.
+   - Four empty/offline fleet slots appear if no WoW clients are open, and empty slots remain visible when fewer than four real clients are attached.
    - The bottom Technical Log shows startup and scan messages and can be selected/copied.
-   - The Scan/Demo/Tick buttons are visible.
+   - The Scan/Empty/Tick buttons are visible.
    - The Client Attachment panel is visible with Role, Profile, Attach, Start, Pause, Stop, Detach, Start All, and Stop All controls.
    - Profiles/Navigation/Senses/Settings log a "not implemented yet" message when clicked.
 
@@ -104,6 +104,9 @@ TROUBLESHOOTING
 ------------------------------------------------------------------------
 - "No clients found"
   -> The dashboard is working. Open WoW, then click Scan Clients again.
+
+- MSB3021 / MSB3027 / MSB3026 / MSB3061 says PsychoBuddy.exe is locked by another process
+  -> A previous PsychoBuddy window is still running. Close the PsychoBuddy window, press Stop Debugging in Visual Studio, or end PsychoBuddy.exe in Task Manager, then rebuild.
 
 - "Access Denied" or client starts then fails
   -> Close PsychoBuddy and run it as Administrator before testing memory-based Power Mode.

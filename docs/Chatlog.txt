@@ -1452,9 +1452,9 @@ MD
 IMPORTANT NOTICE: This repository is a mixed-license project.
 The standard 'LICENSE' file applies to the base MaNGOS platform.
 THIS file ('LICENSE.MYCODE') applies EXCLUSIVELY to the original modules,
-scripts, and .bat files authored by [Psychostout].
+scripts, and .bat files authored by [Psycho-core].
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 
 PERMITTED DEVELOPMENT AND EVALUATION USE
 The author grants permission to the public and automated AI tools to download, view, compile, and execute the Software and its constituent Source Code for personal evaluation, testing, and debugging purposes ONLY while the project is in active development.
@@ -1518,7 +1518,7 @@ Battle for Azeroth (8.3.7)
 This project is a mixed-license project.
 
 The base platform/framework follows the guidelines of the underlying open-source projects it may utilize (e.g., GNU GPLv2 for MaNGOS related components).
-All original modules, logic, and scripts authored by [Psychostout] are governed by the SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE (see the commented block at the top of this file and LICENSE.MYCODE.txt).
+All original modules, logic, and scripts authored by [Psycho-core] are governed by the SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE (see the commented block at the top of this file and LICENSE.MYCODE.txt).
 Commercial use, unauthorized distribution, or charging for access to the original source code is strictly prohibited.
 
 Open
@@ -1623,7 +1623,7 @@ Risk of Bans: Botting is a violation of the Terms of Service of almost every gam
 No Liability: The author of PsychoBuddy is NOT liable for any account bans, suspensions, data loss, or hardware issues resulting from the use of this software. Use this tool entirely at your own risk.
 Educational Purpose: This project is shared for development and educational purposes regarding game automation and memory architecture.
 📜 License
-All original source code and logic are the proprietary intellectual property of [Psychostout].
+All original source code and logic are the proprietary intellectual property of [Psycho-core].
 
 A full copy of the license is provided with the software product. Commercial use, unauthorized distribution, or charging for access to the source code is strictly prohibited.
 
@@ -1631,7 +1631,7 @@ Open
 LICENSE.txt
 PLAIN
 PSYCHOBUDDY SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 
 1. GRANT OF EVALUATION USE
 The author grants a limited, non-exclusive, and non-transferable permission to the public and automated AI tools to download, view, compile, and execute the Software and its constituent Source Code for personal evaluation, testing, and debugging purposes ONLY while the project is in active development.
@@ -1665,7 +1665,7 @@ I have written a fresh, professional license from scratch. It is a Source-Availa
 
 It grants permission for testing/evaluation during development.
 It strictly prohibits any commercial use or redistribution.
-It explicitly reserves all proprietary rights for you ([Psychostout]) to transition the project into a paid product in the future.
+It explicitly reserves all proprietary rights for you ([Psycho-core]) to transition the project into a paid product in the future.
 It contains strong "No Warranty" and "Limitation of Liability" clauses.
 2. Restructured 
 README.md
@@ -3052,7 +3052,7 @@ Use on official Blizzard servers is STRICTLY PROHIBITED.
 Intended exclusively for approved private servers and personal/local servers.
 Must include a strong disclaimer that the author is not liable for account bans.
 Communication Style: Direct and technical.
-License: Proprietary "Source-Available Development & Evaluation License" authored by [Psychostout]. Commercial use and unauthorized distribution are prohibited.
+License: Proprietary "Source-Available Development & Evaluation License" authored by [Psycho-core]. Commercial use and unauthorized distribution are prohibited.
 Discoveries
 Technical Architecture
 The Senses (Data Acquisition):
@@ -3086,7 +3086,7 @@ Arcane: Burn vs. Conserve phases; Arcane Charge management (1-4).
 Fire: Hot Streak and Combustion windows.
 Frost: Fingers of Frost and Brain Freeze procs; Glacial Spike shatters.
 User-Pasted Content
-LICENSE.MYCODE.txt: Proprietary license restricting commercial use and reserving all rights for [Psychostout].
+LICENSE.MYCODE.txt: Proprietary license restricting commercial use and reserving all rights for [Psycho-core].
 Accomplished
 Completed
 Project Naming & Branding: Named the project PsychoBuddy.
@@ -4953,7 +4953,7 @@ Use on official Blizzard servers is STRICTLY PROHIBITED.
 Intended exclusively for approved private servers and personal/local servers.
 Must include a strong disclaimer that the author is not liable for account bans.
 Communication Style: Direct and technical.
-License: Proprietary "Source-Available Development & Evaluation License" authored by [Psychostout].
+License: Proprietary "Source-Available Development & Evaluation License" authored by [Psycho-core].
 Tracking: A file called chatlog.txt must be maintained and updated after every completed step with summaries and timestamps.
 Discoveries
 Technical Architecture
@@ -4974,7 +4974,7 @@ Binding: Maps PID and HWND to specific bot profiles.
 Version Specifics (7.3.5 & 8.3.7)
 Memory Offsets: Identified key structures for UnitFields, PlayerFields, and ObjectFields.
 User-Pasted Content
-LICENSE.MYCODE.txt: Proprietary license restricting commercial use and reserving all rights for [Psychostout].
+LICENSE.MYCODE.txt: Proprietary license restricting commercial use and reserving all rights for [Psycho-core].
 Accomplished
 Completed
 Project Naming & Branding: Named the project PsychoBuddy.
@@ -7693,7 +7693,7 @@ Risk of Bans: Botting is a violation of the Terms of Service of almost every gam
 No Liability: The author of PsychoBuddy is NOT liable for any account bans, suspensions, data loss, or hardware issues resulting from the use of this software. Use this tool entirely at your own risk.
 Educational Purpose: This project is shared for development and educational purposes regarding game automation and memory architecture.
 📜 License
-All original source code and logic are the proprietary intellectual property of [Psychostout].
+All original source code and logic are the proprietary intellectual property of [Psycho-core].
 
 A full copy of the license is provided with the software product. Commercial use, unauthorized distribution, or charging for access to the source code is strictly prohibited.
 
@@ -8045,7 +8045,7 @@ begin the Navigation research
 
 My current server:
 
-https://github.com/Psychostout/Psycho_Core-8.3.7
+https://github.com/Psycho-core/Psycho_Core-8.3.7
 
 Base source code:
 
@@ -8065,7 +8065,7 @@ Thought for 3 seconds
 
 The user wants to start "Navigation research" for PsychoBuddy. They provided a few links:
 
-https://github.com/Psychostout/Psycho_Core-8.3.7: This appears to be the user's own core implementation or a related project.
+https://github.com/Psycho-core/Psycho_Core-8.3.7: This appears to be the user's own core implementation or a related project.
 https://github.com/TrinityCore/TrinityCore/tree/8.3.7/35662: The base source code for the server (TrinityCore). This is extremely valuable because it reveals how the server handles movement, pathing, and navigation meshes.
 Wiki links for Legion and BFA.
 My goal is to create a detailed research document on Navigation and A* Pathfinding, leveraging the provided TrinityCore source to understand how the game's navigation works (e.g., Voxel maps, NavMeshes).*
@@ -10710,7 +10710,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -10775,7 +10775,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11009,7 +11009,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11054,7 +11054,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11094,7 +11094,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11127,7 +11127,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11322,7 +11322,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11416,7 +11416,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11464,7 +11464,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11622,7 +11622,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11654,7 +11654,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11707,7 +11707,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11845,7 +11845,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -11948,7 +11948,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -12033,7 +12033,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13042,7 +13042,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13282,7 +13282,7 @@ I can confirm with 100% certainty: All code is now correct, consistent, and read
 2. The Licensing (Legal):
 
  Headers: Every single .cs file in the src/ directory begins with your proprietary SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE.
- Ownership: The code is structured as a proprietary product owned by [Psychostout].
+ Ownership: The code is structured as a proprietary product owned by [Psycho-core].
 3. The Build System (The .exe Factory):
 
  Target Framework: Set to net8.0-windows (LTS), removing all "out of support" warnings.
@@ -13371,7 +13371,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13392,7 +13392,7 @@ namespace PsychoBuddy.UI
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13463,7 +13463,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13476,7 +13476,7 @@ namespace PsychoBuddy.Senses
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13538,7 +13538,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13555,7 +13555,7 @@ namespace PsychoBuddy.Brain
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13605,7 +13605,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13623,7 +13623,7 @@ namespace PsychoBuddy.Brain
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13665,7 +13665,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13681,7 +13681,7 @@ namespace PsychoBuddy.Brain
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13716,7 +13716,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13731,7 +13731,7 @@ namespace PsychoBuddy.Brain
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13767,7 +13767,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13783,7 +13783,7 @@ namespace PsychoBuddy.Core
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13946,7 +13946,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -13969,7 +13969,7 @@ namespace PsychoBuddy.Core
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14176,7 +14176,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14221,7 +14221,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14257,7 +14257,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14285,7 +14285,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14314,7 +14314,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14365,7 +14365,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14396,7 +14396,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14419,7 +14419,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14447,7 +14447,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14470,7 +14470,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14502,7 +14502,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14534,7 +14534,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14571,7 +14571,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14609,7 +14609,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14634,7 +14634,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14665,7 +14665,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14744,7 +14744,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14773,7 +14773,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -14880,7 +14880,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -15001,7 +15001,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -15088,7 +15088,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -15117,7 +15117,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
@@ -15160,7 +15160,7 @@ PLAIN
 /*
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */

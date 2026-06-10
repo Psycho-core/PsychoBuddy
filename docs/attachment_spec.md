@@ -56,7 +56,7 @@ The selected fleet card can be controlled from the dashboard.
 * **Start All / Stop All:** Applies start/stop to all real attached clients.
 
 ### Step 5: Detach
-`Detach Selected` unregisters the client from the `Orchestrator`, removes it from the fleet list, and returns the dashboard to standby/demo mode if no real clients remain.
+`Detach Selected` unregisters the client from the `Orchestrator`, removes it from active control, and returns that fleet position to an empty/offline slot.
 
 ---
 
@@ -70,7 +70,7 @@ Disconnected → Attached → Running
 
 | Status | Meaning |
 | :--- | :--- |
-| `Disconnected` | No real process/window is attached. Used by standby/demo slots. |
+| `Disconnected` | No real process/window is attached. Used by empty/offline slots. |
 | `Attached` | Client is known to the dashboard but active bot logic is not running. |
 | `Running` | Client is registered with the orchestrator and eligible for fleet ticks. |
 | `Paused` | Client remains attached but should not be actively ticked. |
@@ -126,7 +126,7 @@ The dashboard must expose:
 - **Available Clients:** scanned but unattached clients.
 - **Selected-client feedback:** dashboard shows the selected available client and selected fleet card so workflow button targets are clear.
 - **Role/Profile selection:** user assigns intent before attachment.
-- **Attached Fleet:** always displays four fixed 2x2 slots. Real clients replace demo/empty slots; empty slots remain visible when fewer than four real clients are attached.
+- **Attached Fleet:** always displays four fixed 2x2 slots. Real clients replace empty/offline slots; empty slots remain visible when fewer than four real clients are attached.
 - **Lifecycle controls:** Attach, Start, Pause, Stop, Detach, Start All, Stop All.
 - **Technical Log:** every scan/attach/start/stop/detach action logs a timestamped message; the log is a read-only selectable/copyable text box.
 

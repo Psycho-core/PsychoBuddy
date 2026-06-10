@@ -41,7 +41,7 @@ Startup behavior:
 1. `App.xaml` generates the WPF entry point.
 2. `App.OnStartup()` opens `MainWindow`.
 3. `MainWindow` creates `DashboardController`.
-4. The controller loads standby/demo fleet cards.
+4. The controller loads four empty/offline fleet slots.
 5. The controller scans for available WoW clients.
 6. No active bot logic starts until the user explicitly attaches and starts a client.
 
@@ -62,10 +62,10 @@ Current visible buttons:
 - `DEMO`
 - `TICK`
 
-The section buttons are visual placeholders for future pages. The scan/demo/tick controls are active test workflow buttons.
+The section buttons are visual placeholders for future pages. The scan/empty/tick controls are active test workflow buttons.
 
 ### 3.2 Fleet Monitor / Center
-Displays attached clients or standby/demo cards.
+Displays attached clients or empty/offline session slots.
 
 Current card data:
 
@@ -143,7 +143,7 @@ Current log events include:
 
 ### 4.1 Startup Flow
 
-`Launch PsychoBuddy.exe` → `App.xaml starts WPF` → `MainWindow opens` → `standby fleet cards display` → `client scan runs` → `technical log updates`
+`Launch PsychoBuddy.exe` → `App.xaml starts WPF` → `MainWindow opens` → `four empty/offline fleet slots display` → `client scan runs` → `technical log updates`
 
 ### 4.2 Attachment Flow
 
@@ -153,16 +153,17 @@ Current log events include:
 
 `Select attached fleet card` → `Start Selected` → `status changes to Running` → `Pause/Stop/Detach as needed`
 
-### 4.4 Demo / No-Client Flow
+### 4.4 Empty / No-Client Flow
 
-If no WoW clients are found, the dashboard remains usable and shows demo cards:
+If no WoW clients are found, the dashboard remains usable and shows four empty/offline slots:
 
-- Ares / DPS
-- Luna / Healer
-- Atlas / Tank
-- Nyx / DPS
+- Awaiting Client
+- Role: No Session
+- Profile: No Profile
+- Status: Offline
+- Health/Mana values shown as blank placeholders rather than fake values
 
-This confirms the UI is alive even before real attachment is available.
+This confirms the UI is alive even before real attachment is available, without pretending that clients are connected.
 
 ---
 
@@ -215,7 +216,7 @@ Latest usability pass:
 - [x] placeholder navigation buttons log clear feedback instead of doing nothing
 - [x] custom minimize/close buttons wired in the WPF window chrome
 - [x] fixed 2x2 Fleet Monitor slots with no awkward fleet scrolling/clipping
-- [x] real clients replace demo/empty fleet slots while the monitor always shows four slots
+- [x] real clients replace empty/offline fleet slots while the monitor always shows four slots
 - [x] improved card spacing, portrait area, role icon area, and bottom status bar
 - [x] selected available/fleet client status shown near the workflow controls
 - [x] tick logging now reports actual running-client count or clearly reports no running clients
