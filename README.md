@@ -49,6 +49,6 @@ This software is intended exclusively for use on:
 ---
 
 ## 📜 License
-All original source code and logic are the proprietary intellectual property of **[Psychostout]**. 
+All original source code and logic are the proprietary intellectual property of **[Psycho-core]**. 
 
 **A full copy of the license is provided with the software product.** Commercial use, unauthorized distribution, or charging for access to the source code is strictly prohibited.
