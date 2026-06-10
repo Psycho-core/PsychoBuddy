@@ -45,7 +45,6 @@
         </Style>
 
         <Style x:Key="FleetListBoxItem" TargetType="ListBoxItem">
-            <Setter Property="Width" Value="260"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Stretch"/>
             <Setter Property="Padding" Value="0"/>
@@ -133,65 +132,103 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- ATTACHED FLEET CARDS -->
+                        <!-- ATTACHED FLEET CARDS: fixed 2x2 grid -->
                         <Border Grid.Column="0" BorderBrush="#6A3A24" BorderThickness="1" Background="#33111111" Padding="4">
                             <ListBox ItemsSource="{Binding Fleet}"
                                      SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      ItemContainerStyle="{StaticResource FleetListBoxItem}"
-                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel IsItemsHost="True" ItemWidth="260"/>
+                                        <UniformGrid Rows="2" Columns="2"/>
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="#DD101820" BorderBrush="#7A3E22" BorderThickness="1" CornerRadius="6" Padding="10" MinHeight="162">
+                                        <Border Background="#DD101820"
+                                                BorderBrush="#7A3E22"
+                                                BorderThickness="1"
+                                                CornerRadius="6"
+                                                Padding="8"
+                                                Margin="2">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
                                                     <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="34"/>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="78"/>
+                                                    <ColumnDefinition Width="82"/>
                                                     <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="34"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="64" Height="70" Background="#2E1E18" BorderBrush="{StaticResource GoldBrush}" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0">
-                                                    <TextBlock Text="☠" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                <!-- Portrait / level block -->
+                                                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Width="68" Height="86" Background="#2E1E18" BorderBrush="{StaticResource GoldBrush}" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0" VerticalAlignment="Top">
+                                                    <Grid>
+                                                        <TextBlock Text="{Binding PortraitGlyph}" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12"/>
+                                                        <Border VerticalAlignment="Bottom" Background="#AA000000" Padding="2">
+                                                            <TextBlock Text="{Binding LevelText}" Foreground="White" FontSize="9" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                                        </Border>
+                                                    </Grid>
                                                 </Border>
 
-                                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="18" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
-                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
-                                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                <!-- Header -->
+                                                <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,4,0">
+                                                    <DockPanel LastChildFill="False">
+                                                        <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="17" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                                        <Ellipse DockPanel.Dock="Right" Width="8" Height="8" Fill="#00FF55" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                                    </DockPanel>
+                                                    <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
+                                                    <TextBlock Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="10.5" TextTrimming="CharacterEllipsis"/>
+                                                </StackPanel>
 
-                                                <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,0,0">
+                                                <!-- Role icon -->
+                                                <Border Grid.Row="0" Grid.Column="2" Width="28" Height="28" Background="#352018" BorderBrush="#8B4513" BorderThickness="1" CornerRadius="3" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                    <TextBlock Text="{Binding RoleIcon}" Foreground="{StaticResource GoldBrush}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+
+                                                <!-- Vitals and technical identifiers -->
+                                                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,8,0,0" VerticalAlignment="Top">
                                                     <DockPanel>
-                                                        <TextBlock Text="Health" Foreground="#D8D0C7" Width="55"/>
-                                                        <TextBlock Text="{Binding HealthPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right"/>
+                                                        <TextBlock Text="Health" Foreground="#D8D0C7" Width="52" FontSize="11"/>
+                                                        <TextBlock Text="{Binding HealthPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
                                                     </DockPanel>
-                                                    <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="12"/>
-                                                    <DockPanel Margin="0,5,0,0">
-                                                        <TextBlock Text="Mana" Foreground="#D8D0C7" Width="55"/>
-                                                        <TextBlock Text="{Binding ManaPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right"/>
+                                                    <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="10"/>
+                                                    <DockPanel Margin="0,4,0,0">
+                                                        <TextBlock Text="Mana" Foreground="#D8D0C7" Width="52" FontSize="11"/>
+                                                        <TextBlock Text="{Binding ManaPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
                                                     </DockPanel>
-                                                    <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="12"/>
+                                                    <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="10"/>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                                        <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1" Margin="0,0,4,0">
+                                                            <TextBlock Text="✦" Foreground="#D9E65B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1" Margin="0,0,4,0">
+                                                            <TextBlock Text="⚔" Foreground="#FF8C6B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1">
+                                                            <TextBlock Text="◆" Foreground="#75D7FF" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </StackPanel>
+
+                                                    <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis" Margin="0,5,0,0"/>
+                                                    <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis"/>
                                                 </StackPanel>
 
-                                                <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                                    <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="10" TextTrimming="CharacterEllipsis"/>
-                                                    <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="10" TextTrimming="CharacterEllipsis"/>
-                                                    <DockPanel Margin="0,8,0,0">
-                                                        <TextBlock Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold"/>
-                                                        <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="11" FontWeight="Bold" HorizontalAlignment="Right" TextTrimming="CharacterEllipsis"/>
+                                                <!-- Bottom status bar -->
+                                                <Border Grid.Row="2" Grid.ColumnSpan="3" Background="#4421110A" BorderBrush="#6A3A24" BorderThickness="0,1,0,0" Margin="-8,6,-8,-8" Padding="8,4">
+                                                    <DockPanel LastChildFill="False">
+                                                        <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                        <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#33111111" BorderBrush="#6A3A24" BorderThickness="1" CornerRadius="10" Padding="8,1">
+                                                            <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="10.5" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                                        </Border>
                                                     </DockPanel>
-                                                </StackPanel>
+                                                </Border>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>

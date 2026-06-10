@@ -40,6 +40,8 @@ PsychoBuddy is currently optimized for:
 *   **Application entry point:** `src/App.xaml` + `src/App.xaml.cs`
 *   **Dashboard window:** `src/UI/MainWindow.xaml`
 *   **Current dashboard workflow:** Scan clients → choose role/profile → attach → start/pause/stop → detach
+*   **Current dashboard usability:** fixed 2x2 Fleet Monitor slots, visible detach/profile controls, selectable/copyable technical log, placeholder-button log feedback, custom minimize/close controls, and selected-client status labels
+*   **Application icon:** `assets/PsychoBuddy.ico`, generated from `assets/Psycho.JPG`
 *   **Primary UI visual target:** `assets/UI_Option_1.png`
 *   **Note:** `PsychoBuddy-Built/` was a temporary test-build folder and is not part of the canonical source tree.
 

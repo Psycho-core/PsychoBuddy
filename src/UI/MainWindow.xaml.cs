@@ -61,7 +61,7 @@ namespace PsychoBuddy.UI
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            _controller.NotifyPlaceholder("Window minimize");
+            _controller.NotifyAction("Window minimized.");
             WindowState = System.Windows.WindowState.Minimized;
         }
 

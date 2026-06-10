@@ -9,6 +9,7 @@ CURRENT PROJECT FACTS
 - Canonical project file: PsychoBuddy.csproj in the repository root
 - WPF entry point: src/App.xaml + src/App.xaml.cs
 - Dashboard window: src/UI/MainWindow.xaml
+- Application icon: assets/PsychoBuddy.ico, generated from assets/Psycho.JPG
 - Old PsychoBuddy-Built test folder: removed; do not use it
 
 ========================================================================
@@ -30,6 +31,9 @@ STEP 2: OPEN THE CORRECT PROJECT
   - PsychoBuddy.csproj
   - LICENSE.MYCODE.txt
   - README.md
+  - assets/
+    - Psycho.JPG
+    - PsychoBuddy.ico
   - src/
     - App.xaml
     - App.xaml.cs
@@ -70,10 +74,13 @@ For the first dashboard-only test:
 
 2. Expected startup behavior:
    - A custom WPF Command Center window opens.
-   - Demo/standby fleet cards appear if no WoW clients are open.
+   - The window icon should use the Psycho icon from assets/PsychoBuddy.ico.
+   - The Fleet Monitor shows four fixed slots in a 2x2 layout.
+   - Demo/standby fleet cards appear if no WoW clients are open, and empty slots remain visible when fewer than four real clients are attached.
    - The bottom Technical Log shows startup and scan messages and can be selected/copied.
    - The Scan/Demo/Tick buttons are visible.
    - The Client Attachment panel is visible with Role, Profile, Attach, Start, Pause, Stop, Detach, Start All, and Stop All controls.
+   - Profiles/Navigation/Senses/Settings log a "not implemented yet" message when clicked.
 
 3. You do NOT need Administrator mode just to confirm the dashboard opens.
 
@@ -103,6 +110,9 @@ TROUBLESHOOTING
 
 - "Missing Reference" or files not found
   -> Confirm you opened the repository-root PsychoBuddy.csproj and that /src exists beside it.
+
+- App icon does not immediately change in Windows Explorer
+  -> Run Clean Solution, then Rebuild Solution. Windows may also cache old .exe icons, so check the running window/taskbar icon too.
 
 - App opens but looks plain/incomplete
   -> That is expected for now. The layout is moving toward assets/UI_Option_1.png, but the full skin pass is still pending.

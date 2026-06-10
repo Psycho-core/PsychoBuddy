@@ -17,6 +17,8 @@ The current WPF dashboard already follows this layout direction:
 - right-side Senses Module and Senses Status panels
 - bottom parchment technical log
 - footer/system status bar
+- custom minimize/close controls
+- application/window icon from `assets/PsychoBuddy.ico`
 
 Full visual parity will require a later skin pass with custom art assets, portrait frames, icons, borders, and WPF control templates.
 
@@ -32,6 +34,7 @@ Full visual parity will require a later skin pass with custom art assets, portra
 | Main dashboard code-behind | `src/UI/MainWindow.xaml.cs` |
 | Dashboard state/controller | `src/UI/DashboardController.cs` |
 | Fleet card view model | `src/UI/FleetCardViewModel.cs` |
+| Application/window icon | `assets/PsychoBuddy.ico` |
 
 Startup behavior:
 
@@ -194,12 +197,14 @@ Already present:
 
 - [x] Command Center top bar
 - [x] left navigation column
-- [x] fleet cards in a two-column layout
+- [x] fleet cards in a fixed 2x2 layout
 - [x] health/resource bars
 - [x] tactical map placeholder
 - [x] right-side Senses panels
-- [x] parchment technical log
+- [x] parchment technical log, now selectable/copyable
 - [x] lava/obsidian/gold color direction
+- [x] application/window icon from `assets/PsychoBuddy.ico`
+- [x] custom minimize/close controls
 
 Latest usability pass:
 
@@ -209,8 +214,11 @@ Latest usability pass:
 - [x] selectable/copyable Technical Log through a read-only TextBox
 - [x] placeholder navigation buttons log clear feedback instead of doing nothing
 - [x] custom minimize/close buttons wired in the WPF window chrome
-- [x] fleet card layout adjusted to reduce clipping and horizontal scrolling
+- [x] fixed 2x2 Fleet Monitor slots with no awkward fleet scrolling/clipping
+- [x] real clients replace demo/empty fleet slots while the monitor always shows four slots
+- [x] improved card spacing, portrait area, role icon area, and bottom status bar
 - [x] selected available/fleet client status shown near the workflow controls
+- [x] tick logging now reports actual running-client count or clearly reports no running clients
 
 Pending polish:
 

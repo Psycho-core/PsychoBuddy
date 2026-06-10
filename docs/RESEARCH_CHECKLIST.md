@@ -115,7 +115,8 @@ This document serves as the master checklist for every single technical and cont
 - [x] **Build Target:** .NET 8 / `net8.0-windows`
 - [x] **WPF Startup Shell:** `src/App.xaml` launches `MainWindow` and displays standby fleet cards when no clients are found.
 - [x] **Dashboard Attachment Workflow:** Scan available clients, choose role/profile, attach, start, pause, stop, and detach from the UI.
-- [x] **Dashboard Usability Pass:** Visible detach/profile controls, copyable technical log, placeholder-button feedback, custom minimize/close wiring, and reduced fleet-card clipping.
+- [x] **Dashboard Usability Pass:** Fixed 2x2 Fleet Monitor slots, visible detach/profile controls, copyable technical log, placeholder-button feedback, custom minimize/close wiring, selected-client status labels, clearer tick logging, and reduced fleet-card clipping.
+- [x] **Application Icon:** `assets/PsychoBuddy.ico` generated from `assets/Psycho.JPG` and configured in `PsychoBuddy.csproj` plus `MainWindow.xaml`.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)

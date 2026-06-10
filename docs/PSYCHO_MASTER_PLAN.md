@@ -7,6 +7,8 @@
 - **Application entry point:** `src/App.xaml` / `src/App.xaml.cs`, which opens `src/UI/MainWindow.xaml`.
 - **Dashboard startup:** MainWindow now initializes the dashboard controller and shows standby fleet slots when no clients are attached.
 - **Dashboard attachment workflow:** Scan Clients → Choose Role/Profile → Attach → Start/Pause/Stop → Detach.
+- **Dashboard usability status:** fixed 2x2 Fleet Monitor slots, visible detach/profile controls, selectable/copyable technical log, placeholder navigation feedback, custom minimize/close controls, improved card spacing/portrait/status areas, selected-client status labels, and clearer tick logging are implemented.
+- **Application icon:** `assets/PsychoBuddy.ico`, generated from `assets/Psycho.JPG`, is configured as the executable and MainWindow icon.
 - **Primary UI target:** `assets/UI_Option_1.png`.
 - **Temporary build copy removed:** `PsychoBuddy-Built/` was only a test-build output folder and is no longer part of the source tree.
 - **License location:** `LICENSE.MYCODE.txt` in the repository root is the authoritative license referenced by source headers.

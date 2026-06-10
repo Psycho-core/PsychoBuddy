@@ -22,6 +22,7 @@ namespace PsychoBuddy.UI
         private string _role = "Unassigned";
         private string _assignedProfile = "None";
         private int _level;
+        private int _slotNumber;
         private ClientBinding? _binding;
 
         public ClientBinding? Binding
@@ -36,22 +37,50 @@ namespace PsychoBuddy.UI
                 OnPropertyChanged(nameof(ProcessIdText));
                 OnPropertyChanged(nameof(WindowHandleText));
                 OnPropertyChanged(nameof(IsRealClient));
+                OnPropertyChanged(nameof(LevelText));
+                OnPropertyChanged(nameof(PortraitGlyph));
             }
         }
 
+        public int SlotNumber
+        {
+            get => _slotNumber;
+            set
+            {
+                if (_slotNumber == value) return;
+                _slotNumber = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SlotLabel));
+            }
+        }
+
+        public string SlotLabel => SlotNumber > 0 ? $"Slot {SlotNumber}" : "Fleet Slot";
         public string CharacterName => Binding?.CharacterName ?? "Unknown";
         public string ProcessIdText => Binding?.Pid > 0 ? $"PID {Binding.Pid}" : "No client attached";
         public string WindowHandleText => Binding?.WindowHandle != IntPtr.Zero ? $"HWND 0x{Binding.WindowHandle.ToInt64():X}" : "No window handle";
         public bool IsRealClient => Binding?.Pid > 0 && Binding.WindowHandle != IntPtr.Zero;
+        public string LevelText => IsRealClient ? "CLIENT" : (Level > 0 ? $"LEVEL {Level}" : "EMPTY");
+        public string PortraitGlyph => IsRealClient ? "◉" : (Role.Equals("Empty", StringComparison.OrdinalIgnoreCase) ? "◇" : "☠");
+        public string RoleIcon => Role.ToLowerInvariant() switch
+        {
+            "tank" => "🛡",
+            "healer" => "✚",
+            "dps" => "⚔",
+            "utility" => "◆",
+            _ => "◇"
+        };
 
         public string Role
         {
             get => _role;
             set
             {
-                if (_role == value) return;
-                _role = value;
+                string next = string.IsNullOrWhiteSpace(value) ? "Unassigned" : value;
+                if (_role == next) return;
+                _role = next;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(RoleIcon));
+                OnPropertyChanged(nameof(PortraitGlyph));
             }
         }
 
@@ -75,6 +104,7 @@ namespace PsychoBuddy.UI
                 if (_level == value) return;
                 _level = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(LevelText));
             }
         }
 
