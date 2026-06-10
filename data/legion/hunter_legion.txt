@@ -1,0 +1,91 @@
+LEGION HUNTER (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- A Murder of Crows: High priority burst damage.
+- Binding Shot: AoE root, useful for add management.
+- Killer Cobra: Reducess cooldown of other abilities.
+- Double Tap: (MM) Two charges of Aimed Shot.
+- Trueshot: (MM) Massive burst window.
+- Mongoose Bite: (SV) High damage based on stacks.
+
+========================================================================
+SPEC: BEAST MASTERY (PVE)
+========================================================================
+CORE MECHANIC: Maintaining "Frenzy" on the pet and utilizing Bestial Wrath.
+PRIORITY LIST (Single Target):
+1. Bestial Wrath: Use on cooldown.
+2. Kill Command: High priority, especially with Nature's Ally.
+3. Barbed Shot: Maintain Frenzy stacks (do not overcap at 3).
+4. Cobra Shot: Filler to avoid focus capping.
+5. Dire Beast: Use on cooldown.
+
+PRIORITY LIST (AoE):
+1. Barbed Shot: Keep Frenzy active.
+2. Wild Thrash: Use on cooldown.
+3. Bestial Wrath: Use on cooldown.
+4. Kill Command: Use on cooldown.
+5. Multi-Shot: Filler.
+
+COOLDOWNS:
+- Bestial Wrath: Primary damage boost.
+- Aspect of the Wild: Focus regeneration and healing.
+
+========================================================================
+SPEC: MARKSMANSHIP (PVE)
+========================================================================
+CORE MECHANIC: Focus management and utilizing "Precise Shots" procs.
+PRIORITY LIST (Single Target):
+1. Trueshot: Use as a major burst window.
+2. Rapid Fire: Use on cooldown to generate focus and trigger resets.
+3. Aimed Shot: Primary damage dealer (avoid capping charges).
+4. Arcane Shot: Use immediately after Aimed Shot to spend Precise Shots.
+5. Steady Shot: Filler to generate focus.
+
+PRIORITY LIST (AoE):
+1. Multi-Shot: Use to trigger "Trick Shots" (essential for AoE).
+2. Rapid Fire: Use to maintain Bulletstorm.
+3. Aimed Shot: Use while Trick Shots is active.
+4. Volley: Use on cooldown for AoE damage.
+
+COOLDOWNS:
+- Trueshot: Massive damage increase.
+- Double Tap: Grants extra Aimed Shot charges.
+
+========================================================================
+SPEC: SURVIVAL (PVE)
+========================================================================
+CORE MECHANIC: "Mongoose Fury" stack management and melee combat.
+PRIORITY LIST (Single Target):
+1. Mongoose Bite: Use when stacks are high (2+).
+2. Flanking Strike: Use to generate Mongoose stacks.
+3. Spitting Cobra: Use on cooldown for focus/damage.
+4. Lacerate: Maintain bleed on target.
+5. Raptor Strike: Filler.
+
+PRIORITY LIST (AoE):
+1. Carnage: Use to initiate.
+2. Explosive Trap: Use on cooldown.
+3. Carve: Maintain AoE bleed.
+4. Butchery: Use for high burst AoE.
+
+COOLDOWNS:
+- Aspect of the Eagle: Increases damage and range.
+- Fury of the Eagle: Burst damage.
+
+========================================================================
+PVP LOGIC (GENERAL HUNTER)
+========================================================================
+- Utility: Freezing Trap, Scatter Shot, Intimidation (Pet).
+- Defensive: Aspect of the Turtle (Immunity), Disengage.
+- BM PvP: Focus on pet pressure and sustain.
+- MM PvP: High burst, focus on Trueshot windows.
+- SV PvP: High mobility, melee burst and traps.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Beast Mastery for ease of use and pet tanking.
+- Loop: Kill Command -> Barbed Shot -> Cobra Shot.
+- Use Bestial Wrath on cooldown.

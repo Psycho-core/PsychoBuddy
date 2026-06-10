@@ -1,0 +1,37 @@
+Modern WoW Versions Research (7.3.5 Legion & 8.3.7 BFA)
+
+1. VERSION TARGETS
+- Legion: Version 7.3.5 (Build 26972 / 25946)
+- Battle for Azeroth (BFA): Version 8.3.7 (Build 35662)
+
+2. MEMORY ANALYSIS (7.3.5)
+Specific offsets have been identified for 7.3.5, allowing for precise state reading. Key memory structures include:
+- ObjectFields: GUID, Type, EntryID.
+- UnitFields: Health, Power, MaxHealth, MaxPower, Level, AuraState, CombatReach.
+- PlayerFields: CurrentSpecID (Crucial for rotations), XP, Coinage, and various combat ratings (Crit, Mastery, Versatility).
+- ItemFields: ArtifactXP (Unique to Legion), Durability, StackCount.
+
+3. COMBAT COMPLEXITY (THE "FIGHT CLASS" SYSTEM)
+Unlike early WoW versions, Legion and BFA introduced complex combat mechanics:
+- Procs: Spells that become available or strengthened based on random events (e.g., "Brain Freeze").
+- Artifact Abilities: Unique spells tied to Artifact weapons.
+- Resource Management: More complex interactions between primary and secondary resources.
+
+To automate this, a "Priority-Based Rotation Engine" is required:
+- Logic: Instead of a sequence (1 $\rightarrow$ 2 $\rightarrow$ 3), the bot must check a list of conditions every tick.
+- Example: 
+    1. IF (Proc_A == Active) $\rightarrow$ Cast Spell_A
+    2. IF (Target_HP < 20%) $\rightarrow$ Cast Execute
+    3. IF (Resource > 80%) $\rightarrow$ Cast Dump_Spell
+    4. ELSE $\rightarrow$ Cast Filler_Spell
+
+4. CURRENT TOOLING
+- WRobot: Explicitly supports both 7.3.5 and 8.3.7. It uses a .NET API and a GUI-based Fight Class editor.
+- PQR (Rotation Bot): A legacy but influential tool that focused purely on the rotation aspect using Lua-based conditions.
+
+5. ANTI-CHEAT CONSIDERATIONS (PRIVATE SERVERS)
+While Warden is less aggressive on some private servers, many now use "Custom Kernels" or "Modified MPQ files" to block standard Lua functions (like CastSpellByName). 
+- Workaround: Use `RunMacroText("/cast Spell Name")` to bypass certain Lua restrictions.
+
+6. SUMMARY
+Targeting 7.3.5 and 8.3.7 requires a shift from "Simple Scripting" to "State-Driven Automation." The bot must be able to read a wide array of PlayerFields (Spec, Procs, Resources) and execute a priority-based rotation.

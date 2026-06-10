@@ -1,0 +1,81 @@
+BFA PRIEST (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Divine Toll: Massive Holy Power / Resource generation.
+- Wake of Ashes: Burst damage (Shadow).
+- Beacon of Virtue: High throughput, high mana.
+- Power Infusion: Essential haste buff.
+- Halo: AoE burst.
+
+========================================================================
+SPEC: HOLY (PVE)
+========================================================================
+CORE MECHANIC: Managing Holy Words and Prayer of Mending.
+PRIORITY LIST:
+1. Holy Word: Serenity: Primary target heal.
+2. Holy Word: Sanctify: Primary AoE heal.
+3. Prayer of Mending: High priority for throughput.
+4. Flash Heal: Filler (especially with Surge of Light).
+5. Prayer of Healing: Group heal.
+
+PROCS/CONDITIONALS:
+- Surge of Light: Instant/Free Flash Heal.
+
+COOLDOWNS:
+- Divine Hymn: Massive group healing.
+- Apotheosis: Enhanced healing throughput.
+- Guardian Spirit: Emergency save.
+
+========================================================================
+SPEC: DISCIPLINE (PVE)
+========================================================================
+CORE MECHANIC: Atonement and resource-driven healing.
+PRIORITY LIST:
+1. Power Word: Shield: Apply Atonement.
+2. Penance: Primary Atonement tool.
+3. Power Word: Radiance: AoE Atonement.
+4. Smite / Holy Fire: Filler for Atonement healing.
+5. Shadow Word: Pain: Maintain for damage.
+
+PROCS/CONDITIONALS:
+- Atonement: Essential for any healing to occur.
+
+COOLDOWNS:
+- Divine Toll: Resource burst.
+- Power Word: Barrier: Damage reduction.
+- Rapture: Shield-based burst heal.
+
+========================================================================
+SPEC: SHADOW (PVE)
+========================================================================
+CORE MECHANIC: Insanity management and Void Eruption windows.
+PRIORITY LIST:
+1. Vampiric Touch: Maintain on all targets.
+2. Mind Blast: Primary generator.
+3. Devouring Plague: Primary spender.
+4. Shadow Word: Death: Execute (< 20% health).
+5. Mind Flay / Mind Sear: Filler (ST / AoE).
+
+PROCS/CONDITIONALS:
+- Voidform: Priority shifts to Void Bolt on cooldown.
+
+COOLDOWNS:
+- Void Eruption: Enter Voidform.
+- Mindbender: Burst damage and resource gen.
+- Power Infusion: Haste burst.
+
+========================================================================
+PVP LOGIC (GENERAL PRIEST)
+========================================================================
+- Utility: Psychic Scream, Mass Dispel, Mind Control.
+- Defensive: Fade, Power Word: Shield.
+- Shadow PvP: Use Mindbender and Voidform for burst pressure.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Shadow.
+- Loop: Vampiric Touch -> Mind Blast -> Devouring Plague.
+- Use Void Eruption on cooldown.

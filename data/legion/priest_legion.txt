@@ -1,0 +1,82 @@
+LEGION PRIEST (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Angelic Feather: Mobility boost.
+- Divine Star / Halo: AoE heal/damage.
+- Surrender to Madness: High-risk, high-reward Shadow burst.
+- Chastening: Enhances Penance.
+- Power Infusion: Haste boost (Self/Ally).
+
+========================================================================
+SPEC: HOLY (PVE)
+========================================================================
+CORE MECHANIC: Serendipity (casting spells reduces the cooldown of Holy Words).
+PRIORITY LIST:
+1. Holy Word: Serenity: High priority single target heal.
+2. Holy Word: Sanctify: High priority AoE heal.
+3. Prayer of Mending: Essential for throughput and Serendipity.
+4. Flash Heal: Primary filler / Surge of Light spender.
+5. Prayer of Healing: Group heal.
+
+PROCS/CONDITIONALS:
+- Surge of Light: Makes next Flash Heal instant and free.
+
+COOLDOWNS:
+- Apotheosis: Massive increase to Serendipity and healing.
+- Divine Hymn: Group heal and cooldown reduction.
+- Guardian Spirit: Life-saving cooldown.
+
+========================================================================
+SPEC: DISCIPLINE (PVE)
+========================================================================
+CORE MECHANIC: Atonement (damage dealt heals allies).
+PRIORITY LIST:
+1. Power Word: Shield: Apply Atonement to target.
+2. Penance: Primary Atonement heal and damage.
+3. Power Word: Radiance: AoE Atonement application.
+4. Smite / Holy Fire: Fill and maintain Atonement healing.
+5. Shadow Word: Pain: Maintain for damage and Atonement.
+
+PROCS/CONDITIONALS:
+- Atonement: Must be active on allies to heal via damage.
+
+COOLDOWNS:
+- Power Infusion: Haste increase.
+- Rapture: Burst healing based on shields.
+- Power Word: Barrier: Damage mitigation.
+
+========================================================================
+SPEC: SHADOW (PVE)
+========================================================================
+CORE MECHANIC: Insanity generation and spending in Void Form.
+PRIORITY LIST:
+1. Vampiric Touch: Maintain on all targets.
+2. Shadow Word: Pain: Maintain on all targets.
+3. Mind Blast: High priority generator.
+4. Devouring Plague: Primary Insanity spender.
+5. Mind Flay / Mind Sear: Filler (ST / AoE).
+
+PROCS/CONDITIONALS:
+- Void Form: Entered at 100 Insanity. Priority shifts to Void Bolt.
+- Surrender to Madness: Extended Void Form until death.
+
+COOLDOWNS:
+- Void Eruption: Enter Void Form.
+- Mindbender: Pet damage and Insanity generation.
+- Power Infusion: Haste burst.
+
+========================================================================
+PVP LOGIC (GENERAL PRIEST)
+========================================================================
+- Utility: Psychic Scream (AoE Fear), Mass Dispel, Mind Control.
+- Defensive: Fade, Power Word: Shield, Desperate Prayer.
+- Shadow PvP: Focus on kiting and burst with Void Form.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Shadow for fastest soloing.
+- Loop: Vampiric Touch -> Mind Blast -> Devouring Plague.
+- Use Void Form on cooldown.

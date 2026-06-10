@@ -1,0 +1,78 @@
+BFA WARRIOR (8.3.7) - DATA SHEET
+
+========================================================================
+SPEC: ARMS (PVE)
+========================================================================
+PRIORITY LIST (Single Target):
+1. Colossus Smash: Maintain uptime.
+2. Rend: Maintain bleed.
+3. Mortal Strike: Primary damage.
+4. Overpower: Use on proc.
+5. Execute: Use when target < 35% (depending on talents).
+6. Slam: Rage dump / filler.
+
+PRIORITY LIST (AoE):
+1. Sweeping Strikes: Essential for multi-target.
+2. Ravager: Primary AoE burst.
+3. Cleave: High priority in multi-target.
+4. Whirlwind: Use on cooldown.
+
+PROCS/CONDITIONALS:
+- Shattered Defenses: Triggered by Colossus Smash.
+- Tactician: Proc that reduces cost of next ability.
+
+COOLDOWNS:
+- Avatar: Burst window.
+- Bladestorm: High AoE damage.
+
+========================================================================
+SPEC: FURY (PVE)
+========================================================================
+CORE MECHANIC: Rage $\rightarrow$ Rampage $\rightarrow$ Enrage.
+PRIORITY LIST:
+1. Rampage: Maintains Enrage.
+2. Marked for Execution: Execute when stacks are full.
+3. Stormblast: Use if talented and procs.
+4. Raging Blow: Primary generator.
+5. Bloodthirst: High priority filler.
+6. Whirlwind/Slam: Fillers.
+
+PROCS/CONDITIONALS:
+- Enrage: Triggered by Rampage.
+- Sudden Death: Proc for instant Execute.
+
+COOLDOWNS:
+- Recklessness: Huge burst.
+- Avatar: Strength increase.
+
+========================================================================
+SPEC: PROTECTION (PVE)
+========================================================================
+PRIORITY LIST:
+1. Shield Slam: Top priority.
+2. Revenge: Use on proc.
+3. Thunder Clap: AoE upkeep.
+4. Devastate: Filler / Sunder application.
+5. Shield Block: Active mitigation.
+
+PROCS/CONDITIONALS:
+- Sword and Board: Resets Shield Slam.
+
+========================================================================
+PVP LOGIC (GENERAL WARRIOR)
+========================================================================
+- Opener: Charge -> Stun (Storm Bolt/Shockwave) -> Burst (Avatar/Recklessness).
+- Priority: Interrupt casts with Pummel immediately.
+- Arms PvP: Focus on "Mortal Wounds" uptime to reduce enemy healing.
+- Fury PvP: High pressure, constant attacks to prevent enemy recovery.
+- Prot PvP: Focus on disrupting the enemy's target and using high CC.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Level 1-10: Charge, Rend, Basic Attacks.
+- Level 10-120:
+    - Arms/Fury: Fast questing, high AoE.
+    - Protection: Tanking for fast dungeon queues.
+- General Loop: Charge -> Rend -> Priority Attack -> Execute.
+- Use "Ignore Pain" or "Die by the Sword" to chain pulls without stopping to heal.

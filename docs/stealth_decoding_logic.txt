@@ -1,0 +1,78 @@
+# STEALTH MODE: DECODING LOGIC SPECIFICATION (The Translator)
+
+## 1. OBJECTIVE
+To define the exact mathematical and logical process the PsychoBuddy C# core uses to translate raw RGB pixel data from the 10x10 "Canvas" back into actionable game state data.
+
+---
+
+## 2. SAMPLING & PRE-PROCESSING
+
+### 2.1 Capture Method
+- **API:** DXGI Desktop Duplication API.
+- **Region:** A cropped 10x10 rectangle based on the user's configured offset.
+- **Sampling Rate:** 20Hz (Every 50ms). This is sufficient for combat rotations while keeping CPU usage negligible.
+
+### 2.2 Color Tolerance (Noise Filtering)
+Since screen colors can be affected by gamma settings or slight transparency shifts, the bot uses **Range-Based Validation** instead of exact matches.
+- **Logic:** `IsColorActive(Pixel, TargetColor) => (Abs(Pixel.R - TargetColor.R) < 30 && Abs(Pixel.G - TargetColor.G) < 30 && Abs(Pixel.B - TargetColor.B) < 30)`
+
+---
+
+## 3. THE TRANSLATION TABLE (RGB $\rightarrow$ STATE)
+
+### 3.1 Vitality Decoding (Pixels 0-9)
+These pixels use **Intensity Mapping** to communicate percentages.
+
+| Pixel | Data | RGB Logic | Translation Formula |
+|-------|------|-----------|-------------------|
+| 0-4 | Health | Red (0-255) | `Health% = (Pixel.R / 255) * 100` |
+| 5-9 | Resource | Blue (0-255) | `Resource% = (Pixel.B / 255) * 100` |
+
+### 3.2 Target Status Decoding (Pixels 10-19)
+These pixels use **Boolean Color Switches**.
+
+| Pixel | State | Active Color | Inactive Color | Result |
+|-------|--------|--------------|----------------|---------|
+| 10 | Existence | Green (0,255,0) | Black (0,0,0) | `TargetExists = True/False` |
+| 11 | Life | White (255,255,255)| Red (255,0,0) | `TargetAlive = True/False` |
+| 12 | Range | Yellow (255,255,0)| Black (0,0,0) | `InCombatRange = True/False` |
+| 13 | Casting | Blue (0,0,255) | Black (0,0,0) | `TargetCasting = True/False` |
+
+### 3.3 Proc & Buff Decoding (Pixels 20-59)
+These pixels use **Three-State Mapping**.
+
+| Color | RGB Value (Approx) | State | Bot Action |
+|-------|-------------------|-------|------------|
+| **White** | (255, 255, 255) | **Active** | Trigger High-Priority Spell |
+| **Grey** | (128, 128, 128) | **Cooldown** | Wait / Use Filler |
+| **Black** | (0, 0, 0) | **Inactive** | Standard Rotation |
+
+### 3.4 Coordinate & Facing Decoding (Pixels 60-99)
+Since coordinates are large numbers, we use **Hue-Quantization**.
+
+- **The Method:** The Lua addon converts the coordinate into a Hue value (0-360).
+- **The Decode:** 
+    - `Pixel.Hue` $\rightarrow$ Map to a specific sector of the zone.
+    - `Facing.Hue` $\rightarrow$ `FacingDegree = (Pixel.Hue / 360) * 360`.
+
+---
+
+## 4. ERROR HANDLING & FAILSAFES
+
+### 4.1 The "Blackout" Check
+If the bot reads more than 90% black pixels in the Vitality zone, it assumes:
+1. The Lua Addon has crashed.
+2. The game window is obscured.
+3. The game has crashed.
+- **Action:** `SetBotState(PAUSED)` and alert the user: *"Stealth Mode: Data Loss Detected."*
+
+### 4.2 Flicker Suppression
+To prevent "rapid-fire" state changes due to a single frame of color noise, the bot uses a **2-Frame Confirmation**.
+- **Logic:** A state change (e.g., Target $\rightarrow$ Dead) must be detected for **2 consecutive samples** before the Brain triggers a rotation change.
+
+---
+
+## 5. IMPLEMENTATION GUIDE
+1. **Capture Loop:** `while(running) { CapturePixels() $\rightarrow$ Translate() $\rightarrow$ UpdateBrain() }`
+2. **Color Map:** Store the `TargetColor` constants in a JSON config file so they can be adjusted for different monitor calibrations.
+3. **Performance:** Use `unsafe` pointers in C# to read the pixel byte array for maximum speed.

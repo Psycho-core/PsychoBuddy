@@ -1,0 +1,82 @@
+BFA MAGE (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Sunfury Abilities: Check if Sunfury hero spec is active (Arcane Phoenix).
+- Frostfire Abilities: Check if Frostfire hero spec is active (Frostfire Bolt).
+- Shimmer / Alter Time: Check active talent tree.
+- Comet Storm / Glacial Spike: Check Frost talent tree.
+
+========================================================================
+SPEC: ARCANE (PVE)
+========================================================================
+CORE MECHANIC: Mana management and Arcane Charge stacks.
+PRIORITY LIST:
+1. Arcane Power / Rune of Power: Use for burst windows.
+2. Arcane Blast: Build to 4 charges.
+3. Arcane Missiles: Use on procs (Clearcasting).
+4. Arcane Barrage: Dump charges and deal AoE.
+5. Arcane Explosion: Use for multi-target charge building.
+
+PROCS/CONDITIONALS:
+- Clearcasting: Procs Arcane Missiles.
+
+COOLDOWNS:
+- Arcane Power: Major burst.
+- Presence of Mind: Instant cast.
+
+========================================================================
+SPEC: FIRE (PVE)
+========================================================================
+CORE MECHANIC: Hot Streak and Combustion.
+PRIORITY LIST:
+1. Combustion: Primary burst.
+2. Pyroblast: Use during Hot Streak.
+3. Fire Blast: Generate Hot Streak.
+4. Frostfire Bolt: Primary filler.
+5. Scorch: Use when moving.
+
+PROCS/CONDITIONALS:
+- Hot Streak: Triggered by crits.
+
+COOLDOWNS:
+- Combustion: Guaranteed crits.
+
+========================================================================
+SPEC: FROST (PVE)
+========================================================================
+CORE MECHANIC: Splinter generation and Glacial Spike shatters.
+PRIORITY LIST:
+1. Frozen Orb: Use on cooldown.
+2. Ray of Frost / Comet Storm: High priority burst.
+3. Flurry: Use with Brain Freeze proc.
+4. Ice Lance: Use with Fingers of Frost.
+5. Glacial Spike: Use when charges are full and target is chilled.
+6. Frostbolt: Filler.
+
+PROCS/CONDITIONALS:
+- Fingers of Frost: Procs Ice Lance.
+- Brain Freeze: Procs Flurry.
+
+COOLDOWNS:
+- Icy Veins: Primary burst.
+
+========================================================================
+PVP LOGIC (GENERAL MAGE)
+========================================================================
+- Opener: Root/Slow $\rightarrow$ Burst.
+- Utility: Counterspell, Polymorph, Blink/Shimmer.
+- Arcane PvP: Focus on burst and distance.
+- Fire PvP: High burst and pressure.
+- Frost PvP: Maximum control and kiting.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Level 1-10: Basic spells.
+- Level 10-120:
+    - Frost: Best for solo questing (AoE and survivability).
+    - Fire/Arcane: Higher single-target burst but more fragile.
+- General Loop: Frostbolt $\rightarrow$ Ice Lance $\rightarrow$ Flurry.
+- Use Mirror Image and Ice Block to survive high-pulls.

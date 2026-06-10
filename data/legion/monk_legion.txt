@@ -1,0 +1,71 @@
+LEGION MONK (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Windwalker: Fists of Fury (Core), Tiger Palm (Builder), Blackout Kick.
+- Brewmaster: Keg Smash (Core), Purifying Brew, Celestial Brew.
+- Mistweaver: Soothing Mist, Renewing Mist, Vivify.
+- Global: Zen Meditation (Defensive/Cleanse).
+
+========================================================================
+SPEC: WINDWALKER (PVE)
+========================================================================
+CORE MECHANIC: The "Combo-Strike" rule (Avoid using the same ability twice in a row).
+PRIORITY LIST:
+1. Rising Sun Kick: Highest priority damage.
+2. Fists of Fury: Core burst/AoE.
+3. Blackout Kick: Primary builder/filler.
+4. Tiger Palm: Builder (Use to avoid repeating abilities).
+5. Keg Smash: AoE builder.
+
+COOLDOWNS:
+- Storm, Earth, and Fire: Massive damage window (clones).
+- Xuen, the White Tiger: High sustained damage.
+- Energize: Energy restoration.
+
+========================================================================
+SPEC: BREWMASTER (PVE)
+========================================================================
+CORE MECHANIC: Managing Stagger and purging it via brews.
+PRIORITY LIST:
+1. Keg Smash: Maintain 100% uptime for Stagger.
+2. Blackout Kick: Primary damage and Stagger generation.
+3. Breath of Fire: High priority AoE/Damage.
+4. Celestial Brew: Use when Stagger is high.
+5. Purifying Brew: Clear Stagger.
+
+COOLDOWNS:
+- Fortifying Brew: Massive damage reduction.
+3. Zen Meditation: Cleanse and damage reduction.
+- Diffuse Magic: Magic damage mitigation.
+
+========================================================================
+SPEC: MISTWEAVER (PVE)
+========================================================================
+CORE MECHANIC: Weaving healing into attacks (Fistweaving) or pure casting.
+PRIORITY LIST:
+1. Renewing Mist: Maintain on priority targets.
+2. Soothing Mist: Focus target heal.
+3. Vivify: Burst single target heal.
+4. Enveloping Mist: Strong single target heal.
+5. Essence Font: Use on cooldown for huge heal.
+
+COOLDOWNS:
+- Revival: Massive group heal and cleanse.
+- Life Cocoon: Single target shield/heal.
+- Zen Sphere: AoE healing/damage.
+
+========================================================================
+PVP LOGIC (GENERAL MONK)
+========================================================================
+- Utility: Leg Sweep (AoE Stun), Paralysis (CC), Spear Hand Strike (Interrupt).
+- Defensive: Fortifying Brew, Touch of Karma (Damage reflection).
+- Mobility: Roll, Flying Serpent Kick.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Windwalker for high speed and burst.
+- Loop: Tiger Palm -> Blackout Kick -> Rising Sun Kick.
+- Use Roll and Flying Serpent Kick to traverse zones quickly.

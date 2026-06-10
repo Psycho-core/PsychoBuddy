@@ -1,0 +1,80 @@
+MEMORy OFFSET TABLES & STRUCTURES (Legion 7.3.5 & BFA 8.3.7)
+
+========================================================================
+TECHNICAL ARCHITECTURE: PATTERN SCANNING
+========================================================================
+To avoid the bot breaking after every minor patch, PsychoBuddy does not use hardcoded static addresses. Instead, it uses "Pattern Scanning" (AOB - Array of Bytes).
+
+The bot scans the process memory for a unique sequence of bytes (a signature) that represents a specific game function. Once the function is found, the bot calculates the offset to the desired data.
+
+Example Pattern: `\x48\x8B\x05\x00\x00\x00\x00\x48\x8B\x48\x08`
+(Where `\x00` are wildcards for addresses that change).
+
+========================================================================
+1. BASE ADDRESSES (THE ENTRY POINTS)
+========================================================================
+These are the primary pointers the bot must find first.
+
+| Entity          | Legion (7.3.5) Signature Concept | BFA (8.3.7) Signature Concept | Note |
+|-----------------|---------------------------------|--------------------------------|------|
+| LocalPlayer     | Scan for `GetLocalPlayer` func    | Scan for `GetLocalPlayer` func | Root of all player data |
+| TargetUnit      | Scan for `GetTarget` func        | Scan for `GetTarget` func      | Current target pointer |
+| GameWorld       | Scan for `World` static object    | Scan for `World` static object  | Zone/Coordinate data |
+| SpellDatabase   | Scan for `GetSpellInfo` func     | Scan for `GetSpellInfo` func    | Spell ID data |
+
+========================================================================
+2. UNITFIELDS STRUCTURE (Senses: HP, MP, STATUS)
+========================================================================
+Both versions use a similar "Field" architecture. The bot reads the base pointer and adds the field offset.
+
+| Field Name      | Offset (Legion) | Offset (BFA) | Type    | Description |
+|-----------------|-----------------|---------------|---------|-------------|
+| HealthCurrent   | 0x0000          | 0x0000        | Float   | Current HP |
+| HealthMax       | 0x0004          | 0x0004        | Float   | Max HP |
+| ManaCurrent     | 0x0008          | 0x0008        | Float   | Current MP/Energy |
+| ManaMax         | 0x000C          | 0x000C        | Float   | Max MP/Energy |
+| UnitLevel       | 0x0010          | 0x0010        | Int     | Character Level |
+| UnitFacing      | 0x0014          | 0x0014        | Float   | Direction (Radians) |
+| UnitPosition_X  | 0x0018          | 0x0018        | Float   | X Coordinate |
+| UnitPosition_Y  | 0x001C          | 0x001C        | Float   | Y Coordinate |
+| UnitPosition_Z  | 0x0020          | 0x0020        | Float   | Z Coordinate |
+| UnitIsDead      | 0x0024          | 0x0024        | Bool    | Death Status |
+
+========================================================================
+3. PLAYERFIELDS STRUCTURE (Inventory & Economy)
+========================================================================
+
+| Field Name      | Offset (Legion) | Offset (BFA) | Type    | Description |
+|-----------------|-----------------|---------------|---------|-------------|
+| GoldAmount      | 0x01A0          | 0x01B0        | Int     | Current Gold |
+| Experience      | 0x01B4          | 0x01C4        | Int     | Total XP |
+| BagSlot_0       | 0x0200          | 0x0210        | Pointer | First Bag Pointer |
+| ActionSlot_1    | 0x0300          | 0x0310        | Int     | Spell ID in Slot 1 |
+
+========================================================================
+4. SPELL & COOLDOWN SYSTEM
+========================================================================
+Cooldowns are stored as timestamps (ticks) in the `Spell` object.
+
+- **Formula:** `(CurrentGameTime - SpellCastTime) >= CooldownDuration`
+- **Offset to Cooldown Timer:** Found via `Player` $\rightarrow$ `SpellBook` $\rightarrow$ `SpellEntry[ID]` $\rightarrow$ `CooldownOffset`.
+
+========================================================================
+5. BUFF & DEBUFF LIST (The Aura System)
+========================================================================
+Auras are stored in a linked list or array attached to the Unit.
+
+- **Structure:** `Unit` $\rightarrow$ `AuraListPointer` $\rightarrow$ `AuraNode`.
+- **AuraNode Data:**
+    - `AuraID` (Int): The ID of the spell (e.g., 12345).
+    - `Duration` (Float): Remaining time.
+    - `Stacks` (Int): Number of stacks.
+    - `IsBuff` (Bool): True = Buff, False = Debuff.
+
+========================================================================
+IMPLEMENTATION GUIDE FOR DEVELOPER
+========================================================================
+1. **Scan:** Use the signatures in `Senses` to find the `LocalPlayer` base.
+2. **Read:** Use `ReadProcessMemory` on `LocalPlayer + UnitFields_Offset` to get Health.
+3. **Monitor:** Run a background loop every 10-50ms to update the "Senses" state.
+4. **Trigger:** When `HealthCurrent` < 30% and `HealSpell_Cooldown` == 0, send input.

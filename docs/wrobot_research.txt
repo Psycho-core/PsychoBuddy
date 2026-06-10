@@ -1,0 +1,31 @@
+WRobot - Deep Dive Research
+
+1. OVERVIEW
+WRobot is a high-performance automation suite for World of Warcraft, primarily targeting private servers (Vanilla, TBC, MoP, WoD, etc.). It is designed to handle the "grind" of the game by automating repetitive tasks.
+
+2. TECHNICAL ARCHITECTURE
+- Language/Framework: Primarily written in .NET (C#), with critical low-level components (like the memory library) rewritten in C++ for performance and reduced latency.
+- Data Acquisition: 
+    * Memory Reading: Uses Windows APIs (ReadProcessMemory) to read the game's memory addresses. This allows the bot to know exact coordinates, health, target status, and world object locations.
+    * Memory Offsets: Relies on "offsets" (specific memory addresses) that change with every game update.
+- Navigation:
+    * Pathfinding: Utilizes compressed mesh files of the game world to calculate paths.
+    * 3D Radar: Renders a live 3D representation of the surrounding area for the user.
+- Combat Logic:
+    * Fight Classes: A configurable system where users can define rotations (which spell to use under what condition).
+    * API: Provides a .NET API for third-party developers to create their own "products" (plugins) for the bot.
+
+3. CORE FEATURES
+- Quester: Automates quest acceptance, travel to objectives, and turn-ins.
+- Gatherer: Identifies and navigates to mining, herbing, and fishing nodes.
+- Grinder: Automates killing mobs in a specific area for XP and loot.
+- Battlegrounder: Automates PVP queuing and basic combat in battlegrounds.
+- Automaton: A "profile-less" mode where the bot attempts to find its own paths.
+
+4. DETECTION & RISK
+- Anti-Cheat (Warden): The bot must constantly fight "Warden," Blizzard's anti-cheat.
+- Mitigation: Uses external architectures and "spoofing" to hide its presence from the game process.
+- Risk: High. Botting is a violation of ToS and frequently results in permanent account bans.
+
+5. SUMMARY
+WRobot is a "Swiss Army Knife" for WoW. Its strength lies in its versatility and the ability for users to extend it via the .NET API and GUI editor.

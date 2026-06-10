@@ -1,0 +1,78 @@
+LEGION WARRIOR (7.3.5) - DATA SHEET
+
+========================================================================
+SPEC: ARMS (PVE)
+========================================================================
+PRIORITY LIST (Single Target):
+1. Colossus Smash: Maintain 100% uptime.
+2. Rend: Maintain debuff (refresh < 5s remaining).
+3. Mortal Strike: Use on cooldown.
+4. Overpower: Use on "Taste for Blood" procs.
+5. Execute: Use when target < 20% HP.
+6. Slam: Rage dump when above 60 Rage and others are on CD.
+
+PRIORITY LIST (AoE/Multi-Target):
+1. Talent: Sweeping Strikes (if targets > 2).
+2. Warbreaker: High priority AoE burst.
+3. Bladestorm: Use when targets are stacked.
+4. Cleave: Use instead of Heroic Strike.
+5. Whirlwind: Use on cooldown for AoE.
+
+PROCS/CONDITIONALS:
+- Shattered Defenses: Applied by Colossus Smash/Warbreaker. Increases crit chance of Mortal Strike.
+- Taste for Blood: Procs Overpower.
+
+COOLDOWNS:
+- Avatar: Massive strength increase, use with Colossus Smash.
+- Battle Cry: Use on cooldown to increase damage.
+
+========================================================================
+SPEC: FURY (PVE)
+========================================================================
+CORE MECHANIC: Enrage (Increases damage and reduces GCD).
+PRIORITY LIST:
+1. Enraged Raging Blow: Top priority.
+2. Rampage: Used to trigger/maintain Enrage.
+3. Bloodthirst: Primary generator/filler.
+4. Non-Enraged Raging Blow: Use if Enrage is not active.
+5. Furious Slash: Filler.
+6. Execute: Use when target < 20% HP.
+
+PROCS/CONDITIONALS:
+- Enrage: Triggered by Rampage.
+- Sudden Death: Proc that allows an instant Execute.
+
+COOLDOWNS:
+- Recklessness: Guaranteed crits. Use with Avatar.
+- Odyn's Fury: High damage burst.
+
+========================================================================
+SPEC: PROTECTION (PVE)
+========================================================================
+PRIORITY LIST:
+1. Shield Slam: Top priority (Generates high threat).
+2. Revenge: Use on every proc (Sword and Board).
+3. Thunder Clap: Maintain AoE threat/slow.
+4. Devastate: Filler and Sunder Armor application.
+5. Shield Block: Maintain uptime for mitigation.
+
+PROCS/CONDITIONALS:
+- Sword and Board: Proc that resets Shield Slam cooldown.
+
+========================================================================
+PVP LOGIC (GENERAL WARRIOR)
+========================================================================
+- Opener: Charge/Intercept -> Stun (Shockwave/Storm Bolt) -> Burst.
+- Interrupts: Pummel is top priority against casters.
+- Utility: Disarm (especially against melee/rogues), Intimidating Shout (last resort CC).
+- Arms PvP: Maintain Rend -> Mortal Strike -> Overpower. Use "Shattered Defenses" for burst.
+- Fury PvP: High burst with Avatar/Recklessness. Focus on target priority and keeping target slow (Hamstring).
+- Prot PvP: High survival, use Shockwave for group CC.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Level 1-10: Basic attacks, Charge (Lvl 1), Rend.
+- Level 10+: Switch to Protection for "Easy Mode" (higher survivability).
+- General Loop: Charge -> Rend -> Mortal Strike (Arms) / Raging Blow (Fury) -> Execute.
+- Use "Die by the Sword" or "Ignore Pain" when health < 40% to avoid downtime.

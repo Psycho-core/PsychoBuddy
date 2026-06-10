@@ -1,0 +1,71 @@
+BFA WARLOCK (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Affliction: Nightfall, Phantom Singularity, Soul Swap.
+- Demonology: Demonspine, Tyrant efficiency.
+- Destruction: Chaos Bolt, Havoc, Rain of Fire.
+- Global: Healthstone / Soulstone.
+
+========================================================================
+SPEC: AFFLICTION (PVE)
+========================================================================
+CORE MECHANIC: Complex DoT rotations and "Seed" management.
+PRIORITY LIST:
+1. Agony: Maintain 100% uptime.
+2. Corruption: Maintain on target.
+3. Unstable Affliction: Maintain high damage DoT.
+4. Drain Soul: Primary filler/finisher.
+5. Soul Swap: Efficient DoT transfer.
+
+COOLDOWNS:
+- Seed of Corruption: Core AoE tool.
+- Summon Darkglare: Massive burst window.
+- Soul Rot: High-impact AoE/DoT.
+
+========================================================================
+SPEC: DEMONOLOGY (PVE)
+========================================================================
+CORE MECHANIC: Maximizing the number of active demons and Tyrant bursts.
+PRIORITY LIST:
+1. Hand of Gul'dan: Primary shard spender and demon generator.
+2. Call Dreadstalkers: High priority summon.
+3. Demonbolt: Filler to maintain shards.
+4. Demonflare: Shard expenditure for burst.
+5. Vile Taint: AoE setup.
+
+COOLDOWNS:
+- Summon Demonic Tyrant: The ultimate burst cooldown.
+- Metamorphosis: High-damage transformation.
+- Demon Seed: AoE shard generation.
+
+========================================================================
+SPEC: DESTRUCTION (PVE)
+========================================================================
+CORE MECHANIC: Heavy-hitting Chaos Bolts and efficient AoE.
+PRIORITY LIST:
+1. Immolate: Maintain on target.
+2. Chaos Bolt: Primary shard spender.
+3. Conflagrate: Shard generator and cast speed buff.
+4. Incinerate: Primary filler.
+5. Rain of Fire: Core AoE.
+
+COOLDOWNS:
+- Havoc: Essential for multi-target damage.
+- Summon Infernal: High AoE burst.
+- Metamorphosis: Maximum burst window.
+
+========================================================================
+PVP LOGIC (GENERAL WARLOCK)
+========================================================================
+- Utility: Fear, Spell Lock (Interrupt), Healthstone.
+- Defensive: Unending Resolve, Soulstone.
+- CC: Fear / Soul Rot.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Destruction for high burst/efficiency.
+- Loop: Immolate -> Build Shards -> Chaos Bolt.
+- Use Voidwalker for tanking.

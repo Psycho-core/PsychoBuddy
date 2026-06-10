@@ -1,0 +1,80 @@
+BFA PALADIN (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Beacon of Virtue: High HPS, high mana cost.
+- Beacon of Faith: Stable, low mana cost.
+- Divine Toll: Massive HP generation.
+- Wake of Ashes: Burst damage and HP generation.
+- Final Verdict: High single-target damage spender.
+
+========================================================================
+SPEC: HOLY (PVE)
+========================================================================
+CORE MECHANIC: Balancing Holy Power generation (Holy Shock/Flash of Light) with spending (Light of Dawn/Eternal Flame).
+PRIORITY LIST:
+1. Holy Shock: Primary generator and spot heal.
+2. Light of Dawn: Primary HP spender for raid/group.
+3. Eternal Flame: HP spender for single target/focused healing.
+4. Flash of Light: Filler generator.
+5. Judgment: Maintain buff and generate resources.
+
+PROCS/CONDITIONALS:
+- Beacon of Faith/Virtue: Maintain on primary tank.
+
+COOLDOWNS:
+- Avenging Wrath: Major burst healing window.
+- Divine Toll: Instant HP generation.
+
+========================================================================
+SPEC: PROTECTION (PVE)
+========================================================================
+CORE MECHANIC: Generating Holy Power to fuel Shield of the Righteous for damage reduction.
+PRIORITY LIST:
+1. Hammer of Wrath: Highest priority generator.
+2. Judgment: Secondary generator.
+3. Avenger's Shield: Third priority generator.
+4. Hammer of the Righteous / Blessed Hammer: Filler generator.
+5. Shield of the Righteous: Spend HP @ 3-5 charges to avoid overcapping.
+
+PROCS/CONDITIONALS:
+- Consecration: Maintain uptime for mitigation and damage.
+
+COOLDOWNS:
+- Avenging Wrath: Damage and mitigation boost.
+- Divine Toll: Burst HP generation.
+- Hammer of Light: High impact burst.
+
+========================================================================
+SPEC: RETRIBUTION (PVE)
+========================================================================
+CORE MECHANIC: Holy Power management. Maximize generators and avoid overcapping before using high-impact spenders.
+PRIORITY LIST:
+1. Blade of Justice: Priority generator.
+2. Judgment: Secondary generator.
+3. Hammer of Wrath: Use on cooldown / execute phase.
+4. Final Verdict: Primary ST spender (@ 5 HP).
+5. Divine Storm: Primary AoE spender (@ 5 HP).
+
+PROCS/CONDITIONALS:
+- Art of War: Procs instant Hammer of Wrath.
+
+COOLDOWNS:
+- Avenging Wrath: Primary burst window.
+- Divine Toll: Instant HP generation.
+- Wake of Ashes: Massive burst and HP generation.
+
+========================================================================
+PVP LOGIC (GENERAL PALADIN)
+========================================================================
+- Utility: Hand of Freedom, Hand of Protection, Rebuke.
+- Defensive: Divine Shield, Lay on Hands.
+- Ret PvP: Burst rotation: Wings -> Wake of Ashes -> Divine Toll -> Final Verdict spam.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Retribution.
+- Loop: Judgment -> Blade of Justice -> Final Verdict.
+- Use Divine Storm for 3+ mobs.

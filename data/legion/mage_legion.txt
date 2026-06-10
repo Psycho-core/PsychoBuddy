@@ -1,0 +1,89 @@
+LEGION MAGE (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Rune of Power: Requires talent.
+- Comet Storm: Requires talent.
+- Shimmer: Requires talent.
+- Mirror Image: Requires talent.
+- Alter Time: Requires talent.
+- Supernova: Requires talent.
+
+========================================================================
+SPEC: ARCANE (PVE)
+========================================================================
+CORE MECHANIC: Arcane Charges (1-4) and Mana Management.
+PRIORITY LIST (Burn Phase):
+1. Arcane Power / Rune of Power: Activate first.
+2. Arcane Blast: Build to 4 charges.
+3. Arcane Missiles: Use when 2+ procs are active.
+4. Arcane Blast: Maintain pressure.
+5. Arcane Barrage: Use to reset charges and dump damage.
+
+PRIORITY LIST (Conserve Phase):
+1. Arcane Blast: Build to 2-3 charges.
+2. Arcane Missiles: Use on procs.
+3. Arcane Barrage: Use to prevent overcapping.
+
+PROCS/CONDITIONALS:
+- Clearcasting: Procs Arcane Missiles.
+- Mark of Aluneth: High damage proc for Arcane Blast.
+
+COOLDOWNS:
+- Arcane Power: Massive damage increase.
+- Presence of Mind: Instant cast for next spell.
+
+========================================================================
+SPEC: FIRE (PVE)
+========================================================================
+CORE MECHANIC: Hot Streak (Guaranteed Critical Pyroblast/Fire Blast).
+PRIORITY LIST:
+1. Combustion: Primary burst window.
+2. Pyroblast: Use during Hot Streak.
+3. Fire Blast: Use to generate Hot Streak.
+4. Fireball / Frostfire Bolt: Filler to build Hot Streak.
+5. Scorch: Use when moving.
+
+PROCS/CONDITIONALS:
+- Hot Streak: Triggered by critical hits.
+
+COOLDOWNS:
+- Combustion: Guarantees crits.
+- Fire Keel / Trinkets: Use during Combustion.
+
+========================================================================
+SPEC: FROST (PVE)
+========================================================================
+CORE MECHANIC: Fingers of Frost and Winter's Chill.
+PRIORITY LIST:
+1. Frozen Orb: Use on cooldown.
+2. Ray of Frost / Comet Storm: High priority burst.
+3. Flurry: Use with Brain Freeze proc.
+4. Ice Lance: Use with Fingers of Frost or Winter's Chill.
+5. Frostbolt: Filler to generate procs.
+
+PROCS/CONDITIONALS:
+- Fingers of Frost: Procs Ice Lance.
+- Brain Freeze: Procs Flurry.
+- Winter's Chill: Applied by Flurry/Frostbolt.
+
+COOLDOWNS:
+- Icy Veins: Increases cast speed and damage.
+
+========================================================================
+PVP LOGIC (GENERAL MAGE)
+========================================================================
+- Opener: Root/Slow (Frost Nova/Slow) -> Burst.
+- Utility: Counterspell (Interrupt), Polymorph (CC), Blink/Shimmer (Mobility).
+- Arcane PvP: Focus on burst and kiting. Use Arcane Barrage for high damage.
+- Fire PvP: High burst, use Combustion to melt targets. Use Pyroblast to finish.
+- Frost PvP: Heavy control and kiting. Maintain slows and freezes.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Level 1-10: Basic spells, Frostbolt, Fireball.
+- Level 10+: Spec into Frost for faster AoE and survivability.
+- General Loop: Frostbolt $\rightarrow$ Ice Lance (on proc) $\rightarrow$ Flurry.
+- Use Mirror Image to distract mobs during high-pulls.

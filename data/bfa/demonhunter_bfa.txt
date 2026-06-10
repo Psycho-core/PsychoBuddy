@@ -1,0 +1,59 @@
+BFA DEMON HUNTER (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Convoke the Spirits: Massive burst of abilities (All specs).
+- Essence Break: Core to the Havoc burst window.
+- Inertia: Enhances abilities after movement (Replacement for Momentum).
+- Soul Carver: (Vengeance) High impact resource spender.
+- Fiery Brand: (Vengeance) Targeted damage reduction.
+
+========================================================================
+SPEC: HAVOC (PVE)
+========================================================================
+CORE MECHANIC: Fury management and "Inertia" burst windows.
+PRIORITY LIST:
+1. Eye Beam: Primary generator and triggers burst windows.
+2. Essence Break: Pair with Eye Beam for massive damage.
+3. Blade Dance / Death Sweep: High priority AoE spender.
+4. Chaos Strike / Annihilation: Primary ST spender.
+5. Immolation Aura: Maintain for Fury and AoE damage.
+6. Fel Rush: Use for mobility and Fury generation.
+
+COOLDOWNS:
+- Metamorphosis: Major burst transformation.
+- Chaos Blades: Massive damage increase.
+- Convoke the Spirits: Instant chain of high-impact abilities.
+
+========================================================================
+SPEC: VENGEANCE (PVE)
+========================================================================
+CORE MECHANIC: Builder/Spender loop using Soul Fragments and Fury.
+PRIORITY LIST:
+1. Spirit Bomb: Top priority spender for damage and healing.
+2. Immolation Aura: Maintain on cooldown for Fury and Souls.
+3. Fracture: Primary generator of Fury and Soul Fragments.
+4. Soul Cleave: Spend Fury for healing/damage.
+5. Demon Spikes: Maintain 100% uptime for mitigation.
+6. Infernal Strike: Use for mobility and AoE damage.
+
+COOLDOWNS:
+- Metamorphosis: Major defensive/offensive boost.
+- Fiery Brand: Targeted damage reduction.
+- Convoke the Spirits: Burst of abilities for healing/damage.
+
+========================================================================
+PVP LOGIC (GENERAL DEMON HUNTER)
+========================================================================
+- Utility: Sigil of Silence, Imprisonment.
+- Defensive: Blur, Darkness.
+- Havoc PvP: Burst windows and high mobility.
+- Vengeance PvP: Tanking and sustain.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Havoc for speed and AoE.
+- Loop: Eye Beam -> Blade Dance -> Chaos Strike.
+- Use Metamorphosis on cooldown.

@@ -1,0 +1,65 @@
+# ROLE-BASED COORDINATION SPECIFICATION (The Fleet Orchestrator)
+
+## 1. OBJECTIVE
+To transform 4 independent bot clients into a cohesive, synchronized party capable of soloing dungeons. This system implements a "Centralized Orchestrator" pattern where the C# core manages the inter-dependency between roles (Tank, Healer, and DPS).
+
+---
+
+## 2. ARCHITECTURE: THE CENTRALIZED ORCHESTRATOR
+Since PsychoBuddy has memory access to all 4 clients simultaneously, it does not need the bots to communicate with each other. Instead, the **C# Core** acts as the "Party Leader."
+
+### 2.1 The Shared Fleet State (SFS)
+The orchestrator maintains a real-time data object containing the state of every bot in the fleet.
+`FleetState { Tank: UnitData, Healer: UnitData, DPS1: UnitData, DPS2: UnitData, Leader: UnitData }`
+
+- **Data Sync:** The Senses layer updates this object every 50ms.
+- **Cross-Reference:** The Healer's Brain does not just look at its own data; it looks at `FleetState.Tank.Health`.
+
+---
+
+## 3. ROLE-SPECIFIC BEHAVIORAL LOGIC
+
+### 3.1 The Tank (The Anchor)
+The Tank bot is the primary driver of the fleet's movement and combat engagement.
+- **Aggro Management:** Priority is given to maintaining threat on all targets.
+- **Positioning:** The Tank is the "Lead" for the navigation system.
+- **Call-to-Action:** When the Tank enters combat, it triggers a "Combat State" for the entire fleet.
+
+### 3.2 The Healer (The Life Support)
+The Healer bot's priority list is dynamically shifted based on the fleet's health.
+- **Priority 1: Tank Survival.** If `FleetState.Tank.Health < 80%`, override all other actions to cast the highest-priority heal on the Tank.
+- **Priority 2: Fleet Triage.** If multiple bots are damaged, the Healer uses AoE heals or prioritizes the bot with the lowest % health.
+- **Priority 3: Buff Maintenance.** Maintain essential party buffs on the Tank and DPS.
+
+### 3.3 The DPS (The Damage Dealers)
+The DPS bots are designed to maximize output without causing "Over-Aggro."
+- **Aggro Check:** Before casting a high-damage burst spell, the DPS bot checks `FleetState.Tank.Threat`. If the Tank's threat is too low, the DPS uses a "Filler" spell to allow the Tank to catch up.
+- **Target Synchronization:** The DPS bots automatically target whatever the Tank is currently attacking.
+
+---
+
+## 4. FLEET SYNCHRONIZATION (The "Synergy" Engine)
+
+### 4.1 Coordinated Burst Windows
+To maximize damage, the orchestrator synchronizes high-impact cooldowns.
+- **Logic:** `IF (Tank.BurstActive == True) THEN { DPS1.TriggerBurst(); DPS2.TriggerBurst(); }`
+- **Example:** Syncing *Bloodlust/Heroism* with *Pillar of Frost* and *Avenging Wrath*.
+
+### 4.2 Tactical Positioning (The "Bubble" Formation)
+The fleet maintains a relative spatial arrangement to avoid collision and maximize healing range.
+- **Tank:** Lead position (Offset: 0, 0).
+- **Healer:** Rear position (Offset: 0, -12 yards).
+- **DPS 1 & 2:** Flanking positions (Offset: ±5 yards, -5 yards).
+
+### 4.3 Emergency Triage (The "Save" Protocol)
+If the Tank bot dies, the orchestrator triggers an emergency shift:
+1. **Triage:** Healer focuses maximum output on the Tank.
+2. **Role Swap:** If the Tank is irrecoverable, the Orchestrator identifies the most "Tank-capable" DPS (e.g., a Paladin or Druid) and switches their rotation to "Tank Mode" to maintain aggro.
+
+---
+
+## 5. IMPLEMENTATION STEPS FOR DEVELOPER
+1. **FleetState Class:** Implement the shared data object to store aggregated unit data.
+2. **Orchestrator Loop:** Create a high-level logic loop that runs *above* the individual class rotations.
+3. **Dependency Injections:** Modify the `RotationEngine` to accept `FleetState` as a parameter, allowing spells to be cast based on other bots' health.
+4. **Formation Controller:** Integrate the Tactical Offset logic into the Navigation system.

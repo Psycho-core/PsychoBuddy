@@ -1,0 +1,89 @@
+BFA DRUID (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Efflorescence: Ground-based AoE healing.
+- Convoke the Spirits: Massive burst of spells (All specs).
+- Heart of the Wild: Stat boost and form-specific empowerment.
+- Bloodtalons: Buffs melee damage after Regrowth.
+- Soul of the Forest: Resource/Damage bonus on finishers.
+
+========================================================================
+SPEC: BALANCE (PVE)
+========================================================================
+CORE MECHANIC: Eclipse Loop and Astral Power spending.
+PRIORITY LIST:
+1. Sunfire / Moonfire: Maintain on targets.
+2. Eclipse Entry: 2x Wrath (Lunar) / 2x Starfire (Solar).
+3. Spend Astral Power: Starfall (AoE) / Starsurge (ST).
+4. Empowered Spells: Spam the current Eclipse-buffed spell.
+5. Filler: Wrath / Starfire.
+
+COOLDOWNS:
+- Celestial Alignment: Dual Eclipse.
+- Convoke the Spirits: Massive Astral Power / Spell dump.
+
+========================================================================
+SPEC: FERAL (PVE)
+========================================================================
+CORE MECHANIC: Energy/Combo Point management and snapshotting bleeds.
+PRIORITY LIST:
+1. Savage Roar: Maintain at all times.
+2. Rake: Maintain bleed.
+3. Rip: Use at 5 Combo Points.
+4. Shred: Primary CP generator.
+5. Ferocious Bite: Use at 5 CP if Rip is active.
+6. Tiger's Fury: Use to avoid energy capping / boost damage.
+
+COOLDOWNS:
+- Incarnation: King of the Jungle: Burst window.
+- Convoke the Spirits: High-speed ability chain.
+
+========================================================================
+SPEC: GUARDIAN (PVE)
+========================================================================
+CORE MECHANIC: Rage generation for Ironfur and Maul.
+PRIORITY LIST:
+1. Thrash: Maintain stacks.
+2. Mangle: Primary generator.
+3. Moonfire: Maintain for rage gen / damage.
+4. Ironfur: Spend rage for Armor (High Priority).
+5. Maul: Rage dump for damage.
+6. Swipe: Filler AoE.
+
+COOLDOWNS:
+- Incarnation: Guardian of Ursoc: Burst mitigation/damage.
+- Survival Instincts: Major damage reduction.
+- Convoke the Spirits: Burst healing/damage.
+
+========================================================================
+SPEC: RESTORATION (PVE)
+========================================================================
+CORE MECHANIC: HoT management and ground-based healing.
+PRIORITY LIST:
+1. Efflorescence: Maintain under the group.
+2. Lifebloom: Maintain on tank.
+3. Wild Growth: Primary AoE heal.
+4. Rejuvenation: Blanket the group.
+5. Swiftmend: Spot heal.
+6. Regrowth: High-priority single target.
+
+COOLDOWNS:
+- Tranquility: Massive AoE heal.
+- Convoke the Spirits: Rapid fire healing spells.
+- Flourish: Extend HoT durations.
+
+========================================================================
+PVP LOGIC (GENERAL DRUID)
+========================================================================
+- Utility: Typhoon, Mighty Bash, Entangling Roots.
+- Mobility: Dash, Stampeding Roar.
+- Survival: Barkskin, Survival Instincts.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Feral (Melee) or Balance (Ranged).
+- Feral Loop: Rake -> Shred -> Rip.
+- Balance Loop: Sunfire -> Moonfire -> Wrath.

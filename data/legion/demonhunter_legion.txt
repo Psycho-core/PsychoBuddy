@@ -1,0 +1,57 @@
+LEGION DEMON HUNTER (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Essence Break: Huge damage boost to following abilities.
+- Momentum: Enhances abilities after Vengeful Retreat.
+- Demon Blades: Automates Fury generation.
+- Chaos Blades: Massive burst window.
+- Spirit Bomb: (Vengeance) High damage and healing.
+
+========================================================================
+SPEC: HAVOC (PVE)
+========================================================================
+CORE MECHANIC: Fury generation and spending during Metamorphosis windows.
+PRIORITY LIST:
+1. Eye Beam: Primary Fury generator and triggers Chaos Brand.
+2. Essence Break: Pair with Eye Beam for massive damage.
+3. Blade Dance / Death Sweep: Primary AoE spender.
+4. Chaos Strike / Annihilation: Primary ST spender.
+5. Immolation Aura: Regular activation for Fury and damage.
+6. Fel Rush: Use with Unbound Chaos proc for mobility and damage.
+
+COOLDOWNS:
+- Metamorphosis: Major burst transformation.
+- Chaos Blades: Short-term massive damage increase.
+
+========================================================================
+SPEC: VENGEANCE (PVE)
+========================================================================
+CORE MECHANIC: Resource generation (Fury/Souls) for mitigation and healing.
+PRIORITY LIST:
+1. Metamorphosis: Burst defensive/offensive window.
+2. Spirit Bomb: Primary resource spender for damage and healing.
+3. Immolation Aura: Maintain for AoE damage and Fury.
+4. Fracture: Primary generator of Fury and Soul Fragments.
+5. Soul Cleave: Spend Fury for healing and damage.
+6. Demon Spikes: Maintain for physical damage reduction.
+
+COOLDOWNS:
+- Fiery Brand: Targeted damage reduction.
+- Soul Barrier: Absorb shield for survival.
+
+========================================================================
+PVP LOGIC (GENERAL DEMON HUNTER)
+========================================================================
+- Utility: Sigil of Silence (AoE Silence), Imprisonment (CC).
+- Defensive: Blur (Damage reduction), Darkness (High avoidance).
+- Havoc PvP: Burst windows with Eye Beam and Metamorphosis.
+- Vengeance PvP: Heavy mitigation and high sustain.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Havoc for fast clearing and mobility.
+- Loop: Eye Beam -> Blade Dance -> Chaos Strike.
+- Use Metamorphosis on cooldown.

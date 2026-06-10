@@ -1,0 +1,71 @@
+LEGION WARLOCK (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Affliction: Nightfall (proc), Phantom Singularity (AoE burst).
+- Demonology: Demonspine (buff), Felguard/Imp management.
+- Destruction: Chaos Bolt (Core), Havoc (Target splitting).
+- Global: Healthstone / Soulstone (Essential utility).
+
+========================================================================
+SPEC: AFFLICTION (PVE)
+========================================================================
+CORE MECHANIC: Maintaining a suite of DoTs to maximize damage over time.
+PRIORITY LIST:
+1. Agony: Maintain 100% uptime.
+2. Corruption: Maintain on target.
+3. Unstable Affliction: Maintain for high burst DoT.
+4. Drain Soul: Primary finisher/filler.
+5. Soul Swap: Move DoTs to new targets.
+
+COOLDOWNS:
+- Seed of Corruption: Primary AoE seed.
+- Summon Darkglare: Massive damage window for DoTs.
+- Soul Rot: Group-wide DoT and energy gain.
+
+========================================================================
+SPEC: DEMONOLOGY (PVE)
+========================================================================
+CORE MECHANIC: Building a demon army to overwhelm the target.
+PRIORITY LIST:
+1. Hand of Gul'dan: Primary demon generator.
+2. Demonbolt: Filler to generate shards.
+3. Demonflare: High-damage shard spender.
+4. Felguard/Imp attacks: Managed via abilities.
+5. Call Dreadstalkers: High priority demon summon.
+
+COOLDOWNS:
+- Demon Seed: AoE generation.
+- Summon Demonic Tyrant: Massive burst window.
+- Metamorphosis: Transformation for extreme damage.
+
+========================================================================
+SPEC: DESTRUCTION (PVE)
+========================================================================
+CORE MECHANIC: Using Immolate to fuel high-damage Chaos Bolts.
+PRIORITY LIST:
+1. Immolate: Maintain on target.
+2. Chaos Bolt: Primary shard spender (Hard hitter).
+3. Incinerate: Primary filler/shard generator.
+4. Conflagrate: Use to generate shards and boost Incinerate.
+5. Rain of Fire: Primary AoE tool.
+
+COOLDOWNS:
+- Havoc: Allows spells to hit two targets.
+- Summon Infernal: Massive AoE burst and tanking.
+- Metamorphosis: Extreme burst window.
+
+========================================================================
+PVP LOGIC (GENERAL WARLOCK)
+========================================================================
+- Utility: Fear (CC), Spell Lock (Interrupt), Healthstone.
+- Defensive: Unending Resolve (Damage reduction), Soulstone (Self-res).
+- CC: Fear / Seed of Corruption (slow/damage).
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Destruction for fast burst, Affliction for multi-dotting.
+- Loop: DoT/Immolate -> Build Shards -> Spend on Chaos Bolt/Demonflare.
+- Use Voidwalker for tanking mobs.

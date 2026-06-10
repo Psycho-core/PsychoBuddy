@@ -1,0 +1,26 @@
+HonorBuddy - Deep Dive Research
+
+1. OVERVIEW
+HonorBuddy (HB) is one of the most historically significant WoW bots. Unlike some bots that are "all-in-one," HonorBuddy functioned more as a framework/engine that users extended through "Profiles" and "Plugins."
+
+2. TECHNICAL ARCHITECTURE
+- Framework: C#-based framework.
+- Profile-Centric Design: The "soul" of HonorBuddy is the Profile. A profile is a script that tells the bot exactly what to do (e.g., "Go to X, kill Y, talk to Z").
+- Behavior System: It uses a "Behavior" system where the bot checks a list of conditions. The first condition that returns "True" is the action the bot takes.
+- Modular Plugins: Supports C# plugins that can hook into the bot's core events (e.g., `OnTargetChanged`, `OnCombatStart`).
+
+3. CORE COMPONENTS (Based on GitHub Repository)
+- Auth: Handles account authentication and login automation.
+- CustomClasses: Class-specific combat logic (e.g., Warlock, Mage) to handle complex rotations.
+- Quest Behaviors: Pre-defined logic for interacting with quest NPCs and objects.
+- HBRelog: A utility to automatically restart the game and log back in to avoid crashes or disconnects.
+
+4. KEY DIFFERENTIATORS
+- Flexibility: Because it is highly scriptable, users could create incredibly complex botting routines that mimicked human players more closely than static bots.
+- Community-Driven: The bot's power came from the thousands of community-made profiles available.
+
+5. STATUS (Cataclysm 4.3.4 Version)
+- The specific version found on GitHub is tailored for the Cataclysm expansion (4.3.4), commonly used on private servers. It maintains the legacy "Behavior" and "Profile" architecture.
+
+6. SUMMARY
+HonorBuddy is less of a "bot" and more of a "botting platform." It provides the low-level tools (memory reading, input, movement) and lets the user (or profile creator) define the high-level intelligence.

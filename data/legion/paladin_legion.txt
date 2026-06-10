@@ -1,0 +1,80 @@
+LEGION PALADIN (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Grant Faith: High priority heal.
+- Blessed Hammer: AoE heal/damage.
+- Rule of Law: Range increase for heals and Mastery.
+- Divine Purpose: Procs costless HP spenders.
+- Judgment of Light: Heals attackers.
+
+========================================================================
+SPEC: HOLY (PVE)
+========================================================================
+CORE MECHANIC: Holy Power generation and spending for powerful burst heals.
+PRIORITY LIST:
+1. Holy Shock: Primary generator and spot heal.
+2. Crusade: Major cooldown for haste and damage/healing increase.
+3. Light of Dawn: Primary HP spender for group healing.
+4. Word of Glory: HP spender for single-target emergency healing.
+5. Flash of Light: Filler generator.
+
+PROCS/CONDITIONALS:
+- Divine Purpose: Makes next HP spender costless.
+
+COOLDOWNS:
+- Avenging Wrath: Massive increase to crit and healing.
+- Divine Protection: Personal survivability.
+
+========================================================================
+SPEC: PROTECTION (PVE)
+========================================================================
+CORE MECHANIC: Active mitigation (Shield of the Righteous) and AoE threat.
+PRIORITY LIST:
+1. Avenger's Shield: Primary threat and mitigation.
+2. Judgment: Maintain debuff and generate resources.
+3. Blessed Hammer: Use if talented for AoE.
+4. Consecration: Maintain uptime for damage reduction.
+5. Hammer of the Righteous: Filler threat.
+
+PROCS/CONDITIONALS:
+- Shield of the Righteous: Use as soon as resources allow to maintain DR.
+
+COOLDOWNS:
+- Light of the Protector: Strongest heal (use < 60% HP).
+- Guardian of Ancient Kings: Major defensive "wall".
+- Vengeful Wrath: Burst damage/threat.
+
+========================================================================
+SPEC: RETRIBUTION (PVE)
+========================================================================
+CORE MECHANIC: Holy Power generators and high-impact spenders.
+PRIORITY LIST:
+1. Judgment: Keep on cooldown (highest priority).
+2. Justicar's Vengeance: Use on Divine Purpose proc @ 5 HP.
+3. Templar's Verdict: Use @ 5 HP (or 4 if Judgment is up).
+4. Crusader Strike / Zeal: Use @ 2 charges (Generator).
+5. Blade of Justice: Use @ 3 HP or less (Generator).
+6. Consecration: Maintain if talented.
+
+PROCS/CONDITIONALS:
+- Divine Purpose: Procs costless spender.
+
+COOLDOWNS:
+- Avenging Wrath: Primary burst window.
+- Execution Sentence: High damage cooldown.
+
+========================================================================
+PVP LOGIC (GENERAL PALADIN)
+========================================================================
+- Utility: Hand of Freedom (anti-slow), Hand of Protection (physical immunity), Rebuke (interrupt).
+- Defensive: Divine Shield (Bubble), Lay on Hands (Full heal).
+- Ret PvP: Burst with Wings -> Templar's Verdict -> Hammer of Wrath.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Retribution for fastest soloing.
+- Loop: Judgment -> Blade of Justice -> Templar's Verdict.
+- Use Consecration for AoE pulls.

@@ -1,0 +1,71 @@
+LEGION DEATH KNIGHT (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Blood: Death Strike (Core), Bone Shield (Maintenance), Blood Boil.
+- Frost: Obliterate (Core), Frost Strike, Howling Blast.
+- Unholy: Death Coil (Core), Scourge Strike, Festering Strike.
+- Global: Death Grip (Utility), Anti-Magic Shell (Defensive).
+
+========================================================================
+SPEC: BLOOD (PVE)
+========================================================================
+CORE MECHANIC: Active mitigation and self-healing via Death Strike.
+PRIORITY LIST:
+1. Death Strike: Highest priority for survival/healing.
+2. Bone Shield: Maintain 100% uptime.
+3. Blood Boil: Maintain bleed and generate runes.
+4. Heart Strike: Filler/Rune expenditure.
+5. Death and Decay: AoE damage and rune generation.
+
+COOLDOWNS:
+- Vampiric Blood: Massive health increase and healing boost.
+- Bone Shield (Talents): Enhancements to shield duration.
+- Icebound Fortitude: Damage reduction burst.
+
+========================================================================
+SPEC: FROST (PVE)
+========================================================================
+CORE MECHANIC: Managing Runic Power and Rune expenditure for Frost damage.
+PRIORITY LIST:
+1. Obliterate: Primary rune spender (High damage).
+2. Frost Strike: Primary runic power spender.
+3. Howling Blast: AoE and rune generator.
+4. Killing Machine (Proc): Guaranteed crit Obliterate.
+5. Frost Fever: Maintain disease on target.
+
+COOLDOWNS:
+- Pillar of Frost: Massive strength increase.
+- Empower Rune Weapon: Rune regeneration boost.
+- Breath of Sindragosa (Talent): Sustained runic power burn.
+
+========================================================================
+SPEC: UNHOLY (PVE)
+========================================================================
+CORE MECHANIC: Managing diseases and the Ghoul army.
+PRIORITY LIST:
+1. Festering Strike: Apply festering wounds.
+2. Scourge Strike: Consume wounds for high damage.
+3. Death Coil: Runic power spender/healing for pets.
+4. Unholy Frenzy: Maintain disease.
+5. Army of the Dead: Massive burst summon.
+
+COOLDOWNS:
+- Army of the Dead: Core burst cooldown.
+- Summon Gargoyle: Single target burst.
+- Empower Rune Weapon: Rune regeneration.
+
+========================================================================
+PVP LOGIC (GENERAL DEATH KNIGHT)
+========================================================================
+- Utility: Death Grip (Pull), Mind Freeze (Interrupt), Asphyxiate (Stun).
+- Defensive: Anti-Magic Shell (Magic immunity), Icebound Fortitude.
+- Mobility: Death Leap (If available).
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Blood for extreme tankiness, Frost for fast single target.
+- Loop: Disease/Bleed -> Rune Build -> High Damage Spender.
+- Use Death Grip to gather mobs for AoE.

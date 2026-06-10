@@ -1,0 +1,71 @@
+BFA DEATH KNIGHT (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Blood: Death Strike, Bone Shield, Blood Boil.
+- Frost: Obliterate, Frost Strike, Howling Blast.
+- Unholy: Death Coil, Scourge Strike, Festering Strike.
+- Global: Death Grip, Anti-Magic Shell.
+
+========================================================================
+SPEC: BLOOD (PVE)
+========================================================================
+CORE MECHANIC: High-impact self-healing and Bone Shield management.
+PRIORITY LIST:
+1. Death Strike: Top priority for survival.
+2. Bone Shield: Mandatory uptime.
+3. Blood Boil: Core AoE and rune gen.
+4. Heart Strike: Primary rune spender.
+5. Death and Decay: AoE setup.
+
+COOLDOWNS:
+- Vampiric Blood: Burst health/healing.
+- Icebound Fortitude: Major damage reduction.
+- Bone Shield (Enhanced): Talents for shield efficiency.
+
+========================================================================
+SPEC: FROST (PVE)
+========================================================================
+CORE MECHANIC: Pillar of Frost windows and Runic Power efficiency.
+PRIORITY LIST:
+1. Obliterate: Primary rune spender.
+2. Frost Strike: Primary Runic Power spender.
+3. Howling Blast: AoE/Rune gen.
+4. Killing Machine (Proc): Priority Obliterate.
+5. Frost Fever: Disease maintenance.
+
+COOLDOWNS:
+- Pillar of Frost: The ultimate damage window.
+- Empower Rune Weapon: Rune regeneration.
+- Breath of Sindragosa: Massive Runic Power burn.
+
+========================================================================
+SPEC: UNHOLY (PVE)
+========================================================================
+CORE MECHANIC: Festering Wound management and Army bursts.
+PRIORITY LIST:
+1. Festering Strike: Build wounds.
+2. Scourge Strike: Consume wounds.
+3. Death Coil: Runic Power spender.
+4. Unholy Frenzy: Maintain disease.
+5. Army of the Dead: Core summon burst.
+
+COOLDOWNS:
+- Army of the Dead: Massive AoE/Burst.
+- Summon Gargoyle: Single target burst.
+- Empower Rune Weapon: Rune regeneration.
+
+========================================================================
+PVP LOGIC (GENERAL DEATH KNIGHT)
+========================================================================
+- Utility: Death Grip, Mind Freeze, Asphyxiate.
+- Defensive: Anti-Magic Shell, Icebound Fortitude.
+- Mobility: Death Leap.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Blood for soloing efficiency, Frost for speed.
+- Loop: Disease -> Build Runes -> Spend on Obliterate/Scourge Strike.
+- Use Death Grip to group enemies.

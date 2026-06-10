@@ -1,0 +1,71 @@
+BFA MONK (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Windwalker: Fists of Fury, Rising Sun Kick, Blackout Kick.
+- Brewmaster: Keg Smash, Purifying Brew, Celestial Brew.
+- Mistweaver: Renewing Mist, Vivify, Essence Font.
+- Global: Zen Meditation.
+
+========================================================================
+SPEC: WINDWALKER (PVE)
+========================================================================
+CORE MECHANIC: Combo-Strike rule and energy management.
+PRIORITY LIST:
+1. Rising Sun Kick: Top priority damage.
+2. Fists of Fury: Core burst/AoE.
+3. Blackout Kick: Primary builder.
+4. Tiger Palm: Builder (ensure no repeats).
+5. Keg Smash: AoE builder.
+
+COOLDOWNS:
+- Storm, Earth, and Fire: Burst window.
+- Xuen, the White Tiger: Sustained damage.
+- Energize: Energy refill.
+
+========================================================================
+SPEC: BREWMASTER (PVE)
+========================================================================
+CORE MECHANIC: Stagger management and purity.
+PRIORITY LIST:
+1. Keg Smash: Mandatory uptime.
+2. Blackout Kick: Primary builder/damage.
+3. Breath of Fire: AoE damage.
+4. Celestial Brew: Stagger mitigation.
+5. Purifying Brew: Stagger clearing.
+
+COOLDOWNS:
+- Fortifying Brew: Major damage reduction.
+- Zen Meditation: Magic cleanse/reduction.
+- Diffuse Magic: Magic mitigation.
+
+========================================================================
+SPEC: MISTWEAVER (PVE)
+========================================================================
+CORE MECHANIC: Fistweaving (damage-to-heal) and targeted HoTs.
+PRIORITY LIST:
+1. Renewing Mist: Primary HoT.
+2. Vivify: Burst heal.
+3. Essence Font: Use on cooldown.
+4. Enveloping Mist: Strong single target.
+5. Soothing Mist: Filler heal.
+
+COOLDOWNS:
+- Revival: Group-wide burst heal.
+- Life Cocoon: High-priority shield.
+- Zen Sphere: AoE utility.
+
+========================================================================
+PVP LOGIC (GENERAL MONK)
+========================================================================
+- Utility: Leg Sweep, Paralysis, Spear Hand Strike.
+- Defensive: Touch of Karma, Fortifying Brew.
+- Mobility: Roll, Flying Serpent Kick.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Windwalker for efficiency.
+- Loop: Tiger Palm -> Blackout Kick -> Rising Sun Kick.
+- Use mobility skills to skip unimportant mobs.

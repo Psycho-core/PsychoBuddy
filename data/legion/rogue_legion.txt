@@ -1,0 +1,71 @@
+LEGION ROGUE (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Subterfuge: Use stealth abilities for 3s after exiting stealth.
+- Deeper Stratagem: Increases CP cap to 6; finishers deal more damage.
+- Cheat Death: Prevents death once every 6 min.
+- Shadow Dance: (Subtlety) Access stealth abilities in combat.
+- Roll the Bones: (Outlaw) Random combat enhancements.
+- Symbols of Death: (Subtlety) Massive damage boost to finishers.
+
+========================================================================
+SPEC: ASSASSINATION (PVE)
+========================================================================
+CORE MECHANIC: Poison and Bleed management (DoT focus).
+PRIORITY LIST:
+1. Garrote: Maintain bleed and silence.
+2. Rupture: Maintain bleed for energy return and damage.
+3. Mutilate: Primary CP generator.
+4. Envenom: Primary finisher; refreshes Slice and Dice.
+5. Toxic Blade: Use on cooldown to boost poison damage.
+
+COOLDOWNS:
+- Cold Blood: Guaranteed crit on next attack.
+- Vendetta: Massive damage increase to a single target.
+
+========================================================================
+SPEC: OUTLAW (PVE)
+========================================================================
+CORE MECHANIC: Roll the Bones buffs and high-tempo combat.
+PRIORITY LIST:
+1. Roll the Bones: Maintain Stage 2+ buffs.
+2. Between the Eyes: High priority finisher/burst.
+3. Dispatch: Primary finisher (when BtE is on CD).
+4. Pistol Shot: Use with Opportunity procs (Generator).
+5. Saber Slash: Primary CP generator.
+
+COOLDOWNS:
+- Adrenaline Rush: Massive energy and haste boost.
+- Killing Spree: Rapid-fire attacks for burst damage.
+
+========================================================================
+SPEC: SUBTLETY (PVE)
+========================================================================
+CORE MECHANIC: Shadow Dance windows and burst sequences.
+PRIORITY LIST:
+1. Shadowstrike: Primary builder (especially during Dance).
+2. Secret Technique: Highest priority finisher (during Dance).
+3. Eviscerate / Rupture: Finishers based on target health/need.
+4. Backstab: Builder outside of Shadow Dance.
+5. Shuriken Storm: AoE builder.
+
+COOLDOWNS:
+- Shadow Dance: Core burst mechanism.
+- Symbols of Death: Enhances finishers.
+- Shadow Blades: Increases CP generation and shadow damage.
+
+========================================================================
+PVP LOGIC (GENERAL ROGUE)
+========================================================================
+- Utility: Kidney Shot (Stun), Blind, Cheap Shot, Gouge.
+- Defensive: Cloak of Shadows (Magic immunity), Evasion (Physical dodge).
+- Stealth: Vanish for repositioning and resetting.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Outlaw for ease and AoE, Subtlety for burst.
+- Loop: Stealth -> Opener -> CP Build -> Finisher.
+- Use Vanish to reset stealth openers on mobs.

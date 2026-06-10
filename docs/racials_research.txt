@@ -1,0 +1,94 @@
+Racial Abilities & Passives Data Sheet (Legion 7.3.5 & BFA 8.3.7)
+
+========================================================================
+OVERVIEW
+========================================================================
+Racial abilities must be integrated into the "Priority Rotation Engine" as high-priority modifiers. Active racials should be treated as "Cooldowns" and triggered during burst windows.
+
+========================================================================
+HORDE RACES
+========================================================================
+
+ORC
+- Blood Fury (Active): Increases Attack Power/Spell Power. 
+  - Priority: Use at start of burst window.
+- Hardiness (Passive): Reduces duration of stun effects.
+- Change Note: Stable across Legion/BFA.
+
+TROLL
+- Berserking (Active): Increases Haste.
+  - Priority: Use during burst window (Stack with class cooldowns).
+- Regeneration (Passive): Increased health regeneration.
+- Change Note: Stability maintained; Haste value scaled with version.
+
+UNDEAD
+- Will of the Forsaken (Active): Removes Fear, Sleep, and Charm.
+  - Priority: Emergency trigger (PVP/High-end PVE).
+- Cannibalize (Active): Heals by eating corpses.
+  - Priority: Use during downtime/leveling.
+- Change Note: Stable across Legion/BFA.
+
+TAUREN
+- War Stomp (Active): AoE stun.
+  - Priority: Crowd Control / Interrupt.
+- Endurance (Passive): Increased maximum health.
+- Change Note: Stable across Legion/BFA.
+
+BLOOD ELF
+- Arcane Torrent (Active): Restores resource (Rage/Energy/Mana) and silences nearby enemies.
+  - Priority: Resource filler / Interrupt.
+- Magic Resistance (Passive): Reduces chance to be critically hit by spells.
+- Change Note: Stable across Legion/BFA.
+
+========================================================================
+ALLIANCE RACES
+========================================================================
+
+HUMAN
+- Will to Survive (Active): Removes Stun.
+  - Priority: Emergency trigger (PVP).
+- Diplomacy (Passive): Increased reputation gains.
+- Change Note: Stable across Legion/BFA.
+
+DWARF
+- Stoneform (Active): Removes Bleeds, Poisons, Diseases, and increases Armor.
+  - Priority: Defensive trigger (PVE/PVP).
+- Find Treasure (Passive): Chance to find extra gold/items.
+- Change Note: Stable across Legion/BFA.
+
+NIGHT ELF
+- Shadowmeld (Active): Enter stealth, drop combat.
+  - Priority: Resetting pulls / Survival.
+- Quick Feet (Passive): Increased movement speed.
+- Change Note: Stable across Legion/BFA.
+
+GNOME
+- Escape Artist (Active): Removes Roots/Snares.
+  - Priority: Mobility / Survival.
+- Expansive Mind (Passive): Increased maximum mana/energy.
+- Change Note: Stable across Legion/BFA.
+
+DRAENEI
+- Gift of the Naaru (Active): Heals target.
+  - Priority: Emergency self-heal / Utility.
+- Heroic Presence (Passive): Increased hit chance (legacy, mostly negligible in modern versions).
+- Change Note: Stable across Legion/BFA.
+
+========================================================================
+NEUTRAL RACES
+========================================================================
+
+PANDAREN
+- Epicurean (Passive): Increased effect from food buffs.
+- Quaking Palm (Active): Stuns target.
+  - Priority: Crowd Control.
+- Change Note: Stable across Legion/BFA.
+
+========================================================================
+VERSION COMPARISON & EXTENSIVE CHANGES
+========================================================================
+Comparing 7.3.5 (Legion) vs 8.3.7 (BFA):
+
+- NO EXTENSIVE MECHANIC CHANGES: The core functionality of racials remained consistent between Legion and BFA.
+- SCALING: While the mechanics didn't change, the numerical values (Attack Power from Blood Fury, Haste from Berserking) scaled according to the gear and stat inflation of BFA.
+- IMPLEMENTATION NOTE: The Bot's "Priority Engine" should use the Ability ID rather than hardcoded values to ensure compatibility across both versions.

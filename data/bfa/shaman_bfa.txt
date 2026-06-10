@@ -1,0 +1,72 @@
+BFA SHAMAN (8.3.7) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Elemental: Primordial Wave (Key for burst), Stormkeeper (Lightning Bolt buff).
+- Enhancement: Stormstrike (Priority), Lava Lash (Priority), Crash Lightning.
+- Restoration: Riptide (Core), Healing Rain, Chain Heal.
+- Global: Bloodlust/Heroism.
+
+========================================================================
+SPEC: ELEMENTAL (PVE)
+========================================================================
+CORE MECHANIC: Using Primordial Wave to set up Lava Burst bursts.
+PRIORITY LIST:
+1. Primordial Wave: Use to prime targets for Lava Burst.
+2. Lava Burst: Highest priority, especially after Primordial Wave.
+3. Flame Shock: Maintain on all priority targets.
+4. Lightning Bolt: Primary filler.
+5. Earth Shock: Secondary filler/dump.
+6. Chain Lightning: Core AoE damage.
+
+COOLDOWNS:
+- Fire Elemental: Major burst window.
+- Bloodlust/Heroism: Haste boost.
+- Ascendance: High burst phase.
+
+========================================================================
+SPEC: ENHANCEMENT (PVE)
+========================================================================
+CORE MECHANIC: Rapid-fire ability usage and proc-based attacks.
+PRIORITY LIST:
+1. Stormstrike: Top priority for damage.
+2. Lava Lash: High priority maintenance.
+3. Crash Lightning: Core AoE and priority.
+4. Windfury Totem: Absolute requirement for uptime.
+5. Lightning Bolt: Filler when other abilities are on CD.
+
+COOLDOWNS:
+- Feral Spirit: Primary sustained damage boost.
+- Ascendance: Major burst window.
+- Bloodlust/Heroism: Haste boost.
+
+========================================================================
+SPEC: RESTORATION (PVE)
+========================================================================
+CORE MECHANIC: Managing Riptide and utilizing powerful group-wide heals.
+PRIORITY LIST:
+1. Riptide: Core HoT, prioritize targets.
+2. Healing Wave: Strong single-target heal.
+3. Chain Heal: Essential for group healing.
+4. Healing Rain: Constant AoE heal on ground.
+5. Healing Stream Totem: Sustained low-level AoE heal.
+
+COOLDOWNS:
+- Healing Tide Totem: Massive group-wide burst heal.
+- Spirit Link Totem: Essential for survival/damage mitigation.
+- Ancestral Guidance: Boosts healing output.
+
+========================================================================
+PVP LOGIC (GENERAL SHAMAN)
+========================================================================
+- Utility: Wind Shear (Interrupt), Grounding Totem (Magic block), Tremor Totem (Fear break).
+- Defensive: Astral Shift (Damage reduction), Healing Tide Totem.
+- CC: Hex.
+
+========================================================================
+LEVELING (1-120)
+========================================================================
+- Recommendation: Elemental for efficient AoE grinding.
+- Loop: Pull -> Primordial Wave -> Lava Burst/Chain Lightning.
+- Use Ghost Wolf for fast travel.

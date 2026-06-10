@@ -1,0 +1,77 @@
+# INTERACTION LOGIC SPECIFICATION (World Interaction)
+
+## 1. OBJECTIVE
+To define the logic and technical methods PsychoBuddy uses to interact with non-combat entities in the world, including NPCs, quest objects, gatherables (mining/herbalism), and vendors.
+
+---
+
+## 2. TARGETING & DETECTION
+Before interacting, the bot must first "find" the target.
+
+### 2.1 Memory-Based Detection (Power Mode)
+The bot scans the `ObjectFields` in memory to find entities with specific `EntryIDs`.
+- **Logic:** 
+    1. Scan for objects within a defined radius (e.g., 20 yards).
+    2. Filter by `EntryID` (e.g., `EntryID 1234` = Copper Vein).
+    3. Select the closest target based on Euclidean distance.
+
+### 2.2 Pixel-Based Detection (Stealth Mode)
+The bot utilizes the Lua Addon to detect the "Interact" prompt.
+- **Logic:** The addon monitors for the existence of the "Interact" tooltip or the appearance of an interactable target in the focus frame.
+- **Painting:** A specific pixel in the Stealth Grid turns **Cyan** when a valid interactable object is within range.
+
+---
+
+## 3. EXECUTION: THE INTERACTION FLOW
+The bot follows a strict state machine to ensure interaction is successful and doesn't look robotic.
+
+### 3.1 The Interaction Cycle
+`Search` $\rightarrow$ `Approach` $\rightarrow$ `Trigger` $\rightarrow$ `Verify` $\rightarrow$ `Exit`
+
+1.  **Search:** The bot identifies the target coordinates via Memory or a pre-defined "Hotspot" list.
+2.  **Approach:** The A* Pathfinding system moves the character to a position within the interaction radius (typically < 10 yards).
+3.  **Trigger:** The bot sends the "Interact" command.
+    - **Primary Method:** Sending the `Interact with Target` keybind via `PostMessage`.
+    - **Secondary Method (UI):** Sending a `WM_LBUTTONDOWN` click to the specific screen coordinates of the NPC's interaction prompt.
+4.  **Verify:** The bot checks the `Senses` to see if a dialogue window or loot window has opened.
+5.  **Exit:** Once the interaction is complete (quest turned in, item looted), the bot resumes its previous behavior.
+
+---
+
+## 4. SPECIALIZED INTERACTION TYPES
+
+### 4.1 Questing & NPCs
+- **Dialogue Trees:** For NPCs with multiple options, the bot uses a "Dialogue Map."
+    - **Logic:** `IF (Window_Open) THEN Click(Option_Index_1)`.
+    - **Coordinates:** Since dialogue boxes are standard sizes, the bot uses relative offsets from the window center to click options.
+- **Turn-ins:** The bot identifies the "Complete Quest" button via pixel color (Yellow/Gold) and clicks it.
+
+### 4.2 Gathering (Mining/Herbalism)
+- **Looting:** Uses the "Auto-Loot" game setting. If disabled, the bot sends a `Right-Click` to the loot window.
+- **Anti-Stuck:** If the bot is stuck against a rock while trying to mine, it implements a "Nudge" logic (moves 1 yard back and tries again).
+
+### 4.3 Vendor Management
+- **Buying/Selling:** 
+    - The bot opens the vendor window.
+    - It identifies the item in the list via `Senses` (Memory) or by clicking specific slots (Software Simulation).
+    - **Sell-All Logic:** A loop that right-clicks all items marked as "Grey/Junk."
+
+---
+
+## 5. HUMANIZATION & ANTI-DETECTION
+
+### 5.1 The "Hesitation" Delay
+Real players don't click the micro-second they are in range.
+- **Implementation:** The bot introduces a random delay (200ms to 800ms) between arriving at the target and triggering the interaction.
+
+### 5.2 Interaction Variance
+The bot avoids clicking the exact same pixel every time.
+- **Implementation:** The click coordinates are randomized within a 5x5 pixel area around the target button.
+
+---
+
+## 6. IMPLEMENTATION GUIDE FOR DEVELOPER
+1. **Interaction Manager:** Create a class `InteractionManager` that handles the state machine.
+2. **Key-Bind Integration:** Ensure the bot reads the user's "Interact with Target" key from the config.
+3. **UI coordinate Map:** Create a JSON file containing the relative offsets for common dialogue buttons.
+4. **Testing:** Verify interaction ranges for both 7.3.5 and 8.3.7 (as interaction distances can vary slightly between versions).

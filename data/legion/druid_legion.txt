@@ -1,0 +1,86 @@
+LEGION DRUID (7.3.5) - DATA SHEET
+
+========================================================================
+TALENT-DEPENDENT ABILITIES (CHECK BEFORE CASTING)
+========================================================================
+- Flourish: Extends duration of all HoTs.
+- Incarnation: (All specs) Massive burst/utility window.
+- Astral Mastery: Reduces cast time of empowered spells.
+- Bloodtalons: Melee abilities deal more damage after Regrowth/Roots.
+- Soul of the Forest: Finishing abilities deal more damage / generate energy.
+
+========================================================================
+SPEC: BALANCE (PVE)
+========================================================================
+CORE MECHANIC: Eclipse Cycle (Lunar/Solar) and Astral Power management.
+PRIORITY LIST:
+1. Sunfire / Moonfire: Maintain on all targets.
+2. Enter Eclipse: Cast 2 Wraths (for Lunar) or 2 Starfires (for Solar).
+3. Spend Astral Power: Starfall (AoE) or Starsurge (ST).
+4. Empowered Spell: Spam the spell buffed by the current Eclipse.
+5. Starfire / Wrath: Filler to build Astral Power.
+
+COOLDOWNS:
+- Celestial Alignment: Enters both eclipses simultaneously.
+- Incarnation: Chosen of Elune: Extreme burst window.
+
+========================================================================
+SPEC: FERAL (PVE)
+========================================================================
+CORE MECHANIC: Combo Points and Bleed maintenance.
+PRIORITY LIST:
+1. Savage Roar: Maintain at all times (increases damage/energy regen).
+2. Rake: Maintain bleed on target.
+3. Rip: Use at 5 Combo Points.
+4. Shred: Primary CP generator.
+5. Ferocious Bite: Use at 5 CP if Rip is active.
+6. Tiger's Fury: Use when energy is low (< 60).
+
+COOLDOWNS:
+- Berserk / Incarnation: King of the Jungle: Massive damage boost.
+
+========================================================================
+SPEC: GUARDIAN (PVE)
+========================================================================
+CORE MECHANIC: Active Mitigation (Ironfur) and AoE Threat.
+PRIORITY LIST:
+1. Thrash: Maintain stacks and AoE threat.
+2. Mangle: Primary rage generator and ST damage.
+3. Swipe: Filler AoE threat.
+4. Ironfur: Spend rage to increase Armor (Maintain 100% uptime).
+5. Maul: High rage dump (if not needing Ironfur).
+
+COOLDOWNS:
+- Barkskin: 20% damage reduction.
+- Survival Instincts: Major damage reduction.
+- Rage of the Sleeper: Damage reflection and mitigation.
+
+========================================================================
+SPEC: RESTORATION (PVE)
+========================================================================
+CORE MECHANIC: Healing over Time (HoT) blanket.
+PRIORITY LIST:
+1. Lifebloom: Maintain on tank or priority target.
+2. Rejuvenation: Blanket the group.
+3. Wild Growth: Priority AoE heal.
+4. Swiftmend: High priority spot heal.
+5. Regrowth: Use on high-damage targets or with procs.
+
+COOLDOWNS:
+- Tranquility: Massive group heal.
+- Flourish: Extend all active HoTs.
+- Incarnation: Tree of Life: Enhanced throughput.
+
+========================================================================
+PVP LOGIC (GENERAL DRUID)
+========================================================================
+- Utility: Typhoon (Knockback), Mighty Bash (Stun), Entangling Roots (Root).
+- Mobility: Dash, Stampeding Roar.
+- Survival: Barkskin, Survival Instincts.
+
+========================================================================
+LEVELING (1-110)
+========================================================================
+- Recommendation: Feral for speed/efficiency, Balance for ranged.
+- Feral Loop: Rake -> Shred -> Rip.
+- Balance Loop: Sunfire -> Moonfire -> Wrath.

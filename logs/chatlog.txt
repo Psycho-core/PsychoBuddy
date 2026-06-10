@@ -1,0 +1,25 @@
+[2026-06-10 10:00] Project initialization and architectural planning for PsychoBuddy. Established core goals, legal constraints, and technical architecture (Power Mode vs. Stealth Mode).
+[2026-06-10 11:00] Created foundational documents: PSYCHO_MASTER_PLAN.md, README.md, and LICENSE.txt.
+[2026-06-10 12:00] Developed technical specifications for the attachment system and researched WoW versions 7.3.5 and 8.3.7.
+[2026-06-10 13:00] Completed priority and talent mappings for Warrior and Mage classes for both target versions.
+[2026-06-10 14:00] User requested the creation of chatlog.txt to record project progress and summaries with timestamps.
+[2026-06-10 15:00] Verified Mage data sheets and completed full priority upon request for Paladin (7.3.5 and 8.3.7).
+[2026-06-10 16:00] Verified Paladin data sheets and completed full priority/talent mappings for Priest (7.3.5 and 8.3.7).
+[2026-06-10 17:00] Verified Priest data sheets and completed full priority/talent mappings for Druid (7.3.5 and 8.3.7).
+[2026-06-10 18:00] Verified Druid data sheets and completed full priority/talent mappings for Hunter (7.3.5 and 8.3.7).
+[2026-06-10 19:00] Verified Hunter data sheets and completed full priority/talent mappings for Demon Hunter (7.3.5 and 8.3.7).
+[2026-06-10 20:00] Verified Demon Hunter data sheets and completed full priority/talent mappings for Rogue (7.3.5 and 8.3.7).
+[2026-06-10 21:00] Verified Rogue data sheets and completed full priority/talent mappings for Shaman (7.3.5 and 8.3.7).
+[2026-06-10 22:00] Verified Shaman data sheets and completed full priority/talent mappings for Warlock (7.3.5 and 8.3.7).
+[2026-06-10 23:00] Verified Warlock data sheets and completed full priority/talent mappings for Monk (7.3.5 and 8.3.7).
+[2026-06-11 00:00] Verified Monk data sheets and completed full priority/talent mappings for Death Knight (7.3.5 and 8.3.7).
+[2026-06-11 01:00] Verified Death Knight data sheets. Renamed Legion class files to [class]_legion.txt. Created RESEARCH_CHECKLIST.md to track completed and pending research items.
+[2026-06-11 02:00] Completed research on Racial Abilities & Passives. Verified no extensive mechanic changes between 7.3.5 and 8.3.7. Updated checklist.
+[2026-06-11 03:00] Verified Racial research. Created comprehensive Memory Offset Tables for both versions, including UnitFields, PlayerFields, and Spell/Aura structures.
+[2026-06-11 04:00] Verified Memory Offset research. Completed Input Simulation Specification, including software protocols and humanization logic for background input.
+[2026-06-11 05:00] Finalized 100% Software Architecture. Ensured all specs and plans are aligned for pure software-based multi-boxing using Win32 API.
+[2026-06-11 06:00] Completed Navigation & Pathfinding research. Developed the A* / Funnel algorithm specification and defined the tactical Leader-Follower formation for 4-bot fleet coordination.
+[2026-06-11 07:00] Completed design for the Stealth Mode Lua Addon. Specified 10x10 pixel grid encoding, data zone mapping, and undetectable API usage.
+[2026-06-11 08:00] Completed Stealth Mode Decoding Logic. Defined RGB-to-State translation tables, sampling rates, and noise filtering to ensure reliable data acquisition.
+[2026-06-11 09:00] Completed Interaction Logic research. Defined the Search-Approach-Trigger-Verify cycle and detailed handling for NPCs, Questing, and Gathering.
+[2026-06-11 10:00] Completed Role-Based Coordination research. Defined the Shared Fleet State (SFS) Orchestrator, inter-role dependency logic, and tactical party formations.

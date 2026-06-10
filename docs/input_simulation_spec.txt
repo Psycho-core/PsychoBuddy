@@ -1,0 +1,54 @@
+INPUT SIMULATION SPECIFICATION (Software-Only)
+
+========================================================================
+1. ARCHITECTURE OVERVIEW
+========================================================================
+PsychoBuddy is a 100% software-based automation platform. To facilitate multi-boxing and background control, it utilizes the Windows Message Queue system.
+
+The bot does not require external hardware. Instead, it communicates directly with the target game window using the Win32 API.
+
+========================================================================
+2. THE PRIMARY ENGINE: PostMessage / SendMessage
+========================================================================
+To control a "fleet" of bots in the background, the system uses `PostMessage`.
+
+### 2.1 Mechanism
+- `PostMessage` places a message (e.g., `WM_KEYDOWN`) into the target window's message queue and returns immediately.
+- The game client processes these messages as if they were real key-presses, regardless of whether the window is focused or minimized.
+
+### 2.2 Implementation Detail
+- **Targeting:** The bot identifies the correct `HWND` (Window Handle) for each character.
+- **Input Types:**
+    - **Keys:** `WM_KEYDOWN` followed by `WM_KEYUP`.
+    - **Mouse:** `WM_LBUTTONDOWN` and `WM_LBUTTONUP` with `LPARAM` coordinates.
+- **Bypass Logic:** In some server kernels, direct `PostMessage` is ignored. In these cases, the bot utilizes `RunMacroText` (via memory injection) to execute actions.
+
+========================================================================
+3. HUMANIZATION (Software-Side)
+========================================================================
+Since software inputs can be "perfect" (and thus detectable), the C# engine implements a humanization layer.
+
+### 3.1 Temporal Jitter (Randomized Delays)
+The bot never sends a key-press at exactly the same interval.
+- **Hold Time:** The delay between `WM_KEYDOWN` and `WM_KEYUP` is randomized (e.g., 45ms to 120ms).
+- **Action Interval:** The delay between two different spells is randomized using a Gaussian distribution (e.g., 100ms ± 30ms).
+
+### 3.2 Movement Imperfections
+For mouse-based interaction, the bot avoids perfectly straight lines.
+- **Bezier Paths:** The bot calculates a curved path from point A to point B.
+- **Variable Speed:** The "cursor" acceleration and deceleration are randomized.
+
+========================================================================
+4. MULTI-BOXING SYNCHRONIZATION
+========================================================================
+The software engine allows for two modes of input:
+1. **Broadcasting:** A single input from the user is mirrored to all `HWND` handles in the fleet.
+2. **Autonomous:** The Brain calculates independent inputs for each client (e.g., Healer bot casts Heal on Tank bot).
+
+========================================================================
+IMPLEMENTATION STEPS FOR DEVELOPER
+========================================================================
+1. **Window Mapper:** Create a class that maps Character Names $\rightarrow$ HWND.
+2. **Message Wrapper:** Build a `SendKey(HWND, KeyCode)` method that handles the Down/Up sequence.
+3. **Jitter Engine:** Implement a `RandomDelay()` function to be called before every input.
+4. **Testing:** Verify that background clients respond to inputs while the main client is focused.
