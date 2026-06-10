@@ -32,6 +32,19 @@ PsychoBuddy is currently optimized for:
 
 ---
 
+## 🧩 Current Development Stack
+*   **Framework:** .NET 8 / `net8.0-windows`
+*   **UI:** WPF
+*   **Primary project file:** `PsychoBuddy.csproj` in the repository root
+*   **Canonical source folder:** `src/`
+*   **Application entry point:** `src/App.xaml` + `src/App.xaml.cs`
+*   **Dashboard window:** `src/UI/MainWindow.xaml`
+*   **Current dashboard workflow:** Scan clients → choose role/profile → attach → start/pause/stop → detach
+*   **Primary UI visual target:** `assets/UI_Option_1.png`
+*   **Note:** `PsychoBuddy-Built/` was a temporary test-build folder and is not part of the canonical source tree.
+
+---
+
 ## ⚠️ Rules & Disclaimers
 
 ### 🚫 Prohibited Use
@@ -51,4 +64,4 @@ This software is intended exclusively for use on:
 ## 📜 License
 All original source code and logic are the proprietary intellectual property of **[Psychostout]**. 
 
-**A full copy of the license is provided with the software product.** Commercial use, unauthorized distribution, or charging for access to the source code is strictly prohibited.
+**The canonical license file is `LICENSE.MYCODE.txt` in the repository root.** Commercial use, unauthorized distribution, or charging for access to the source code is strictly prohibited.

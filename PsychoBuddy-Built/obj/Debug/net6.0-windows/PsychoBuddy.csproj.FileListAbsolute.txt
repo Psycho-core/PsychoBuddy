@@ -1,2 +1,0 @@
-C:\Users\Owner\OneDrive\Desktop\PsychoBuddy\obj\Debug\net6.0-windows\PsychoBuddy.csproj.AssemblyReference.cache
-C:\Users\Owner\OneDrive\Desktop\PsychoBuddy\obj\Debug\net6.0-windows\PsychoBuddy_MarkupCompile.cache

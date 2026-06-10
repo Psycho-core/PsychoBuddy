@@ -1,5 +1,3 @@
-NOTE: The canonical repository-root copy of this license is ../LICENSE.MYCODE.txt. This docs copy is retained for reference.
-
 PSYCHOBUDDY SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
 Copyright (c) 2026 [Psychostout]. All rights reserved.
 

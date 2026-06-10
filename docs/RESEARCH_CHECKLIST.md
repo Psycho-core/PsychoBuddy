@@ -2,6 +2,12 @@
 
 This document serves as the master checklist for every single technical and content-related requirement needed to transform PsychoBuddy from a design concept into a professional-grade, functioning automation platform.
 
+## Status Key / Reality Check
+- `[x]` in this roadmap means the research/specification document exists or the concept has a first-pass scaffold.
+- It does **not** necessarily mean the feature is production-complete.
+- Current codebase status: .NET 8 WPF foundation/prototype with core scaffolding for Attachment, Senses, Muscles, Brain, and UI.
+- Removed legacy temporary build copy: `PsychoBuddy-Built/`. The repository root is now the canonical project location.
+
 ## 1. The Senses: Data Acquisition (The "Eyes")
 *How the bot perceives the game state.*
 
@@ -105,6 +111,10 @@ This document serves as the master checklist for every single technical and cont
 
 ## 5. The Platform: User Experience (The "Body")
 *The software surrounding the bot.*
+
+- [x] **Build Target:** .NET 8 / `net8.0-windows`
+- [x] **WPF Startup Shell:** `src/App.xaml` launches `MainWindow` and displays standby fleet cards when no clients are found.
+- [x] **Dashboard Attachment Workflow:** Scan available clients, choose role/profile, attach, start, pause, stop, and detach from the UI.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)

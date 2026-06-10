@@ -1,5 +1,18 @@
 # 🧠 PSYCHOBUDDY: Master Automation Blueprint
 
+## 0. CURRENT PROJECT BASELINE
+- **Canonical project root:** repository root (`PsychoBuddy.csproj` + `src/`).
+- **Framework:** .NET 8 / `net8.0-windows`.
+- **UI framework:** WPF.
+- **Application entry point:** `src/App.xaml` / `src/App.xaml.cs`, which opens `src/UI/MainWindow.xaml`.
+- **Dashboard startup:** MainWindow now initializes the dashboard controller and shows standby fleet slots when no clients are attached.
+- **Dashboard attachment workflow:** Scan Clients → Choose Role/Profile → Attach → Start/Pause/Stop → Detach.
+- **Primary UI target:** `assets/UI_Option_1.png`.
+- **Temporary build copy removed:** `PsychoBuddy-Built/` was only a test-build output folder and is no longer part of the source tree.
+- **License location:** `LICENSE.MYCODE.txt` in the repository root is the authoritative license referenced by source headers.
+
+---
+
 ## 1. VISION
 PsychoBuddy is a professional-grade multi-boxing and automation platform for World of Warcraft. Its primary purpose is to allow a user to manage a "fleet" of characters—typically allowing the user to play one main account manually while PsychoBuddy autonomously controls and synchronizes multiple other clients (e.g., 4+ bot accounts) in the background. 
 

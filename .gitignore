@@ -1,0 +1,19 @@
+# PsychoBuddy local/build artifacts
+bin/
+obj/
+.vs/
+PsychoBuddy-Built/
+
+# .NET / Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+TestResults/
+.vscode/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak

@@ -1,49 +1,113 @@
 ========================================================================
-🚀 PSYCHOBUDDY: EASY BUILD GUIDE (Step-by-Step)
+🚀 PSYCHOBUDDY: EASY BUILD GUIDE (.NET 8 / WPF)
 ========================================================================
 
+CURRENT PROJECT FACTS
+------------------------------------------------------------------------
+- Framework: .NET 8 / net8.0-windows
+- UI: WPF
+- Canonical project file: PsychoBuddy.csproj in the repository root
+- WPF entry point: src/App.xaml + src/App.xaml.cs
+- Dashboard window: src/UI/MainWindow.xaml
+- Old PsychoBuddy-Built test folder: removed; do not use it
+
+========================================================================
 STEP 1: INSTALL THE TOOLS
 ------------------------------------------------------------------------
-1. Download "Visual Studio Community" (it's free) from: visualstudio.microsoft.com
-2. When installing, look for the "Workloads" tab.
-3. CHECK THE BOX that says: ".NET desktop development".
-4. Click "Install" and wait for it to finish.
-
-STEP 2: SETUP THE FOLDER
-------------------------------------------------------------------------
-1. Create a new folder on your Desktop named "PsychoBuddy".
-2. Put the "PsychoBuddy.csproj" file inside that folder.
-3. Create a folder inside "PsychoBuddy" called "src".
-4. Put all the folders from the /src directory (Brain, Core, Muscles, Senses, UI) 
-   and the "Program.cs" file into that "src" folder.
-
-Your folder should look like this:
-- PsychoBuddy/
-  - PsychoBuddy.csproj
-  - src/
-    - Program.cs
-    - Brain/ (all .cs files)
-    - Core/ (all .cs files)
-    - Muscles/ (all .cs files)
-    - Senses/ (all .cs files)
-    - UI/ (all .cs files and MainWindow.xaml)
-
-STEP 3: THE MAGIC BUTTON (BUILDING)
-------------------------------------------------------------------------
-1. Double-click the "PsychoBuddy.csproj" file. Visual Studio will open.
-2. Look at the top menu. Click "Build" -> "Build Solution".
-3. If you see "Build: 1 succeeded" at the bottom, your .exe is ready!
-
-STEP 4: LAUNCHING
-------------------------------------------------------------------------
-1. Go to the folder: PsychoBuddy/bin/Debug/net6.0-windows/
-2. Find the file "PsychoBuddy.exe".
-3. RIGHT-CLICK "PsychoBuddy.exe" and select "Run as Administrator".
-   (THIS IS MANDATORY. If you don't run as admin, it cannot read the game memory).
+1. Download Visual Studio Community from: visualstudio.microsoft.com
+2. During install, open the "Workloads" tab.
+3. Check: ".NET desktop development".
+4. Confirm the installer includes the .NET 8 SDK / runtime components.
+5. Install and wait for Visual Studio setup to complete.
 
 ========================================================================
-TROUBLESHOOTING:
-- "Access Denied" -> You didn't Run as Administrator.
-- "Missing Reference" -> You didn't copy the folders into the /src directory correctly.
-- "No clients found" -> Open WoW first, then run the program.
+STEP 2: OPEN THE CORRECT PROJECT
+------------------------------------------------------------------------
+1. Open the repository root folder named "PsychoBuddy".
+2. Confirm these files/folders exist directly inside it:
+
+- PsychoBuddy/
+  - PsychoBuddy.csproj
+  - LICENSE.MYCODE.txt
+  - README.md
+  - src/
+    - App.xaml
+    - App.xaml.cs
+    - Program.cs              (entry-point note only; no Main method)
+    - Brain/                  (all .cs files)
+    - Core/                   (all .cs files)
+    - Muscles/                (all .cs files)
+    - Senses/                 (all .cs files)
+    - UI/
+      - MainWindow.xaml
+      - MainWindow.xaml.cs
+      - DashboardController.cs
+      - FleetCardViewModel.cs
+
+3. Double-click "PsychoBuddy.csproj" to open it in Visual Studio.
+4. Do NOT open or rebuild any old "PsychoBuddy-Built" folder. It was only a temporary test-build copy and has been removed.
+
+========================================================================
+STEP 3: BUILD
+------------------------------------------------------------------------
+1. In Visual Studio, select: Build -> Rebuild Solution.
+2. Expected result:
+
+   Build: 1 succeeded, 0 failed
+
+3. The executable should be produced here:
+
+   PsychoBuddy/bin/Debug/net8.0-windows/PsychoBuddy.exe
+
+========================================================================
+STEP 4: FIRST LAUNCH / UI TEST
+------------------------------------------------------------------------
+For the first dashboard-only test:
+
+1. Press F5 in Visual Studio, OR run:
+
+   PsychoBuddy/bin/Debug/net8.0-windows/PsychoBuddy.exe
+
+2. Expected startup behavior:
+   - A WPF window titled "PsychoBuddy - Command Center" opens.
+   - Demo/standby fleet cards appear if no WoW clients are open.
+   - The bottom Technical Log shows startup and scan messages.
+   - The Scan/Demo/Tick buttons are visible.
+   - The Client Attachment panel is visible.
+
+3. You do NOT need Administrator mode just to confirm the dashboard opens.
+
+========================================================================
+STEP 5: CLIENT ATTACHMENT TEST
+------------------------------------------------------------------------
+For a real WoW-client attachment test:
+
+1. Open your target WoW client first.
+2. Run PsychoBuddy as Administrator if you plan to test Power Mode memory access.
+3. Click "SCAN" or "1. SCAN CLIENTS".
+4. If a client is found, it should appear in "AVAILABLE".
+5. Choose a Role and Profile.
+6. Click "2. ATTACH SELECTED".
+7. The client should move into the Fleet Monitor.
+8. Click "3. START SELECTED" only when you are ready to register it with the Orchestrator.
+9. Use Pause/Stop/Detach to control lifecycle state.
+
+========================================================================
+TROUBLESHOOTING
+------------------------------------------------------------------------
+- "No clients found"
+  -> The dashboard is working. Open WoW, then click Scan Clients again.
+
+- "Access Denied" or client starts then fails
+  -> Close PsychoBuddy and run it as Administrator before testing memory-based Power Mode.
+
+- "Missing Reference" or files not found
+  -> Confirm you opened the repository-root PsychoBuddy.csproj and that /src exists beside it.
+
+- App opens but looks plain/incomplete
+  -> That is expected for now. The layout is moving toward assets/UI_Option_1.png, but the full skin pass is still pending.
+
+- Build mentions old net6.0-windows
+  -> You are opening stale files. The real PsychoBuddy.csproj targets net8.0-windows.
+
 ========================================================================
