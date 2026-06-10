@@ -163,6 +163,21 @@ Refer to LICENSE.MYCODE.txt for full terms.
         </Setter>
     </Style>
 
+    <Style x:Key="InvisibleHitboxButton" TargetType="Button">
+        <Setter Property="Background" Value="#01000000"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Opacity" Value="0.01"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Inputs -->
     <Style x:Key="CompactCombo" TargetType="ComboBox">
         <Setter Property="Height" Value="26"/>

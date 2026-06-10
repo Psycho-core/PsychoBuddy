@@ -9,10 +9,10 @@ The primary visual target is:
 assets/UI_Option_1.png
 ```
 
-The cleaned layout underlay currently used during the skin pass is:
+The current working shell artwork used during the skin pass is:
 
 ```text
-assets/UI_Option_1_1.png
+assets/UI_Option_1_5.png
 ```
 
 The current WPF dashboard already follows this layout direction:
@@ -24,7 +24,7 @@ The current WPF dashboard already follows this layout direction:
 - bottom parchment technical log
 - footer/system status bar
 - custom minimize/close controls
-- low-opacity `assets/UI_Option_1_1.png` dashboard underlay
+- `assets/UI_Option_1_5.png` dashboard shell with invisible WPF hitboxes over artwork-provided buttons
 - application/window icon from `assets/PsychoBuddy.ico`
 
 Full visual parity will require a later skin pass with custom art assets, portrait frames, icons, borders, and WPF control templates.
@@ -205,7 +205,7 @@ This confirms the UI is alive even before real attachment is available, without 
 Already present:
 
 - [x] first reusable WPF skin resources in `src/UI/Themes/PsychoTheme.xaml`
-- [x] low-opacity cleaned UI underlay from `assets/UI_Option_1_1.png`
+- [x] Canvas/Viewbox shell based on `assets/UI_Option_1_5.png`
 - [x] first alignment pass for rows, columns, margins, panel transparency, Fleet Monitor, Senses panels, and technical log
 - [x] Command Center top bar
 - [x] left navigation column
@@ -217,11 +217,13 @@ Already present:
 - [x] lava/obsidian/gold color direction
 - [x] parchment-styled tactical map/log direction
 - [x] decorative lava seams behind the dashboard
-- [x] MainWindow converted to a fixed 1380x752 Canvas/Viewbox shell aligned to the cleaned background art
+- [x] MainWindow converted to a fixed 1700x925 Canvas/Viewbox shell aligned to `assets/UI_Option_1_5.png`
+- [x] Canvas overlay positions fine-tuned for fleet, Client Attachment, Senses, Senses Status, and Technical Log
 - [x] live controls aligned closer to the cleaned background art
 - [x] duplicate live titles removed where the background art already contains labels
 - [x] live Tactical Map block removed; Client Attachment expanded into that debugging space
 - [x] most live panel borders/backgrounds removed so the background art acts as the frame
+- [x] artwork-provided menu/profile/navigation/senses/settings/minimize/close buttons use invisible WPF hitboxes
 - [x] application/window icon from `assets/PsychoBuddy.ico`
 - [x] custom minimize/close controls
 
@@ -235,6 +237,7 @@ Latest usability pass:
 - [x] custom minimize/close buttons wired in the WPF window chrome
 - [x] fixed 2x2 Fleet Monitor slots with no awkward fleet scrolling/clipping
 - [x] distinct simplified empty/offline card template separate from real attached-client cards
+- [x] fleet card online/offline states represented with compact green/red bar-and-circle indicators
 - [x] real clients replace empty/offline fleet slots while the monitor always shows four slots
 - [x] improved card spacing, portrait area, role icon area, and bottom status bar
 - [x] selected available/fleet client status shown near the workflow controls
