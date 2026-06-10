@@ -206,6 +206,7 @@ Already present:
 
 - [x] first reusable WPF skin resources in `src/UI/Themes/PsychoTheme.xaml`
 - [x] low-opacity cleaned UI underlay from `assets/UI_Option_1_1.png`
+- [x] first alignment pass for rows, columns, margins, panel transparency, Fleet Monitor, Senses panels, and technical log
 - [x] Command Center top bar
 - [x] left navigation column
 - [x] fleet cards in a fixed 2x2 layout
@@ -216,6 +217,9 @@ Already present:
 - [x] lava/obsidian/gold color direction
 - [x] parchment-styled tactical map/log direction
 - [x] decorative lava seams behind the dashboard
+- [x] live controls aligned closer to the cleaned background art
+- [x] duplicate live titles removed where the background art already contains labels
+- [x] live Tactical Map block removed; Client Attachment expanded into that debugging space
 - [x] application/window icon from `assets/PsychoBuddy.ico`
 - [x] custom minimize/close controls
 
@@ -236,6 +240,7 @@ Latest usability pass:
 
 Pending polish:
 
+- [ ] continue tightening control placement against `assets/UI_Option_1_1.png`
 - [ ] replace symbolic sidebar icons with real art assets
 - [ ] custom portrait frames
 - [ ] class/role icons

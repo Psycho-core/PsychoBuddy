@@ -20,9 +20,9 @@ Refer to LICENSE.MYCODE.txt for full terms.
     <Color x:Key="ParchmentDarkColor">#C9AA78</Color>
 
     <SolidColorBrush x:Key="ObsidianBrush" Color="{StaticResource ObsidianColor}"/>
-    <SolidColorBrush x:Key="ObsidianPanelBrush" Color="#D0151515"/>
-    <SolidColorBrush x:Key="DeepPanelBrush" Color="#F00F0F10"/>
-    <SolidColorBrush x:Key="CardBrush" Color="#E6101820"/>
+    <SolidColorBrush x:Key="ObsidianPanelBrush" Color="#8A151515"/>
+    <SolidColorBrush x:Key="DeepPanelBrush" Color="#A80F0F10"/>
+    <SolidColorBrush x:Key="CardBrush" Color="#D6101820"/>
     <SolidColorBrush x:Key="CardBorderBrush" Color="#8B4513"/>
     <SolidColorBrush x:Key="MagmaBrush" Color="{StaticResource MagmaColor}"/>
     <SolidColorBrush x:Key="MagmaDarkBrush" Color="{StaticResource MagmaDarkColor}"/>
@@ -116,9 +116,9 @@ Refer to LICENSE.MYCODE.txt for full terms.
     </Style>
 
     <Style x:Key="SideNavButton" TargetType="Button" BasedOn="{StaticResource FantasyButton}">
-        <Setter Property="Height" Value="54"/>
-        <Setter Property="Margin" Value="0,0,0,10"/>
-        <Setter Property="Background" Value="#4A0B00"/>
+        <Setter Property="Height" Value="58"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+        <Setter Property="Background" Value="#73340700"/>
     </Style>
 
     <Style x:Key="SmallFantasyButton" TargetType="Button" BasedOn="{StaticResource FantasyButton}">
@@ -173,9 +173,9 @@ Refer to LICENSE.MYCODE.txt for full terms.
         <Setter Property="Margin" Value="2"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsRealClient}" Value="False">
-                <Setter Property="Background" Value="#AA171717"/>
+                <Setter Property="Background" Value="#7A171717"/>
                 <Setter Property="BorderBrush" Value="#555555"/>
-                <Setter Property="Opacity" Value="0.82"/>
+                <Setter Property="Opacity" Value="0.90"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>

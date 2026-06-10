@@ -79,6 +79,8 @@ For the first dashboard-only test:
    - A custom WPF Command Center window opens.
    - The dashboard uses the first obsidian/lava/parchment skin pass from src/UI/Themes/PsychoTheme.xaml.
    - A low-opacity cleaned UI underlay from assets/UI_Option_1_1.png may be visible behind the functional controls.
+   - Live controls should be aligned near the Fleet Monitor, Senses panels, and Technical Log areas of that background.
+   - The background art provides most major titles; live duplicate titles such as Fleet Monitor/Senses Module/Senses Status are intentionally hidden.
    - The window icon should use the Psycho icon from assets/PsychoBuddy.ico.
    - The Fleet Monitor shows four fixed slots in a 2x2 layout.
    - Four empty/offline fleet slots appear if no WoW clients are open, and empty slots remain visible when fewer than four real clients are attached.
