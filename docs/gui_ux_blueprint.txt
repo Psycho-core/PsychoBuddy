@@ -15,6 +15,12 @@ The current working shell artwork used during the skin pass is:
 assets/UI_Option_1_5.png
 ```
 
+The Settings modal artwork is:
+
+```text
+assets/Settings-Panel-final.png
+```
+
 The current README screenshot is:
 
 ```text
@@ -230,6 +236,7 @@ Already present:
 - [x] live Tactical Map block removed; Client Attachment expanded into that debugging space
 - [x] most live panel borders/backgrounds removed so the background art acts as the frame
 - [x] artwork-provided menu/profile/navigation/senses/settings/minimize/close buttons use invisible WPF hitboxes
+- [x] Settings button opens a real settings panel using `assets/Settings-Panel-final.png`
 - [x] application/window icon from `assets/PsychoBuddy.ico`
 - [x] custom minimize/close controls
 

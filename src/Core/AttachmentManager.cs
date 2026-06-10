@@ -39,12 +39,19 @@ namespace PsychoBuddy.Core
                 {
                     isTarget = true;
                 }
-                // Check by custom path if provided
-                else if (!string.IsNullOrEmpty(_customProcessPath) && 
-                         proc.MainModule != null && 
-                         proc.MainModule.FileName.Equals(_customProcessPath, StringComparison.OrdinalIgnoreCase))
+                // Check by custom path if provided. Accessing MainModule can fail for protected/system processes,
+                // so this is intentionally guarded to keep scanning safe.
+                else if (!string.IsNullOrEmpty(_customProcessPath))
                 {
-                    isTarget = true;
+                    try
+                    {
+                        isTarget = proc.MainModule != null &&
+                                   proc.MainModule.FileName.Equals(_customProcessPath, StringComparison.OrdinalIgnoreCase);
+                    }
+                    catch
+                    {
+                        isTarget = false;
+                    }
                 }
 
                 if (isTarget)

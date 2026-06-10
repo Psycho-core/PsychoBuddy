@@ -121,6 +121,7 @@ This document serves as the master checklist for every single technical and cont
 - [x] **Dashboard Usability Pass:** Fixed 2x2 Fleet Monitor slots, empty/offline startup slots, visible detach/profile controls, copyable technical log, placeholder-button feedback, custom minimize/close wiring, selected-client status labels, clearer tick logging, and reduced fleet-card clipping.
 - [x] **Application Icon:** `assets/PsychoBuddy.ico` generated from `assets/Psycho.JPG` and configured in `PsychoBuddy.csproj` plus `MainWindow.xaml`.
 - [x] **UI Skin Pass 1:** Added `src/UI/Themes/PsychoTheme.xaml` and moved the dashboard toward `assets/UI_Option_1.png` with obsidian/lava/parchment styling, a fixed `1700x925` Canvas/Viewbox shell based on `assets/UI_Option_1_5.png`, invisible hitboxes over artwork-provided buttons, compact red/green fleet status indicators, duplicate live labels removed, and Client Attachment kept visible for debugging.
+- [x] **Settings Panel / Persistence:** Added `assets/Settings-Panel-final.png`, `AppSettings`, `SettingsService`, runtime `settings.json` save/load, custom WoW executable path persistence, default role/profile, preferred Senses mode, auto-scan, debug/log settings, and window placement persistence.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)

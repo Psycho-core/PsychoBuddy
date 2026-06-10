@@ -27,6 +27,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
     <Resource Include="assets\PsychoBuddy.ico" />
     <Resource Include="assets\UI_Option_1_1.png" />
     <Resource Include="assets\UI_Option_1_5.png" />
+    <Resource Include="assets\Settings-Panel-final.png" />
   </ItemGroup>
 
   <ItemGroup>

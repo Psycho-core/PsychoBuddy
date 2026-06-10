@@ -39,12 +39,16 @@ STEP 2: OPEN THE CORRECT PROJECT
     - UI_Option_1_1.png
     - UI_Option_1_5.png
     - UI_test_17.png
+    - Settings-Panel-final.png
   - src/
     - App.xaml
     - App.xaml.cs
     - Program.cs              (entry-point note only; no Main method)
     - Brain/                  (all .cs files)
-    - Core/                   (all .cs files)
+    - Core/
+      - AppSettings.cs
+      - SettingsService.cs
+      - other Core .cs files
     - Muscles/                (all .cs files)
     - Senses/                 (all .cs files)
     - UI/
@@ -91,7 +95,8 @@ For the first dashboard-only test:
    - The bottom Technical Log shows startup and scan messages and can be selected/copied.
    - The Scan/Empty/Tick buttons are visible.
    - The Client Attachment panel is visible with Role, Profile, Attach, Start, Pause, Stop, Detach, Start All, and Stop All controls.
-   - Profiles/Navigation/Senses/Settings log a "not implemented yet" message when clicked.
+   - Profiles/Navigation/Senses/Menu log a "not implemented yet" message when clicked.
+   - Settings opens a real settings panel and can save settings.json beside the built executable.
 
 3. You do NOT need Administrator mode just to confirm the dashboard opens.
 

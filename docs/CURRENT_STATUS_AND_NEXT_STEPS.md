@@ -48,7 +48,8 @@ Verified by user test builds/logs:
 - Stop All works.
 - Tick reports real running-client count or no running clients.
 - Power/Stealth UI toggle works.
-- Placeholder panels log clear messages.
+- Settings panel opens/saves/cancels and persists settings to `settings.json`.
+- Placeholder panels log clear messages for Profiles, Navigation, Senses, and Menu.
 
 ## 3. Known Limitations
 
@@ -59,9 +60,8 @@ Current limitations:
 - Profiles button is still a placeholder.
 - Navigation button is still a placeholder.
 - Senses settings page is still a placeholder.
-- Settings page is still a placeholder.
 - Profile choices are still hardcoded.
-- No `settings.json` persistence yet.
+- Settings UI exists, but more validation/polish may be needed as features expand.
 - No real profile file loading yet.
 - Power Mode memory reading is still scaffold/placeholder-level.
 - Stealth Mode capture/addon pipeline is not implemented yet.
@@ -76,22 +76,22 @@ Before the deep UI skin/alignment work, the next planned functional milestone wa
 Build the real Settings panel with settings.json persistence.
 ```
 
-The intended Settings work was:
+That milestone has now been started/implemented at the dashboard level:
 
-1. Create a `settings.json` file.
-2. Add a settings service/model to load and save settings.
-3. Replace the Settings placeholder click with a real Settings panel.
-4. Persist:
+1. `settings.json` persistence is handled by `SettingsService`.
+2. `AppSettings` stores runtime settings.
+3. The Settings button opens a real Settings panel.
+4. The panel persists:
    - custom WoW executable path
    - preferred/default Role
    - preferred/default Profile
    - preferred Senses mode
    - auto-scan on startup setting
    - log verbosity / debug mode
-   - last window size/position if desired
-5. Wire the custom executable path into `AttachmentManager`.
+   - last window size/position
+5. The custom executable path is wired into `AttachmentManager` for scan fallback.
 
-After Settings, the next planned feature was:
+The next planned feature is now:
 
 ```text
 Profiles page + JSON profile loading
@@ -103,13 +103,15 @@ That would replace the current hardcoded profile dropdown with profile files loa
 
 ### Step 1 — Settings Panel / Persistence
 
-Implement:
+Status: **implemented at dashboard level**. Continue testing/polishing as new settings are added.
+
+Implemented files:
 
 ```text
-settings.json
 src/Core/AppSettings.cs
 src/Core/SettingsService.cs
-Settings panel UI
+assets/Settings-Panel-final.png
+settings.json (runtime generated)
 ```
 
 ### Step 2 — Real Profile Loading

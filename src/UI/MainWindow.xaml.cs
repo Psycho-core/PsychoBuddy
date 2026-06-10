@@ -7,9 +7,11 @@ Refer to LICENSE.MYCODE.txt for full terms.
 */
 
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Win32;
 
 namespace PsychoBuddy.UI
 {
@@ -26,6 +28,7 @@ namespace PsychoBuddy.UI
             DataContext = _controller;
 
             Loaded += MainWindow_Loaded;
+            Closing += MainWindow_Closing;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -33,6 +36,8 @@ namespace PsychoBuddy.UI
             if (_initialized) return;
 
             _initialized = true;
+            _controller.ApplyWindowPlacement(this);
+            SensesToggle.IsChecked = _controller.IsPowerModeSelected;
             _controller.InitializeFleet();
         }
 
@@ -97,7 +102,36 @@ namespace PsychoBuddy.UI
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            _controller.NotifyPlaceholder("Settings panel");
+            _controller.OpenSettingsPanel();
+        }
+
+
+        private void BrowseWowPathButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Title = "Select World of Warcraft executable",
+                Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*",
+                CheckFileExists = true,
+                Multiselect = false
+            };
+
+            if (dialog.ShowDialog(this) == true)
+            {
+                _controller.CustomWowExecutablePath = dialog.FileName;
+            }
+        }
+
+        private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SaveSettingsPanel();
+            SensesToggle.IsChecked = _controller.IsPowerModeSelected;
+        }
+
+        private void CancelSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CancelSettingsPanel();
+            SensesToggle.IsChecked = _controller.IsPowerModeSelected;
         }
 
         private void ScanButton_Click(object sender, RoutedEventArgs e)
@@ -153,6 +187,11 @@ namespace PsychoBuddy.UI
         private void SensesToggle_Click(object sender, RoutedEventArgs e)
         {
             _controller.ToggleSensesMode(SensesToggle.IsChecked == true);
+        }
+
+        private void MainWindow_Closing(object? sender, CancelEventArgs e)
+        {
+            _controller.CaptureWindowPlacement(this);
         }
     }
 }

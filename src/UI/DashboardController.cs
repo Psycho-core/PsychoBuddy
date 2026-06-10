@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using PsychoBuddy.Brain;
 using PsychoBuddy.Core;
 using PsychoBuddy.Muscles;
@@ -30,6 +31,8 @@ namespace PsychoBuddy.UI
 
         private readonly Orchestrator _orchestrator;
         private readonly AttachmentManager _attachment;
+        private readonly SettingsService _settingsService;
+        private AppSettings _settings;
 
         private string _statusMessage = "Command Center starting...";
         private string _sensesModeText = "Power Mode selected";
@@ -37,6 +40,15 @@ namespace PsychoBuddy.UI
         private FleetCardViewModel? _selectedFleetCard;
         private string _selectedRole = BotRole.DPS.ToString();
         private string _selectedProfile = "Basic Rotation";
+        private bool _isSettingsPanelVisible;
+        private string _customWowExecutablePath = string.Empty;
+        private string _defaultRole = BotRole.DPS.ToString();
+        private string _defaultProfile = "Basic Rotation";
+        private string _preferredSensesMode = "Power";
+        private bool _autoScanOnStartup = true;
+        private bool _debugMode = true;
+        private string _logVerbosity = "Normal";
+        private bool _rememberWindowPlacement = true;
 
         public DashboardController()
         {
@@ -48,9 +60,15 @@ namespace PsychoBuddy.UI
 
             AvailableClients.CollectionChanged += (_, _) => OnPropertyChanged(nameof(AvailableClientCountText));
 
+            _settingsService = new SettingsService();
+            _settings = _settingsService.Load();
+
             var input = new InputManager();
             _orchestrator = new Orchestrator(input);
             _attachment = new AttachmentManager();
+
+            ApplySettingsToControllerState(_settings);
+            _attachment.SetCustomProcessPath(_settings.CustomWowExecutablePath);
         }
 
         public ObservableCollection<ClientBinding> AvailableClients { get; } = new ObservableCollection<ClientBinding>();
@@ -66,6 +84,20 @@ namespace PsychoBuddy.UI
             "Healer Assist",
             "DPS Assist",
             "Manual Follow"
+        };
+
+        public IReadOnlyList<string> SensesModeOptions { get; } = new[]
+        {
+            "Power",
+            "Stealth"
+        };
+
+        public IReadOnlyList<string> LogVerbosityOptions { get; } = new[]
+        {
+            "Quiet",
+            "Normal",
+            "Verbose",
+            "Debug"
         };
 
         public ClientBinding? SelectedAvailableClient
@@ -138,6 +170,113 @@ namespace PsychoBuddy.UI
             }
         }
 
+        public bool IsSettingsPanelVisible
+        {
+            get => _isSettingsPanelVisible;
+            private set
+            {
+                if (_isSettingsPanelVisible == value) return;
+                _isSettingsPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CustomWowExecutablePath
+        {
+            get => _customWowExecutablePath;
+            set
+            {
+                string next = value ?? string.Empty;
+                if (_customWowExecutablePath == next) return;
+                _customWowExecutablePath = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DefaultRole
+        {
+            get => _defaultRole;
+            set
+            {
+                string next = NormalizeRole(value);
+                if (_defaultRole == next) return;
+                _defaultRole = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DefaultProfile
+        {
+            get => _defaultProfile;
+            set
+            {
+                string next = NormalizeProfile(value);
+                if (_defaultProfile == next) return;
+                _defaultProfile = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PreferredSensesMode
+        {
+            get => _preferredSensesMode;
+            set
+            {
+                string next = string.Equals(value, "Stealth", StringComparison.OrdinalIgnoreCase) ? "Stealth" : "Power";
+                if (_preferredSensesMode == next) return;
+                _preferredSensesMode = next;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsPowerModeSelected));
+            }
+        }
+
+        public bool AutoScanOnStartup
+        {
+            get => _autoScanOnStartup;
+            set
+            {
+                if (_autoScanOnStartup == value) return;
+                _autoScanOnStartup = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool DebugMode
+        {
+            get => _debugMode;
+            set
+            {
+                if (_debugMode == value) return;
+                _debugMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LogVerbosity
+        {
+            get => _logVerbosity;
+            set
+            {
+                string next = string.IsNullOrWhiteSpace(value) ? "Normal" : value;
+                if (_logVerbosity == next) return;
+                _logVerbosity = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool RememberWindowPlacement
+        {
+            get => _rememberWindowPlacement;
+            set
+            {
+                if (_rememberWindowPlacement == value) return;
+                _rememberWindowPlacement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsPowerModeSelected => !string.Equals(PreferredSensesMode, "Stealth", StringComparison.OrdinalIgnoreCase);
+
         public string AvailableClientCountText => $"Available clients: {AvailableClients.Count}";
         public string FleetCountText => $"Attached fleet: {Fleet.Count(f => f.IsRealClient)} / {MaxFleetSlots}";
         public string SelectedAvailableClientText => SelectedAvailableClient == null
@@ -154,7 +293,16 @@ namespace PsychoBuddy.UI
         {
             AddLog("PsychoBuddy Command Center initialized.");
             LoadStandbyFleet("Dashboard ready. Scan for clients to begin attachment workflow.");
-            RefreshClientScan();
+
+            if (AutoScanOnStartup)
+            {
+                RefreshClientScan();
+            }
+            else
+            {
+                StatusMessage = "Auto-scan disabled. Click Scan when ready.";
+                AddLog("Auto-scan on startup is disabled in Settings.");
+            }
         }
 
         public void NotifyPlaceholder(string featureName)
@@ -166,6 +314,87 @@ namespace PsychoBuddy.UI
         {
             StatusMessage = message;
             AddLog(message);
+        }
+
+        public void OpenSettingsPanel()
+        {
+            ApplySettingsToControllerState(_settings);
+            IsSettingsPanelVisible = true;
+            StatusMessage = "Settings panel opened.";
+            AddLog("Settings panel opened.");
+        }
+
+        public void CancelSettingsPanel()
+        {
+            ApplySettingsToControllerState(_settings);
+            IsSettingsPanelVisible = false;
+            StatusMessage = "Settings changes cancelled.";
+            AddLog("Settings panel closed without saving.");
+        }
+
+        public void SaveSettingsPanel()
+        {
+            _settings.CustomWowExecutablePath = CustomWowExecutablePath.Trim();
+            _settings.DefaultRole = NormalizeRole(DefaultRole);
+            _settings.DefaultProfile = NormalizeProfile(DefaultProfile);
+            _settings.PreferredSensesMode = PreferredSensesMode;
+            _settings.AutoScanOnStartup = AutoScanOnStartup;
+            _settings.DebugMode = DebugMode;
+            _settings.LogVerbosity = LogVerbosity;
+            _settings.RememberWindowPlacement = RememberWindowPlacement;
+
+            _settingsService.Save(_settings);
+            _attachment.SetCustomProcessPath(_settings.CustomWowExecutablePath);
+
+            SelectedRole = _settings.DefaultRole;
+            SelectedProfile = _settings.DefaultProfile;
+            ToggleSensesMode(IsPowerModeSelected);
+
+            IsSettingsPanelVisible = false;
+            StatusMessage = $"Settings saved to {_settingsService.SettingsPath}.";
+            AddLog(StatusMessage);
+        }
+
+        public void ApplyWindowPlacement(Window window)
+        {
+            if (!_settings.RememberWindowPlacement) return;
+            if (!IsUsableNumber(_settings.LastWindowWidth) || !IsUsableNumber(_settings.LastWindowHeight)) return;
+            if (_settings.LastWindowWidth < 800 || _settings.LastWindowHeight < 600) return;
+
+            window.Width = _settings.LastWindowWidth;
+            window.Height = _settings.LastWindowHeight;
+
+            if (IsUsableNumber(_settings.LastWindowLeft) && IsUsableNumber(_settings.LastWindowTop) &&
+                _settings.LastWindowLeft >= 0 && _settings.LastWindowTop >= 0)
+            {
+                window.Left = _settings.LastWindowLeft;
+                window.Top = _settings.LastWindowTop;
+            }
+        }
+
+        public void CaptureWindowPlacement(Window window)
+        {
+            if (!RememberWindowPlacement) return;
+
+            Rect restoreBounds = window.RestoreBounds;
+            double width = IsUsableNumber(restoreBounds.Width) && restoreBounds.Width > 0 ? restoreBounds.Width : window.Width;
+            double height = IsUsableNumber(restoreBounds.Height) && restoreBounds.Height > 0 ? restoreBounds.Height : window.Height;
+            double left = IsUsableNumber(restoreBounds.Left) && restoreBounds.Left >= 0 ? restoreBounds.Left : window.Left;
+            double top = IsUsableNumber(restoreBounds.Top) && restoreBounds.Top >= 0 ? restoreBounds.Top : window.Top;
+
+            _settings.RememberWindowPlacement = RememberWindowPlacement;
+            _settings.LastWindowWidth = IsUsableNumber(width) && width > 0 ? width : 1700;
+            _settings.LastWindowHeight = IsUsableNumber(height) && height > 0 ? height : 925;
+            _settings.LastWindowLeft = IsUsableNumber(left) && left >= 0 ? left : -1;
+            _settings.LastWindowTop = IsUsableNumber(top) && top >= 0 ? top : -1;
+
+            _settingsService.Save(_settings);
+        }
+
+        public void RefreshSettingsDefaultsFromSelection()
+        {
+            DefaultRole = SelectedRole;
+            DefaultProfile = SelectedProfile;
         }
 
         public void RefreshClientScan()
@@ -592,6 +821,35 @@ namespace PsychoBuddy.UI
             });
             return profile;
         }
+
+        private void ApplySettingsToControllerState(AppSettings settings)
+        {
+            CustomWowExecutablePath = settings.CustomWowExecutablePath;
+            DefaultRole = NormalizeRole(settings.DefaultRole);
+            DefaultProfile = NormalizeProfile(settings.DefaultProfile);
+            PreferredSensesMode = string.Equals(settings.PreferredSensesMode, "Stealth", StringComparison.OrdinalIgnoreCase) ? "Stealth" : "Power";
+            AutoScanOnStartup = settings.AutoScanOnStartup;
+            DebugMode = settings.DebugMode;
+            LogVerbosity = string.IsNullOrWhiteSpace(settings.LogVerbosity) ? "Normal" : settings.LogVerbosity;
+            RememberWindowPlacement = settings.RememberWindowPlacement;
+            SelectedRole = DefaultRole;
+            SelectedProfile = DefaultProfile;
+            SensesModeText = IsPowerModeSelected ? "Power Mode selected" : "Stealth Mode selected";
+        }
+
+        private string NormalizeRole(string? role)
+        {
+            string candidate = string.IsNullOrWhiteSpace(role) ? BotRole.DPS.ToString() : role;
+            return RoleOptions.Contains(candidate) ? candidate : BotRole.DPS.ToString();
+        }
+
+        private string NormalizeProfile(string? profile)
+        {
+            string candidate = string.IsNullOrWhiteSpace(profile) ? "Basic Rotation" : profile;
+            return ProfileOptions.Contains(candidate) ? candidate : "Basic Rotation";
+        }
+
+        private static bool IsUsableNumber(double value) => !double.IsNaN(value) && !double.IsInfinity(value);
 
         private void AddLog(string message)
         {

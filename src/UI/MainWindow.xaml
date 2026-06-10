@@ -320,6 +320,82 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     <TextBlock Text="{Binding StatusMessage}"/>
                 </StatusBarItem>
             </StatusBar>
+
+
+            <!-- Settings modal panel. Background art supplies the visible frame; controls remain functional overlays. -->
+            <Canvas Canvas.Left="0" Canvas.Top="0" Width="1700" Height="925">
+                <Canvas.Style>
+                    <Style TargetType="Canvas">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSettingsPanelVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Canvas.Style>
+
+                <Image Source="pack://application:,,,/assets/Settings-Panel-final.png"
+                       Width="1700"
+                       Height="925"
+                       Stretch="Fill"
+                       IsHitTestVisible="False"/>
+
+                <Grid Canvas.Left="285" Canvas.Top="180" Width="1130" Height="560">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.05*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Runtime / Client" Foreground="#3D2D18" FontSize="20" FontWeight="Bold" Margin="0,0,0,16"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Custom WoW executable path" Foreground="#3D2D18" FontWeight="Bold"/>
+                    <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding CustomWowExecutablePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,8,14"/>
+                    <Button Grid.Row="2" Grid.Column="2" Content="BROWSE..." Width="120" Height="30" HorizontalAlignment="Left" Style="{StaticResource SmallFantasyButton}" Click="BrowseWowPathButton_Click"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Default Role" Foreground="#3D2D18" FontWeight="Bold"/>
+                    <ComboBox Grid.Row="4" Grid.Column="0" ItemsSource="{Binding RoleOptions}" SelectedItem="{Binding DefaultRole, Mode=TwoWay}" Height="30" Margin="0,4,8,14"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Default Profile" Foreground="#3D2D18" FontWeight="Bold"/>
+                    <ComboBox Grid.Row="4" Grid.Column="2" ItemsSource="{Binding ProfileOptions}" SelectedItem="{Binding DefaultProfile, Mode=TwoWay}" Height="30" Margin="0,4,0,14"/>
+
+                    <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,10,8,0">
+                        <TextBlock Text="Preferred Senses Mode" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <ComboBox ItemsSource="{Binding SensesModeOptions}" SelectedItem="{Binding PreferredSensesMode, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
+
+                        <TextBlock Text="Log Verbosity" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <ComboBox ItemsSource="{Binding LogVerbosityOptions}" SelectedItem="{Binding LogVerbosity, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Grid.Column="2" Margin="0,10,0,0">
+                        <CheckBox Content="Auto-scan on startup" IsChecked="{Binding AutoScanOnStartup, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,12"/>
+                        <CheckBox Content="Debug mode" IsChecked="{Binding DebugMode, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,12"/>
+                        <CheckBox Content="Remember last window size/position" IsChecked="{Binding RememberWindowPlacement, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,12"/>
+
+                        <TextBlock Text="Notes" Foreground="#3D2D18" FontWeight="Bold" Margin="0,16,0,4"/>
+                        <TextBlock Text="Settings are saved to settings.json beside the built executable. Custom path is used during client scan fallback." Foreground="#4B3920" TextWrapping="Wrap" Width="430"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                        <Button Content="SAVE SETTINGS" Width="150" Height="34" Style="{StaticResource SmallFantasyButton}" Click="SaveSettingsButton_Click"/>
+                        <Button Content="CANCEL" Width="110" Height="34" Style="{StaticResource SmallFantasyButton}" Click="CancelSettingsButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Invisible hitbox over the art-provided bottom X. -->
+                <Button Canvas.Left="806" Canvas.Top="790" Width="88" Height="88" Style="{StaticResource InvisibleHitboxButton}" Click="CancelSettingsButton_Click"/>
+            </Canvas>
+
         </Canvas>
     </Viewbox>
 </Window>

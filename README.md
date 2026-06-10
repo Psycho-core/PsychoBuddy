@@ -25,14 +25,14 @@ The current build supports the following dashboard-level behavior:
 - Start All / Stop All attached clients.
 - Power/Stealth mode toggle UI state.
 - Selectable/copyable technical log.
-- Placeholder feedback for Profiles, Navigation, Senses, Settings, and Menu buttons.
+- Real Settings panel with settings.json persistence.
+- Placeholder feedback for Profiles, Navigation, Senses, and Menu buttons.
 
 ## 🚧 Still In Development / Not Fully Working Yet
 
 The following are currently placeholders, scaffolds, or research-backed plans rather than finished production features:
 
 - Real profile loading from disk.
-- Real Settings page and `settings.json` persistence.
 - Real Navigation page/pathing implementation.
 - Real Senses configuration page.
 - Real Power Mode memory signatures/offset resolution.
@@ -53,6 +53,7 @@ The following are currently placeholders, scaffolds, or research-backed plans ra
 - **Primary project file:** `PsychoBuddy.csproj`
 - **Canonical source folder:** `src/`
 - **Current shell artwork:** `assets/UI_Option_1_5.png`
+- **Settings panel artwork:** `assets/Settings-Panel-final.png`
 - **End-goal UI reference:** `assets/UI_Option_1.png`
 
 ---
@@ -137,6 +138,32 @@ Current fleet behavior:
 - Attach selected client: fills first available empty slot.
 - Detach selected client: returns that slot to empty/offline.
 - Online/offline state: compact green/red status indicator on each card.
+
+---
+
+## ⚙️ Settings
+
+The Settings panel is now implemented using:
+
+```text
+assets/Settings-Panel-final.png
+src/Core/AppSettings.cs
+src/Core/SettingsService.cs
+settings.json
+```
+
+Settings currently support:
+
+- custom WoW executable path
+- default role
+- default profile
+- preferred Senses mode
+- auto-scan on startup
+- debug mode
+- log verbosity
+- remember last window size/position
+
+At runtime, `settings.json` is saved beside the built executable.
 
 ---
 

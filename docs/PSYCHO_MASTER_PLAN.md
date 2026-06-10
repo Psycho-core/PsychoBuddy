@@ -15,7 +15,8 @@
 - **Application icon:** `assets/PsychoBuddy.ico`, generated from `assets/Psycho.JPG`, is configured as the executable and MainWindow icon.
 - **Temporary build copy removed:** `PsychoBuddy-Built/` was only a test-build output folder and is no longer part of the source tree.
 - **License location:** `LICENSE.MYCODE.txt` in the repository root is the authoritative license referenced by source headers.
-- **Next functional milestone:** real Settings panel + `settings.json` persistence. See `docs/CURRENT_STATUS_AND_NEXT_STEPS.md`.
+- **Settings milestone:** real Settings panel + `settings.json` persistence has been started/implemented at dashboard level. See `docs/CURRENT_STATUS_AND_NEXT_STEPS.md`.
+- **Next functional milestone:** Profiles page + JSON profile loading.
 
 ---
 
