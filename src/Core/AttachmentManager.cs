@@ -5,6 +5,7 @@ Copyright (c) 2026 [Psychostout]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,7 +18,7 @@ namespace PsychoBuddy.Core
     public class AttachmentManager
     {
         private readonly string _defaultProcessName = "Wow";
-        private string _customProcessPath = null;
+        private string? _customProcessPath = null;
 
         /// <summary>
         /// Scans the system for running WoW processes and returns a list of potential bindings.
@@ -69,7 +70,7 @@ namespace PsychoBuddy.Core
             return bindings;
         }
 
-        public void SetCustomProcessPath(string path)
+        public void SetCustomProcessPath(string? path)
         {
             _customProcessPath = path;
         }

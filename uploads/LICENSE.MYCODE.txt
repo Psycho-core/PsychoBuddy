@@ -2,7 +2,7 @@
 IMPORTANT NOTICE: This repository is a mixed-license project. 
 The standard 'LICENSE' file applies to the base MaNGOS platform. 
 THIS file ('LICENSE.MYCODE') applies EXCLUSIVELY to the original modules, 
-scripts, and .bat files authored by [Psycho-core].
+scripts, and .bat files authored by [Psychostout].
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
 Copyright (c) 2026 [Psychostout]. All rights reserved.

@@ -1,15 +1,3 @@
-/*
-========================================================================
-SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
-Refer to LICENSE.MYCODE.txt for full terms.
-========================================================================
-*/
-
-<!-- 
-    Note: This is a conceptual XAML layout based on UI_Option_1.png. 
-    In a full WPF application, this would be a .xaml file.
--->
 <Window x:Class="PsychoBuddy.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

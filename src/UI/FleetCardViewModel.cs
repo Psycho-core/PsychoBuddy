@@ -15,21 +15,17 @@ using PsychoBuddy.Senses;
 
 namespace PsychoBuddy.UI
 {
-    /// <summary>
-    /// ViewModel for an individual bot card in the Fleet Monitor.
-    /// Implements INotifyPropertyChanged for real-time UI updates.
-    /// </summary>
     public class FleetCardViewModel : INotifyPropertyChanged
     {
         private float _healthPercent;
         private float _manaPercent;
         private string _status = "Idle";
-        private ClientBinding _binding;
+        private ClientBinding? _binding;
 
-        public ClientBinding Binding { get; set; }
+        public ClientBinding? Binding { get; set; }
 
         public string CharacterName => Binding?.CharacterName ?? "Unknown";
-        public string Role { get; set; }
+        public string? Role { get; set; }
         public int Level { get; set; }
 
         public float HealthPercent 
@@ -50,8 +46,8 @@ namespace PsychoBuddy.UI
             set { _status = value; OnPropertyChanged(); } 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

@@ -5,13 +5,11 @@ Copyright (c) 2026 [Psychostout]. All rights reserved.
 Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
+
 using System;
 
 namespace PsychoBuddy.Senses
 {
-    /// <summary>
-    /// Data model representing the current state of a game unit.
-    /// </summary>
     public class UnitData
     {
         public float HealthCurrent { get; set; }
@@ -24,7 +22,6 @@ namespace PsychoBuddy.Senses
         public float PositionY { get; set; }
         public float PositionZ { get; set; }
         public bool IsDead { get; set; }
-        
         public float HealthPercentage => HealthMax > 0 ? (HealthCurrent / HealthMax) * 100f : 0;
         public float ManaPercentage => ManaMax > 0 ? (ManaCurrent / ManaMax) * 100f : 0;
     }

@@ -14,16 +14,7 @@ namespace PsychoBuddy.Senses
     public class StealthModeSenses
     {
         private readonly PixelReader _pixelReader;
-
-        public StealthModeSenses(ClientBinding binding)
-        {
-            _pixelReader = new PixelReader(binding.WindowHandle);
-        }
-
-        public UnitData GetLocalPlayerData()
-        {
-            var grid = _pixelReader.CaptureGrid();
-            return StealthTranslator.TranslateGrid(grid);
-        }
+        public StealthModeSenses(ClientBinding binding) => _pixelReader = new PixelReader(binding.WindowHandle);
+        public UnitData GetLocalPlayerData() => StealthTranslator.TranslateGrid(_pixelReader.CaptureGrid());
     }
 }
