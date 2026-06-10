@@ -117,6 +117,7 @@ This document serves as the master checklist for every single technical and cont
 - [x] **Dashboard Attachment Workflow:** Scan available clients, choose role/profile, attach, start, pause, stop, and detach from the UI.
 - [x] **Dashboard Usability Pass:** Fixed 2x2 Fleet Monitor slots, empty/offline startup slots, visible detach/profile controls, copyable technical log, placeholder-button feedback, custom minimize/close wiring, selected-client status labels, clearer tick logging, and reduced fleet-card clipping.
 - [x] **Application Icon:** `assets/PsychoBuddy.ico` generated from `assets/Psycho.JPG` and configured in `PsychoBuddy.csproj` plus `MainWindow.xaml`.
+- [x] **UI Skin Pass 1:** Added `src/UI/Themes/PsychoTheme.xaml` and began moving the dashboard toward `assets/UI_Option_1.png` with obsidian/lava/parchment styling, themed buttons, panels, fleet cards, decorative lava seams, and `assets/UI_Option_1_1.png` as a low-opacity layout underlay. Empty/offline fleet cards now have their own simplified presentation.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)

@@ -9,7 +9,7 @@
 - **Dashboard attachment workflow:** Scan Clients → Choose Role/Profile → Attach → Start/Pause/Stop → Detach.
 - **Dashboard usability status:** fixed 2x2 Fleet Monitor slots, visible detach/profile controls, selectable/copyable technical log, placeholder navigation feedback, custom minimize/close controls, improved card spacing/portrait/status areas, selected-client status labels, and clearer tick logging are implemented.
 - **Application icon:** `assets/PsychoBuddy.ico`, generated from `assets/Psycho.JPG`, is configured as the executable and MainWindow icon.
-- **Primary UI target:** `assets/UI_Option_1.png`.
+- **Primary UI target:** `assets/UI_Option_1.png`; first WPF skin pass has started with `src/UI/Themes/PsychoTheme.xaml`, obsidian/lava/parchment resources, styled buttons/panels/cards, decorative lava seams, and a low-opacity `assets/UI_Option_1_1.png` layout underlay.
 - **Temporary build copy removed:** `PsychoBuddy-Built/` was only a test-build output folder and is no longer part of the source tree.
 - **License location:** `LICENSE.MYCODE.txt` in the repository root is the authoritative license referenced by source headers.
 

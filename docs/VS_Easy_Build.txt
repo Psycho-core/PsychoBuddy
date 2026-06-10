@@ -34,6 +34,7 @@ STEP 2: OPEN THE CORRECT PROJECT
   - assets/
     - Psycho.JPG
     - PsychoBuddy.ico
+    - UI_Option_1_1.png
   - src/
     - App.xaml
     - App.xaml.cs
@@ -47,6 +48,8 @@ STEP 2: OPEN THE CORRECT PROJECT
       - MainWindow.xaml.cs
       - DashboardController.cs
       - FleetCardViewModel.cs
+      - Themes/
+        - PsychoTheme.xaml
 
 3. Double-click "PsychoBuddy.csproj" to open it in Visual Studio.
 4. Do NOT open or rebuild any old "PsychoBuddy-Built" folder. It was only a temporary test-build copy and has been removed.
@@ -74,6 +77,8 @@ For the first dashboard-only test:
 
 2. Expected startup behavior:
    - A custom WPF Command Center window opens.
+   - The dashboard uses the first obsidian/lava/parchment skin pass from src/UI/Themes/PsychoTheme.xaml.
+   - A low-opacity cleaned UI underlay from assets/UI_Option_1_1.png may be visible behind the functional controls.
    - The window icon should use the Psycho icon from assets/PsychoBuddy.ico.
    - The Fleet Monitor shows four fixed slots in a 2x2 layout.
    - Four empty/offline fleet slots appear if no WoW clients are open, and empty slots remain visible when fewer than four real clients are attached.

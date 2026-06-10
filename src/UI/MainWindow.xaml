@@ -23,51 +23,16 @@ Refer to LICENSE.MYCODE.txt for full terms.
         SnapsToDevicePixels="True">
 
     <Window.Resources>
-        <SolidColorBrush x:Key="ObsidianPanelBrush" Color="#D0151515"/>
-        <SolidColorBrush x:Key="MagmaBrush" Color="#FF4500"/>
-        <SolidColorBrush x:Key="GoldBrush" Color="#FFD27A"/>
-        <SolidColorBrush x:Key="ParchmentBrush" Color="#F5DEB3"/>
-
-        <Style x:Key="FantasyButton" TargetType="Button">
-            <Setter Property="Height" Value="38"/>
-            <Setter Property="Padding" Value="10,4"/>
-            <Setter Property="Background" Value="#2D0000"/>
-            <Setter Property="Foreground" Value="{StaticResource GoldBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource MagmaBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Margin" Value="0,0,0,8"/>
-        </Style>
-
-        <Style x:Key="SmallFantasyButton" TargetType="Button" BasedOn="{StaticResource FantasyButton}">
-            <Setter Property="Height" Value="28"/>
-            <Setter Property="FontSize" Value="10.5"/>
-            <Setter Property="Margin" Value="0,0,6,6"/>
-            <Setter Property="Padding" Value="4,2"/>
-        </Style>
-
-        <Style x:Key="CompactCombo" TargetType="ComboBox">
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="Margin" Value="0,2,0,6"/>
-        </Style>
-
-        <Style x:Key="FleetListBoxItem" TargetType="ListBoxItem">
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="4"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/PsychoTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#0B0B0B" Offset="0"/>
-                <GradientStop Color="#240606" Offset="0.42"/>
-                <GradientStop Color="#101010" Offset="0.7"/>
-                <GradientStop Color="#3A0B00" Offset="1"/>
-            </LinearGradientBrush>
+            <StaticResource ResourceKey="ObsidianLavaBackground"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -77,8 +42,24 @@ Refer to LICENSE.MYCODE.txt for full terms.
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
 
+        <!-- Low-opacity UI_Option_1.1 mockup underlay. It guides the skin pass without stealing input. -->
+        <Image Grid.RowSpan="4"
+               Source="pack://application:,,,/assets/UI_Option_1_1.png"
+               Stretch="Fill"
+               Opacity="0.34"
+               IsHitTestVisible="False"/>
+
+        <!-- Decorative lava seams behind the functional dashboard. -->
+        <Canvas Grid.RowSpan="4" IsHitTestVisible="False" ClipToBounds="True" Opacity="0.38">
+            <Line X1="0" Y1="76" X2="1280" Y2="76" Stroke="#FF4500" StrokeThickness="2"/>
+            <Line X1="92" Y1="0" X2="136" Y2="72" Stroke="#9B2200" StrokeThickness="3"/>
+            <Line X1="1030" Y1="88" X2="1210" Y2="38" Stroke="#6B1300" StrokeThickness="4"/>
+            <Line X1="25" Y1="730" X2="260" Y2="690" Stroke="#6B1300" StrokeThickness="3"/>
+            <Line X1="800" Y1="690" X2="1050" Y2="760" Stroke="#9B2200" StrokeThickness="2"/>
+        </Canvas>
+
         <!-- TOP BAR / CUSTOM WINDOW CHROME -->
-        <Border Grid.Row="0" Background="#2D0000" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="0,0,0,2" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+        <Border Grid.Row="0" Background="{StaticResource HeaderPanelBrush}" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="0,0,0,2" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
             <Grid Margin="14,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="165"/>
@@ -86,7 +67,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     <ColumnDefinition Width="330"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="☰" Width="52" Height="44" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource FantasyButton}" Click="MenuButton_Click"/>
+                <Button Grid.Column="0" Content="☰" Width="52" Height="44" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource ChromeButton}" Click="MenuButton_Click"/>
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="PsychoBuddy" Foreground="{StaticResource GoldBrush}" FontSize="32" FontFamily="Garamond" FontWeight="Bold" HorizontalAlignment="Center"/>
@@ -95,8 +76,8 @@ Refer to LICENSE.MYCODE.txt for full terms.
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="COMMAND CENTER" Foreground="{StaticResource GoldBrush}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,16,0"/>
-                    <Button Content="−" Width="40" Height="30" Style="{StaticResource SmallFantasyButton}" Click="MinimizeButton_Click"/>
-                    <Button Content="X" Width="40" Height="30" Style="{StaticResource SmallFantasyButton}" Click="CloseButton_Click"/>
+                    <Button Content="−" Width="40" Height="30" Style="{StaticResource ChromeButton}" Click="MinimizeButton_Click"/>
+                    <Button Content="X" Width="40" Height="30" Style="{StaticResource ChromeButton}" Click="CloseButton_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -111,17 +92,40 @@ Refer to LICENSE.MYCODE.txt for full terms.
 
             <!-- LEFT NAVIGATION -->
             <StackPanel Grid.Column="0" Margin="0,0,12,0">
-                <Button Content="PROFILES" Style="{StaticResource FantasyButton}" Click="ProfilesButton_Click"/>
-                <Button Content="NAVIGATION" Style="{StaticResource FantasyButton}" Click="NavigationButton_Click"/>
-                <Button Content="SENSES" Style="{StaticResource FantasyButton}" Click="SensesNavButton_Click"/>
-                <Button Content="SETTINGS" Style="{StaticResource FantasyButton}" Click="SettingsButton_Click"/>
-                <Button Content="SCAN" Style="{StaticResource FantasyButton}" Click="ScanButton_Click" Margin="0,22,0,8"/>
-                <Button Content="EMPTY" Style="{StaticResource FantasyButton}" Click="EmptyButton_Click"/>
-                <Button Content="TICK" Style="{StaticResource FantasyButton}" Click="TickButton_Click"/>
+                <Button Style="{StaticResource SideNavButton}" Click="ProfilesButton_Click">
+                    <StackPanel>
+                        <TextBlock Text="▣" FontSize="18" HorizontalAlignment="Center"/>
+                        <TextBlock Text="PROFILES" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource SideNavButton}" Click="NavigationButton_Click">
+                    <StackPanel>
+                        <TextBlock Text="✧" FontSize="18" HorizontalAlignment="Center"/>
+                        <TextBlock Text="NAVIGATION" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource SideNavButton}" Click="SensesNavButton_Click">
+                    <StackPanel>
+                        <TextBlock Text="◉" FontSize="18" HorizontalAlignment="Center"/>
+                        <TextBlock Text="SENSES" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource SideNavButton}" Click="SettingsButton_Click">
+                    <StackPanel>
+                        <TextBlock Text="⚙" FontSize="18" HorizontalAlignment="Center"/>
+                        <TextBlock Text="SETTINGS" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Separator Margin="0,12,0,18" Background="#8B4513"/>
+
+                <Button Content="SCAN" Style="{StaticResource SideNavButton}" Click="ScanButton_Click"/>
+                <Button Content="EMPTY" Style="{StaticResource SideNavButton}" Click="EmptyButton_Click"/>
+                <Button Content="TICK" Style="{StaticResource SideNavButton}" Click="TickButton_Click"/>
             </StackPanel>
 
             <!-- CENTER COMMAND PANEL -->
-            <Border Grid.Column="1" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="2" CornerRadius="8" Background="{StaticResource ObsidianPanelBrush}" Padding="10">
+            <Border Grid.Column="1" Style="{StaticResource MainFrameBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32"/>
@@ -141,7 +145,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                         </Grid.ColumnDefinitions>
 
                         <!-- ATTACHED FLEET CARDS: fixed 2x2 grid -->
-                        <Border Grid.Column="0" BorderBrush="#6A3A24" BorderThickness="1" Background="#33111111" Padding="4">
+                        <Border Grid.Column="0" BorderBrush="#6A3A24" BorderThickness="1" Background="#22111111" Padding="6">
                             <ListBox ItemsSource="{Binding Fleet}"
                                      SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
                                      Background="Transparent"
@@ -156,110 +160,132 @@ Refer to LICENSE.MYCODE.txt for full terms.
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="#DD101820"
-                                                BorderBrush="#7A3E22"
-                                                BorderThickness="1"
-                                                CornerRadius="6"
-                                                Padding="8"
-                                                Margin="2">
+                                        <Border Style="{StaticResource FleetCardShell}">
                                             <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="34"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="82"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="34"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <!-- Portrait / level block -->
-                                                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Width="68" Height="86" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0" VerticalAlignment="Top">
-                                                    <Border.Style>
-                                                        <Style TargetType="Border">
-                                                            <Setter Property="Background" Value="#2E1E18"/>
-                                                            <Setter Property="BorderBrush" Value="{StaticResource GoldBrush}"/>
+                                                <!-- Empty/offline slot presentation. Clean and intentionally sparse, like an offline party frame. -->
+                                                <Grid>
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Visibility" Value="Visible"/>
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding IsRealClient}" Value="False">
-                                                                    <Setter Property="Background" Value="#202020"/>
-                                                                    <Setter Property="BorderBrush" Value="#666666"/>
-                                                                    <Setter Property="Opacity" Value="0.70"/>
+                                                                <DataTrigger Binding="{Binding IsRealClient}" Value="True">
+                                                                    <Setter Property="Visibility" Value="Collapsed"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
-                                                    </Border.Style>
-                                                    <Grid>
-                                                        <TextBlock Text="{Binding PortraitGlyph}" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12"/>
-                                                        <Border VerticalAlignment="Bottom" Background="#AA000000" Padding="2">
-                                                            <TextBlock Text="{Binding LevelText}" Foreground="White" FontSize="9" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                                        </Border>
-                                                    </Grid>
-                                                </Border>
+                                                    </Grid.Style>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="34"/>
+                                                    </Grid.RowDefinitions>
 
-                                                <!-- Header -->
-                                                <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,4,0">
-                                                    <DockPanel LastChildFill="False">
-                                                        <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" ToolTip="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="38"/>
-                                                        <Ellipse DockPanel.Dock="Right" Width="8" Height="8" Fill="#00FF55" Margin="6,0,0,0" VerticalAlignment="Center"/>
-                                                    </DockPanel>
-                                                    <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
-                                                    <TextBlock Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="10.5" TextTrimming="CharacterEllipsis"/>
-                                                </StackPanel>
+                                                    <Border Grid.Row="0" Background="{StaticResource ParchmentGradientBrush}" BorderBrush="#6F5A35" BorderThickness="1" CornerRadius="3" Margin="4,4,4,8" Opacity="0.60">
+                                                        <Grid>
+                                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <TextBlock Text="◇" Foreground="#6C5A3A" FontSize="34" HorizontalAlignment="Center"/>
+                                                                <TextBlock Text="AWAITING CLIENT" Foreground="#4A3920" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                                                                <TextBlock Text="No Session" Foreground="#6C5A3A" FontSize="11" HorizontalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </Border>
 
-                                                <!-- Role icon -->
-                                                <Border Grid.Row="0" Grid.Column="2" Width="28" Height="28" Background="#352018" BorderBrush="#8B4513" BorderThickness="1" CornerRadius="3" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                                    <TextBlock Text="{Binding RoleIcon}" Foreground="{StaticResource GoldBrush}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
+                                                    <Border Grid.Row="1" Background="#44111111" BorderBrush="#4D3B2A" BorderThickness="0,1,0,0" Margin="-8,6,-8,-8" Padding="8,4">
+                                                        <DockPanel LastChildFill="False">
+                                                            <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#806F62" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                            <Border DockPanel.Dock="Right" Background="#22111111" BorderBrush="#555555" BorderThickness="1" CornerRadius="10" Padding="8,1">
+                                                                <TextBlock Text="Offline" Foreground="#888888" FontSize="10.5" FontWeight="Bold"/>
+                                                            </Border>
+                                                        </DockPanel>
+                                                    </Border>
+                                                </Grid>
 
-                                                <!-- Vitals and technical identifiers -->
-                                                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,8,0,0" VerticalAlignment="Top">
-                                                    <DockPanel>
-                                                        <TextBlock Text="Health" Foreground="#D8D0C7" Width="52" FontSize="11"/>
-                                                        <TextBlock Text="{Binding HealthText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
-                                                    </DockPanel>
-                                                    <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="10"/>
-                                                    <DockPanel Margin="0,4,0,0">
-                                                        <TextBlock Text="Mana" Foreground="#D8D0C7" Width="52" FontSize="11"/>
-                                                        <TextBlock Text="{Binding ManaText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
-                                                    </DockPanel>
-                                                    <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="10"/>
+                                                <!-- Real attached client presentation. This keeps all existing bindings/actions intact. -->
+                                                <Grid>
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsRealClient}" Value="True">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="34"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="82"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="34"/>
+                                                    </Grid.ColumnDefinitions>
 
-                                                    <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
-                                                        <StackPanel.Style>
-                                                            <Style TargetType="StackPanel">
-                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding IsRealClient}" Value="False">
-                                                                        <Setter Property="Visibility" Value="Hidden"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </StackPanel.Style>
-                                                        <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1" Margin="0,0,4,0">
-                                                            <TextBlock Text="✦" Foreground="#D9E65B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
-                                                        <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1" Margin="0,0,4,0">
-                                                            <TextBlock Text="⚔" Foreground="#FF8C6B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
-                                                        <Border Width="20" Height="20" Background="#302214" BorderBrush="#8B4513" BorderThickness="1">
-                                                            <TextBlock Text="◆" Foreground="#75D7FF" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
+                                                    <!-- Portrait / level block -->
+                                                    <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource PortraitFrame}">
+                                                        <Grid>
+                                                            <TextBlock Text="{Binding PortraitGlyph}" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12"/>
+                                                            <Border VerticalAlignment="Bottom" Background="#AA000000" Padding="2">
+                                                                <TextBlock Text="{Binding LevelText}" Foreground="White" FontSize="9" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                                            </Border>
+                                                        </Grid>
+                                                    </Border>
+
+                                                    <!-- Header -->
+                                                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,4,0">
+                                                        <DockPanel LastChildFill="False">
+                                                            <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" ToolTip="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="38"/>
+                                                            <Ellipse DockPanel.Dock="Right" Width="8" Height="8" Fill="{StaticResource OnlineBrush}" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                                        </DockPanel>
+                                                        <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
+                                                        <TextBlock Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="10.5" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
 
-                                                    <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis" Margin="0,5,0,0"/>
-                                                    <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis"/>
-                                                </StackPanel>
+                                                    <!-- Role icon -->
+                                                    <Border Grid.Row="0" Grid.Column="2" Width="28" Height="28" Background="#352018" BorderBrush="#8B4513" BorderThickness="1" CornerRadius="3" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                        <TextBlock Text="{Binding RoleIcon}" Foreground="{StaticResource GoldBrush}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
 
-                                                <!-- Bottom status bar -->
-                                                <Border Grid.Row="2" Grid.ColumnSpan="3" Background="#4421110A" BorderBrush="#6A3A24" BorderThickness="0,1,0,0" Margin="-8,6,-8,-8" Padding="8,4">
-                                                    <DockPanel LastChildFill="False">
-                                                        <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                        <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#33111111" BorderBrush="#6A3A24" BorderThickness="1" CornerRadius="10" Padding="8,1">
-                                                            <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="10.5" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
-                                                        </Border>
-                                                    </DockPanel>
-                                                </Border>
+                                                    <!-- Vitals and technical identifiers -->
+                                                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,8,0,0" VerticalAlignment="Top">
+                                                        <DockPanel>
+                                                            <TextBlock Text="Health" Foreground="#D8D0C7" Width="52" FontSize="11"/>
+                                                            <TextBlock Text="{Binding HealthText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
+                                                        </DockPanel>
+                                                        <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="10"/>
+                                                        <DockPanel Margin="0,4,0,0">
+                                                            <TextBlock Text="Mana" Foreground="#D8D0C7" Width="52" FontSize="11"/>
+                                                            <TextBlock Text="{Binding ManaText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
+                                                        </DockPanel>
+                                                        <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="10"/>
+
+                                                        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                                            <Border Style="{StaticResource AbilityIconBorder}">
+                                                                <TextBlock Text="✦" Foreground="#D9E65B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                            <Border Style="{StaticResource AbilityIconBorder}">
+                                                                <TextBlock Text="⚔" Foreground="#FF8C6B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                            <Border Style="{StaticResource AbilityIconBorder}" Margin="0">
+                                                                <TextBlock Text="◆" Foreground="#75D7FF" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </StackPanel>
+
+                                                        <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis" Margin="0,5,0,0"/>
+                                                        <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis"/>
+                                                    </StackPanel>
+
+                                                    <!-- Bottom status bar -->
+                                                    <Border Grid.Row="2" Grid.ColumnSpan="3" Background="#4421110A" BorderBrush="#6A3A24" BorderThickness="0,1,0,0" Margin="-8,6,-8,-8" Padding="8,4">
+                                                        <DockPanel LastChildFill="False">
+                                                            <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                            <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#33111111" BorderBrush="#6A3A24" BorderThickness="1" CornerRadius="10" Padding="8,1">
+                                                                <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="10.5" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                                            </Border>
+                                                        </DockPanel>
+                                                    </Border>
+                                                </Grid>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>
@@ -275,7 +301,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <Border Grid.Row="0" Background="#E6D7B37A" BorderBrush="#8B4513" BorderThickness="2" CornerRadius="4" Padding="8">
+                            <Border Grid.Row="0" Background="{StaticResource ParchmentGradientBrush}" BorderBrush="#8B4513" BorderThickness="2" CornerRadius="4" Padding="8">
                                 <Grid>
                                     <TextBlock Text="TACTICAL MAP" Foreground="#4B2C20" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
                                     <Canvas Margin="10,30,10,8">
@@ -290,7 +316,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                                 </Grid>
                             </Border>
 
-                            <Border Grid.Row="2" Background="#DD1A1A1A" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="2" CornerRadius="6" Padding="10">
+                            <Border Grid.Row="2" Style="{StaticResource PanelBorder}">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -362,7 +388,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
 
             <!-- RIGHT SENSES PANEL -->
             <StackPanel Grid.Column="2" Margin="12,0,0,0">
-                <Border Background="{StaticResource ObsidianPanelBrush}" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="2" Padding="12" Margin="0,0,0,16" CornerRadius="6">
+                <Border Style="{StaticResource PanelBorder}" Margin="0,0,0,16">
                     <StackPanel>
                         <TextBlock Text="SENSES MODULE" Foreground="{StaticResource GoldBrush}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"/>
                         <Grid Margin="0,16,0,8">
@@ -379,7 +405,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     </StackPanel>
                 </Border>
 
-                <Border Background="{StaticResource ObsidianPanelBrush}" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="2" Padding="12" CornerRadius="6">
+                <Border Style="{StaticResource PanelBorder}">
                     <StackPanel>
                         <TextBlock Text="SENSES STATUS" Foreground="{StaticResource GoldBrush}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"/>
                         <TextBlock Text="◉ Scan Range             120m" Foreground="#D8D0C7" Margin="0,14,0,0"/>
@@ -396,7 +422,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
         </Grid>
 
         <!-- BOTTOM TECHNICAL LOG -->
-        <Border Grid.Row="2" Margin="148,0,304,10" Background="{StaticResource ParchmentBrush}" CornerRadius="5" BorderBrush="#8B4513" BorderThickness="3">
+        <Border Grid.Row="2" Margin="148,0,304,10" Background="{StaticResource ParchmentGradientBrush}" CornerRadius="5" BorderBrush="#8B4513" BorderThickness="3">
             <DockPanel>
                 <Border DockPanel.Dock="Top" Background="#33100000" BorderBrush="#8B4513" BorderThickness="0,0,0,1" Padding="10,4">
                     <TextBlock Text="TECHNICAL LOG" Foreground="#3A1300" FontWeight="Bold" FontSize="16"/>
@@ -404,17 +430,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                 <TextBox x:Name="LogTextBox"
                          Text="{Binding LogText, Mode=OneWay}"
                          TextChanged="LogTextBox_TextChanged"
-                         IsReadOnly="True"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"
-                         HorizontalScrollBarVisibility="Disabled"
-                         Background="Transparent"
-                         Foreground="#1F130D"
-                         BorderThickness="0"
-                         FontFamily="Courier New"
-                         FontSize="14"
-                         Padding="12"/>
+                         Style="{StaticResource TechnicalLogTextBox}"/>
             </DockPanel>
         </Border>
 
