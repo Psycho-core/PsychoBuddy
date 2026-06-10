@@ -1,0 +1,77 @@
+# GUI BLUEPRINT & UX DESIGN: PSYCHOBUDDY COMMAND CENTER
+
+## 1. VISUAL PHILOSOPHY
+PsychoBuddy adopts a "Diegetic" UI approach. Instead of a generic windows application, the interface is designed to look like an in-game artifact (inspired by the lava/obsidian and ancient parchment aesthetics of the provided concepts). This creates an immersive experience for the user while maintaining professional-grade functionality.
+
+---
+
+## 2. LAYOUT ARCHITECTURE (The Dashboard)
+
+The interface is divided into four primary functional zones:
+
+### 2.1 The Navigation Sidebar (Left)
+A vertical bar containing the primary system switches.
+- **Profiles Button:** Opens the Account/Character manager.
+- **Navigation Button:** Opens the Map/Waypoint editor.
+- **Senses Button:** Opens the detailed Memory/Pixel configuration.
+- **Settings Button:** Global software and input settings.
+
+### 2.2 The Fleet Monitor (Center-Left)
+A dynamic grid of "Character Cards." Each card represents one of the 4 background clients.
+- **Card Elements:**
+    - **Identity:** Portrait, Character Name, and Role (Tank/Healer/DPS).
+    - **Vitals:** High-contrast Health and Mana bars (real-time updates via Senses).
+    - **Status:** Level, and a "Running/Idle" toggle switch.
+    - **Active Abilities:** Small icons showing current active procs or buffs.
+- **UX Flow:** Clicking a card focuses the "Senses Module" on that specific character.
+
+### 2.3 The Senses & Navigation Hub (Center-Right)
+A hybrid panel combining a tactical map with a status monitor.
+- **Tactical Map:** A rendered version of the NavMesh. It shows the Leader's position and the 4 bots' positions as colored dots.
+- **Path Visualization:** The A* path is drawn as a glowing line on the map.
+- **Senses Module Toggle:** A high-visibility switch to flip between **Stealth Mode** and **Power Mode**.
+- **Status Readouts:**
+    - **Scan Range:** Current memory/pixel scan radius.
+    - **Threat Level:** A color-coded bar (Green $\rightarrow$ Red) indicating the proximity of hostile NPCs.
+    - **Hostile List:** A list of the 5 nearest enemies and their HP percentages.
+
+### 2.4 The Technical Log (Bottom)
+A wide, scrollable "Parchment" area that provides real-time feedback.
+- **Log Format:** `[Timestamp] [Character Name]: [Action/Event]`
+- **Example:** `[14:20:05] Atlas: Taunted 4 hostiles`
+- **Color Coding:** Error messages in Red, Combat events in White, System changes in Cyan.
+
+---
+
+## 3. USER EXPERIENCE (UX) FLOWS
+
+### 3.1 The "Attachment" Flow
+`Open Software` $\rightarrow$ `Click Profiles` $\rightarrow$ `Scan for Wow.exe` $\rightarrow$ `Bind Characters to Slots` $\rightarrow$ `Dashboard Populates`.
+
+### 3.2 The "Combat" Flow
+`Bot Detects Hostile` $\rightarrow$ `Senses Update` $\rightarrow$ `Brain Triggers Rotation` $\rightarrow$ `Log outputs "Casting Fireball"` $\rightarrow$ `Fleet Monitor Health Bars fluctuate`.
+
+### 3.3 The "Multi-box" Control
+The user can either:
+1.  **Autonomous Mode:** Let the "Role-Based Coordination" handle everything.
+2.  **Manual Override:** Click a character card and send a direct "Broadcast" command to all bots.
+
+---
+
+## 4. TECHNICAL COMPONENT MAPPING (For Developer)
+
+| UI Element | Software Component (C# / WPF) | Data Binding |
+|-------------------|-----------------------------------|---------------------------|
+| Fleet Cards | `UniformGrid` $\rightarrow$ `UserControl` | `ObservableCollection<BotProfile>` |
+| Health/Mana Bars | `Custom ProgressBar` | `Senses.PlayerFields.Health` |
+| Technical Log | `RichTextBox` (Read-only) | `EventLog.OnNewMessage` |
+| Tactical Map | `Canvas` with `Polygon` shapes | `Navigation.NavMesh` |
+| Senses Toggle | `ToggleButton` (Custom Style) | `Senses.CurrentMode` |
+| Footer Stats | `TextBlock` | `System.Diagnostics.PerformanceCounter` |
+
+---
+
+## 5. AESTHETIC GUIDELINES
+- **Palette:** Obsidian Black, Magma Red, and Neon Cyan (for "Stealth" highlights).
+- **Typography:** Gothic/Fantasy headings for titles, clean Sans-Serif for technical data.
+- **Effects:** Subtle glow on active bars, parchment textures for logs, and metallic borders for cards.

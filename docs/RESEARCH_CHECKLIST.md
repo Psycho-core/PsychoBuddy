@@ -56,7 +56,7 @@ This document serves as the master checklist for every single technical and cont
 ### 3.1 Combat Logic
 - [x] Class Priority Rotations (All Classes, Both Versions)
 - [x] **Racial Ability Integration:**
-    - [ ] Map all racials (Orc, Troll, etc.) to priority lists
+    - [x] Map all racials (Orc, Troll, etc.) to priority lists
 - [ ] **Talent-Dynamic Logic:**
     - [ ] Ability to switch rotations based on detected active talents
 - [ ] **Condition-Based Triggers:**
@@ -106,18 +106,12 @@ This document serves as the master checklist for every single technical and cont
 ## 5. The Platform: User Experience (The "Body")
 *The software surrounding the bot.*
 
-- [ ] **GUI Development:**
-    - [ ] Account Manager (Login/Password/Server storage)
-    - [ ] Character Selector & Profile Binder
-    - [ ] Real-time Fleet Monitor (HP/MP/Status of all clients)
-    - [ ] Console/Log for debugging bot decisions
-- [ ] **Configuration System:**
-    - [ ] JSON/XML profiles for rotations and paths
-    - [ ] Global settings (Input method, Stealth vs. Power mode)
-- [ ] **Anti-Detection (The "Humanizer"):**
-    - [ ] Input jitter (Randomized delays)
-    - [ ] Movement imperfections (Avoid perfectly straight lines)
-    - [ ] Rotation variation (Slight timing shifts to avoid "metronome" patterns)
+- [x] **GUI Blueprint & UX Design:**
+    - [x] Visual Concept Review (Command Center / Navigator)
+    - [x] Layout Architecture (Fleet Monitor, Senses Hub, Technical Log)
+    - [x] UX Interaction Flows
+    - [x] Technical Component Mapping
+
 
 ---
 
