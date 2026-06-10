@@ -43,7 +43,7 @@ PsychoBuddy is currently optimized for:
 *   **Current dashboard workflow:** Scan clients → choose role/profile → attach → start/pause/stop → detach
 *   **Current dashboard usability:** fixed 2x2 Fleet Monitor slots with empty/offline startup slots, visible detach/profile controls, selectable/copyable technical log, placeholder-button log feedback, custom minimize/close controls, and selected-client status labels
 *   **Application icon:** `assets/PsychoBuddy.ico`, generated from `assets/Psycho.JPG`
-*   **Primary UI visual target:** `assets/UI_Option_1.png`; `assets/UI_Option_1_1.png` is now used as a low-opacity layout underlay while the skin pass progresses; duplicate live labels have been removed so the background art provides most titles
+*   **Primary UI visual target:** `assets/UI_Option_1.png`; `assets/UI_Option_1_1.png` is now the primary Canvas/Viewbox visual shell; live WPF controls are positioned as transparent/minimal overlays on top of the background artwork
 *   **Note:** `PsychoBuddy-Built/` was a temporary test-build folder and is not part of the canonical source tree.
 
 ---

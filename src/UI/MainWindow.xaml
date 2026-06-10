@@ -30,393 +30,320 @@ Refer to LICENSE.MYCODE.txt for full terms.
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
-        <Grid.Background>
-            <StaticResource ResourceKey="ObsidianLavaBackground"/>
-        </Grid.Background>
+    <!-- Fixed artwork-aligned canvas. The Viewbox keeps all live controls scaled to the background shell. -->
+    <Viewbox Stretch="Fill">
+        <Canvas Width="1380" Height="752" ClipToBounds="True">
+            <Image Source="pack://application:,,,/assets/UI_Option_1_1.png"
+                   Width="1380"
+                   Height="752"
+                   Stretch="Fill"
+                   Opacity="1"
+                   IsHitTestVisible="False"/>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="76"/>
-            <RowDefinition Height="462"/>
-            <RowDefinition Height="184"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
+            <!-- Invisible drag surface over the artwork title bar. -->
+            <Border Canvas.Left="86" Canvas.Top="0" Width="1168" Height="76" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"/>
 
-        <!-- Low-opacity UI_Option_1.1 mockup underlay. It guides the skin pass without stealing input. -->
-        <Image Grid.RowSpan="4"
-               Source="pack://application:,,,/assets/UI_Option_1_1.png"
-               Stretch="Fill"
-               Opacity="0.48"
-               IsHitTestVisible="False"/>
+            <!-- Top chrome controls. -->
+            <Button Canvas.Left="14" Canvas.Top="16" Content="☰" Width="42" Height="42" Style="{StaticResource ChromeButton}" Click="MenuButton_Click"/>
+            <Button Canvas.Left="1264" Canvas.Top="30" Content="−" Width="40" Height="30" Style="{StaticResource ChromeButton}" Click="MinimizeButton_Click"/>
+            <Button Canvas.Left="1308" Canvas.Top="30" Content="X" Width="40" Height="30" Style="{StaticResource ChromeButton}" Click="CloseButton_Click"/>
 
-        <!-- Decorative lava seams behind the functional dashboard. -->
-        <Canvas Grid.RowSpan="4" IsHitTestVisible="False" ClipToBounds="True" Opacity="0.38">
-            <Line X1="0" Y1="76" X2="1280" Y2="76" Stroke="#FF4500" StrokeThickness="2"/>
-            <Line X1="92" Y1="0" X2="136" Y2="72" Stroke="#9B2200" StrokeThickness="3"/>
-            <Line X1="1030" Y1="88" X2="1210" Y2="38" Stroke="#6B1300" StrokeThickness="4"/>
-            <Line X1="25" Y1="704" X2="260" Y2="664" Stroke="#6B1300" StrokeThickness="3"/>
-            <Line X1="800" Y1="666" X2="1050" Y2="735" Stroke="#9B2200" StrokeThickness="2"/>
-        </Canvas>
-
-        <!-- TOP BAR / CUSTOM WINDOW CHROME: live text removed because the background art provides the title/labels. -->
-        <Border Grid.Row="0" Background="#01000000" BorderThickness="0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
-            <Grid Margin="12,0,20,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="82"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="110"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" Content="☰" Width="48" Height="42" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource ChromeButton}" Click="MenuButton_Click"/>
-
-                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="−" Style="{StaticResource ChromeButton}" Click="MinimizeButton_Click"/>
-                    <Button Content="X" Style="{StaticResource ChromeButton}" Click="CloseButton_Click"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- BODY -->
-        <Grid Grid.Row="1" Margin="8,10,8,4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="112"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="292"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- LEFT NAVIGATION -->
-            <StackPanel Grid.Column="0" Margin="0,2,8,0">
-                <Button Style="{StaticResource SideNavButton}" Click="ProfilesButton_Click">
+            <!-- Left navigation overlays on top of the parchment button art. -->
+            <StackPanel Canvas.Left="10" Canvas.Top="94" Width="96">
+                <Button Style="{StaticResource ShellNavButton}" Click="ProfilesButton_Click">
                     <StackPanel>
                         <TextBlock Text="▣" FontSize="18" HorizontalAlignment="Center"/>
                         <TextBlock Text="PROFILES" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource SideNavButton}" Click="NavigationButton_Click">
+                <Button Style="{StaticResource ShellNavButton}" Click="NavigationButton_Click">
                     <StackPanel>
                         <TextBlock Text="✧" FontSize="18" HorizontalAlignment="Center"/>
                         <TextBlock Text="NAVIGATION" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource SideNavButton}" Click="SensesNavButton_Click">
+                <Button Style="{StaticResource ShellNavButton}" Click="SensesNavButton_Click">
                     <StackPanel>
                         <TextBlock Text="◉" FontSize="18" HorizontalAlignment="Center"/>
                         <TextBlock Text="SENSES" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource SideNavButton}" Click="SettingsButton_Click">
+                <Button Style="{StaticResource ShellNavButton}" Click="SettingsButton_Click">
                     <StackPanel>
                         <TextBlock Text="⚙" FontSize="18" HorizontalAlignment="Center"/>
                         <TextBlock Text="SETTINGS" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
+            </StackPanel>
 
-                <Separator Margin="0,12,0,18" Background="#8B4513"/>
-
+            <!-- Debug / workflow shortcut buttons retained below the primary navigation for now. -->
+            <StackPanel Canvas.Left="12" Canvas.Top="428" Width="96">
                 <Button Content="SCAN" Style="{StaticResource SideNavButton}" Click="ScanButton_Click"/>
                 <Button Content="EMPTY" Style="{StaticResource SideNavButton}" Click="EmptyButton_Click"/>
                 <Button Content="TICK" Style="{StaticResource SideNavButton}" Click="TickButton_Click"/>
             </StackPanel>
 
-            <!-- CENTER COMMAND PANEL -->
-            <Border Grid.Column="1" Style="{StaticResource MainFrameBorder}" Background="#55151515" BorderBrush="#55FF4500" BorderThickness="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <DockPanel Grid.Row="0" Visibility="Collapsed"/>
-
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.15*"/>
-                            <ColumnDefinition Width="12"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- ATTACHED FLEET CARDS: fixed 2x2 grid -->
-                        <Border Grid.Column="0" BorderBrush="#6A3A24" BorderThickness="1" Background="#17111111" Padding="5">
-                            <ListBox ItemsSource="{Binding Fleet}"
-                                     SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     ItemContainerStyle="{StaticResource FleetListBoxItem}"
-                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                <ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <UniformGrid Rows="2" Columns="2"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource FleetCardShell}">
-                                            <Grid>
-                                                <!-- Empty/offline slot presentation. Clean and intentionally sparse, like an offline party frame. -->
-                                                <Grid>
-                                                    <Grid.Style>
-                                                        <Style TargetType="Grid">
-                                                            <Setter Property="Visibility" Value="Visible"/>
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding IsRealClient}" Value="True">
-                                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </Grid.Style>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="34"/>
-                                                    </Grid.RowDefinitions>
-
-                                                    <Border Grid.Row="0" Background="{StaticResource ParchmentGradientBrush}" BorderBrush="#6F5A35" BorderThickness="1" CornerRadius="3" Margin="4,4,4,8" Opacity="0.60">
-                                                        <Grid>
-                                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                <TextBlock Text="◇" Foreground="#6C5A3A" FontSize="34" HorizontalAlignment="Center"/>
-                                                                <TextBlock Text="AWAITING CLIENT" Foreground="#4A3920" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,6,0,0"/>
-                                                                <TextBlock Text="No Session" Foreground="#6C5A3A" FontSize="11" HorizontalAlignment="Center"/>
-                                                            </StackPanel>
-                                                        </Grid>
-                                                    </Border>
-
-                                                    <Border Grid.Row="1" Background="#44111111" BorderBrush="#4D3B2A" BorderThickness="0,1,0,0" Margin="-8,6,-8,-8" Padding="8,4">
-                                                        <DockPanel LastChildFill="False">
-                                                            <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#806F62" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                            <Border DockPanel.Dock="Right" Background="#22111111" BorderBrush="#555555" BorderThickness="1" CornerRadius="10" Padding="8,1">
-                                                                <TextBlock Text="Offline" Foreground="#888888" FontSize="10.5" FontWeight="Bold"/>
-                                                            </Border>
-                                                        </DockPanel>
-                                                    </Border>
-                                                </Grid>
-
-                                                <!-- Real attached client presentation. This keeps all existing bindings/actions intact. -->
-                                                <Grid>
-                                                    <Grid.Style>
-                                                        <Style TargetType="Grid">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding IsRealClient}" Value="True">
-                                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </Grid.Style>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="34"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="82"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="34"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <!-- Portrait / level block -->
-                                                    <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource PortraitFrame}">
-                                                        <Grid>
-                                                            <TextBlock Text="{Binding PortraitGlyph}" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12"/>
-                                                            <Border VerticalAlignment="Bottom" Background="#AA000000" Padding="2">
-                                                                <TextBlock Text="{Binding LevelText}" Foreground="White" FontSize="9" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                                            </Border>
-                                                        </Grid>
-                                                    </Border>
-
-                                                    <!-- Header -->
-                                                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,4,0">
-                                                        <DockPanel LastChildFill="False">
-                                                            <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" ToolTip="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="38"/>
-                                                            <Ellipse DockPanel.Dock="Right" Width="8" Height="8" Fill="{StaticResource OnlineBrush}" Margin="6,0,0,0" VerticalAlignment="Center"/>
-                                                        </DockPanel>
-                                                        <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
-                                                        <TextBlock Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="10.5" TextTrimming="CharacterEllipsis"/>
-                                                    </StackPanel>
-
-                                                    <!-- Role icon -->
-                                                    <Border Grid.Row="0" Grid.Column="2" Width="28" Height="28" Background="#352018" BorderBrush="#8B4513" BorderThickness="1" CornerRadius="3" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                                        <TextBlock Text="{Binding RoleIcon}" Foreground="{StaticResource GoldBrush}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                    </Border>
-
-                                                    <!-- Vitals and technical identifiers -->
-                                                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,8,0,0" VerticalAlignment="Top">
-                                                        <DockPanel>
-                                                            <TextBlock Text="Health" Foreground="#D8D0C7" Width="52" FontSize="11"/>
-                                                            <TextBlock Text="{Binding HealthText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
-                                                        </DockPanel>
-                                                        <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="10"/>
-                                                        <DockPanel Margin="0,4,0,0">
-                                                            <TextBlock Text="Mana" Foreground="#D8D0C7" Width="52" FontSize="11"/>
-                                                            <TextBlock Text="{Binding ManaText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
-                                                        </DockPanel>
-                                                        <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="10"/>
-
-                                                        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
-                                                            <Border Style="{StaticResource AbilityIconBorder}">
-                                                                <TextBlock Text="✦" Foreground="#D9E65B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                            </Border>
-                                                            <Border Style="{StaticResource AbilityIconBorder}">
-                                                                <TextBlock Text="⚔" Foreground="#FF8C6B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                            </Border>
-                                                            <Border Style="{StaticResource AbilityIconBorder}" Margin="0">
-                                                                <TextBlock Text="◆" Foreground="#75D7FF" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                            </Border>
-                                                        </StackPanel>
-
-                                                        <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis" Margin="0,5,0,0"/>
-                                                        <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis"/>
-                                                    </StackPanel>
-
-                                                    <!-- Bottom status bar -->
-                                                    <Border Grid.Row="2" Grid.ColumnSpan="3" Background="#4421110A" BorderBrush="#6A3A24" BorderThickness="0,1,0,0" Margin="-8,6,-8,-8" Padding="8,4">
-                                                        <DockPanel LastChildFill="False">
-                                                            <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                            <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#33111111" BorderBrush="#6A3A24" BorderThickness="1" CornerRadius="10" Padding="8,1">
-                                                                <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="10.5" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
-                                                            </Border>
-                                                        </DockPanel>
-                                                    </Border>
-                                                </Grid>
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </Border>
-
-                        <!-- CLIENT ATTACHMENT WORKFLOW: tactical-map live overlay removed; background art supplies that area. -->
-                        <Border Grid.Column="2" Style="{StaticResource PanelBorder}" Background="#6A101010" BorderBrush="#66FF4500" BorderThickness="1" Padding="14">
+            <!-- Fleet Monitor live cards aligned to the four background card slots. -->
+            <ListBox Canvas.Left="135" Canvas.Top="126" Width="600" Height="390"
+                     ItemsSource="{Binding Fleet}"
+                     SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     ItemContainerStyle="{StaticResource FleetListBoxItem}"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="2" Columns="2"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource FleetCardShell}">
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                                <!-- Empty/offline slot: minimal overlay so the background frame remains visible. -->
+                                <Grid>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsRealClient}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="32"/>
+                                    </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Text="CLIENT ATTACHMENT" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+                                    <Border Grid.Row="0" Background="#88F5DEB3" BorderBrush="#336F5A35" BorderThickness="1" CornerRadius="3" Margin="8,6,8,8">
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <TextBlock Text="◇" Foreground="#6C5A3A" FontSize="30" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="AWAITING CLIENT" Foreground="#3D2D18" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                                            <TextBlock Text="No Session" Foreground="#5C4930" FontSize="11" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
 
-                                <StackPanel Grid.Row="1" Margin="0,0,0,10">
-                                    <TextBlock Text="{Binding SelectedAvailableClientText}" Foreground="#D8D0C7" FontSize="11" TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock Text="{Binding SelectedFleetCardText}" Foreground="#9AD9FF" FontSize="11" TextTrimming="CharacterEllipsis"/>
-                                </StackPanel>
+                                    <DockPanel Grid.Row="1" LastChildFill="False" Margin="2,0,2,0">
+                                        <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#B8AA9C" FontSize="12" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        <Border DockPanel.Dock="Right" Background="#33111111" BorderBrush="#666666" BorderThickness="1" CornerRadius="10" Padding="8,1" VerticalAlignment="Center">
+                                            <TextBlock Text="Offline" Foreground="#9A9A9A" FontSize="10.5" FontWeight="Bold"/>
+                                        </Border>
+                                    </DockPanel>
+                                </Grid>
 
-                                <Grid Grid.Row="2">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="12"/>
-                                        <ColumnDefinition Width="1.05*"/>
-                                    </Grid.ColumnDefinitions>
+                                <!-- Real attached-client card. -->
+                                <Grid>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsRealClient}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="32"/>
                                     </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="78"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="32"/>
+                                    </Grid.ColumnDefinitions>
 
-                                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,4">
-                                        <TextBlock Text="AVAILABLE" Foreground="#D8D0C7" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding AvailableClientCountText}" Foreground="#AAA" FontSize="10" HorizontalAlignment="Right"/>
+                                    <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource PortraitFrame}" Width="64" Height="84">
+                                        <Grid>
+                                            <TextBlock Text="{Binding PortraitGlyph}" Foreground="{StaticResource GoldBrush}" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12"/>
+                                            <Border VerticalAlignment="Bottom" Background="#AA000000" Padding="2">
+                                                <TextBlock Text="{Binding LevelText}" Foreground="White" FontSize="9" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,3,0">
+                                        <DockPanel LastChildFill="False">
+                                            <TextBlock DockPanel.Dock="Left" Text="{Binding CharacterName}" ToolTip="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="14.5" FontWeight="Bold" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="36"/>
+                                            <Ellipse DockPanel.Dock="Right" Width="8" Height="8" Fill="{StaticResource OnlineBrush}" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                        </DockPanel>
+                                        <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
+                                        <TextBlock Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="10.5" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+
+                                    <Border Grid.Row="0" Grid.Column="2" Width="26" Height="26" Background="#352018" BorderBrush="#8B4513" BorderThickness="1" CornerRadius="3" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding RoleIcon}" Foreground="{StaticResource GoldBrush}" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,6,0,0" VerticalAlignment="Top">
+                                        <DockPanel>
+                                            <TextBlock Text="Health" Foreground="#D8D0C7" Width="52" FontSize="11"/>
+                                            <TextBlock Text="{Binding HealthText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
+                                        </DockPanel>
+                                        <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="10"/>
+                                        <DockPanel Margin="0,4,0,0">
+                                            <TextBlock Text="Mana" Foreground="#D8D0C7" Width="52" FontSize="11"/>
+                                            <TextBlock Text="{Binding ManaText}" Foreground="White" HorizontalAlignment="Right" FontSize="11"/>
+                                        </DockPanel>
+                                        <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="10"/>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                            <Border Style="{StaticResource AbilityIconBorder}">
+                                                <TextBlock Text="✦" Foreground="#D9E65B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <Border Style="{StaticResource AbilityIconBorder}">
+                                                <TextBlock Text="⚔" Foreground="#FF8C6B" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <Border Style="{StaticResource AbilityIconBorder}" Margin="0">
+                                                <TextBlock Text="◆" Foreground="#75D7FF" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </StackPanel>
+
+                                        <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis" Margin="0,4,0,0"/>
+                                        <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="9.5" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+
+                                    <DockPanel Grid.Row="2" Grid.ColumnSpan="3" LastChildFill="False" Margin="2,0,2,0">
+                                        <TextBlock DockPanel.Dock="Left" Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="12" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        <Border DockPanel.Dock="Right" Background="#33111111" BorderBrush="#6A3A24" BorderThickness="1" CornerRadius="10" Padding="8,1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="10.5" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                        </Border>
                                     </DockPanel>
-
-                                    <StackPanel Grid.Row="1" Grid.Column="0">
-                                        <ListBox ItemsSource="{Binding AvailableClients}"
-                                                 SelectedItem="{Binding SelectedAvailableClient, Mode=TwoWay}"
-                                                 Height="120"
-                                                 Style="{StaticResource AttachmentListBox}"
-                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel>
-                                                        <TextBlock Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
-                                                        <TextBlock Text="{Binding Pid, StringFormat=PID {0}}" Foreground="#CCCCCC" FontSize="10"/>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
-
-                                        <TextBlock Text="Role" Foreground="#D8D0C7" Margin="0,10,0,0"/>
-                                        <ComboBox Style="{StaticResource CompactCombo}" ItemsSource="{Binding RoleOptions}" SelectedItem="{Binding SelectedRole, Mode=TwoWay}"/>
-                                        <TextBlock Text="Profile" Foreground="#D8D0C7"/>
-                                        <ComboBox Style="{StaticResource CompactCombo}" ItemsSource="{Binding ProfileOptions}" SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="1" Grid.Column="2">
-                                        <TextBlock Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold" Margin="0,0,0,6"/>
-                                        <UniformGrid Rows="4" Columns="2">
-                                            <Button Content="1. SCAN" Style="{StaticResource SmallFantasyButton}" Click="ScanButton_Click"/>
-                                            <Button Content="2. ATTACH" Style="{StaticResource SmallFantasyButton}" Click="AttachButton_Click"/>
-                                            <Button Content="3. START" Style="{StaticResource SmallFantasyButton}" Click="StartButton_Click"/>
-                                            <Button Content="PAUSE" Style="{StaticResource SmallFantasyButton}" Click="PauseButton_Click"/>
-                                            <Button Content="STOP" Style="{StaticResource SmallFantasyButton}" Click="StopButton_Click"/>
-                                            <Button Content="DETACH" Style="{StaticResource SmallFantasyButton}" Click="DetachButton_Click"/>
-                                            <Button Content="START ALL" Style="{StaticResource SmallFantasyButton}" Click="StartAllButton_Click"/>
-                                            <Button Content="STOP ALL" Style="{StaticResource SmallFantasyButton}" Click="StopAllButton_Click"/>
-                                        </UniformGrid>
-                                    </StackPanel>
                                 </Grid>
                             </Grid>
                         </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-                    </Grid>
+            <!-- Client attachment remains visible for debugging. It sits in the center-right artwork area. -->
+            <Grid Canvas.Left="760" Canvas.Top="120" Width="330" Height="392">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="CLIENT ATTACHMENT" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+
+                <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                    <TextBlock Text="{Binding SelectedAvailableClientText}" Foreground="#D8D0C7" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Text="{Binding SelectedFleetCardText}" Foreground="#9AD9FF" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                </StackPanel>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="1.05*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,4">
+                        <TextBlock Text="AVAILABLE" Foreground="#D8D0C7" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding AvailableClientCountText}" Foreground="#AAA" FontSize="10" HorizontalAlignment="Right"/>
+                    </DockPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <ListBox ItemsSource="{Binding AvailableClients}"
+                                 SelectedItem="{Binding SelectedAvailableClient, Mode=TwoWay}"
+                                 Height="120"
+                                 Style="{StaticResource AttachmentListBox}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding Pid, StringFormat=PID {0}}" Foreground="#CCCCCC" FontSize="10"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock Text="Role" Foreground="#D8D0C7" Margin="0,10,0,0"/>
+                        <ComboBox Style="{StaticResource CompactCombo}" ItemsSource="{Binding RoleOptions}" SelectedItem="{Binding SelectedRole, Mode=TwoWay}"/>
+                        <TextBlock Text="Profile" Foreground="#D8D0C7"/>
+                        <ComboBox Style="{StaticResource CompactCombo}" ItemsSource="{Binding ProfileOptions}" SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold" Margin="0,0,0,6"/>
+                        <UniformGrid Rows="4" Columns="2">
+                            <Button Content="1. SCAN" Style="{StaticResource SmallFantasyButton}" Click="ScanButton_Click"/>
+                            <Button Content="2. ATTACH" Style="{StaticResource SmallFantasyButton}" Click="AttachButton_Click"/>
+                            <Button Content="3. START" Style="{StaticResource SmallFantasyButton}" Click="StartButton_Click"/>
+                            <Button Content="PAUSE" Style="{StaticResource SmallFantasyButton}" Click="PauseButton_Click"/>
+                            <Button Content="STOP" Style="{StaticResource SmallFantasyButton}" Click="StopButton_Click"/>
+                            <Button Content="DETACH" Style="{StaticResource SmallFantasyButton}" Click="DetachButton_Click"/>
+                            <Button Content="START ALL" Style="{StaticResource SmallFantasyButton}" Click="StartAllButton_Click"/>
+                            <Button Content="STOP ALL" Style="{StaticResource SmallFantasyButton}" Click="StopAllButton_Click"/>
+                        </UniformGrid>
+                    </StackPanel>
                 </Grid>
-            </Border>
+            </Grid>
 
-            <!-- RIGHT SENSES PANEL -->
-            <StackPanel Grid.Column="2" Margin="12,0,0,0">
-                <Border Style="{StaticResource PanelBorder}" Margin="0,0,0,16">
-                    <StackPanel>
-                        <Grid Margin="0,8,0,8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="STEALTH&#x0a;MODE" Foreground="#D8D0C7" TextAlignment="Center"/>
-                            <ToggleButton Grid.Column="1" x:Name="SensesToggle" Content="SENSE" IsChecked="True" Width="86" Height="34" Click="SensesToggle_Click"/>
-                            <TextBlock Grid.Column="2" Text="POWER&#x0a;MODE" Foreground="#FFB090" TextAlignment="Center"/>
-                        </Grid>
-                        <TextBlock Text="{Binding SensesModeText}" Foreground="#CCCCCC" TextAlignment="Center"/>
-                    </StackPanel>
-                </Border>
+            <!-- Right-side senses controls placed into the background frames. -->
+            <Grid Canvas.Left="1118" Canvas.Top="120" Width="230" Height="86">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="STEALTH&#x0a;MODE" Foreground="#D8D0C7" TextAlignment="Center" VerticalAlignment="Center"/>
+                    <ToggleButton Grid.Column="1" x:Name="SensesToggle" Content="SENSE" IsChecked="True" Width="86" Height="34" Click="SensesToggle_Click"/>
+                    <TextBlock Grid.Column="2" Text="POWER&#x0a;MODE" Foreground="#FFB090" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <TextBlock Grid.Row="1" Text="{Binding SensesModeText}" Foreground="#CCCCCC" TextAlignment="Center" FontSize="12"/>
+            </Grid>
 
-                <Border Style="{StaticResource PanelBorder}">
-                    <StackPanel>
-                        <TextBlock Text="◉ Scan Range             120m" Foreground="#D8D0C7" Margin="0,8,0,0"/>
-                        <TextBlock Text="⚠ Threat Level           Standby" Foreground="#D8D0C7" Margin="0,8,0,0"/>
-                        <TextBlock Text="❖ Nearby Hostiles        0" Foreground="#D8D0C7" Margin="0,8,0,0"/>
-                        <TextBlock Text="➜ Navigation Path        Idle" Foreground="#D8D0C7" Margin="0,8,0,0"/>
-                        <Separator Margin="0,12,0,12"/>
-                        <TextBlock Text="{Binding FleetCountText}" Foreground="#CCCCCC"/>
-                        <TextBlock Text="Build Target: .NET 8" Foreground="#CCCCCC" Margin="0,5,0,0"/>
-                        <TextBlock Text="Active automation: Manual Start" Foreground="#FFAA55" Margin="0,5,0,0"/>
-                    </StackPanel>
-                </Border>
+            <StackPanel Canvas.Left="1120" Canvas.Top="292" Width="235">
+                <TextBlock Text="◉ Scan Range             120m" Foreground="#D8D0C7" Margin="0,0,0,8"/>
+                <TextBlock Text="⚠ Threat Level           Standby" Foreground="#D8D0C7" Margin="0,0,0,8"/>
+                <TextBlock Text="❖ Nearby Hostiles        0" Foreground="#D8D0C7" Margin="0,0,0,8"/>
+                <TextBlock Text="➜ Navigation Path        Idle" Foreground="#D8D0C7" Margin="0,0,0,12"/>
+                <Separator Margin="0,0,0,12"/>
+                <TextBlock Text="{Binding FleetCountText}" Foreground="#CCCCCC" Margin="0,0,0,5"/>
+                <TextBlock Text="Build Target: .NET 8" Foreground="#CCCCCC" Margin="0,0,0,5"/>
+                <TextBlock Text="Active automation: Manual Start" Foreground="#FFAA55"/>
             </StackPanel>
-        </Grid>
 
-        <!-- BOTTOM TECHNICAL LOG -->
-        <Border Grid.Row="2" Margin="130,4,302,8" Background="{StaticResource ParchmentGradientBrush}" CornerRadius="5" BorderBrush="#8B4513" BorderThickness="3">
-            <DockPanel>
-                <Border DockPanel.Dock="Top" Height="30" Background="Transparent"/>
-                <TextBox x:Name="LogTextBox"
-                         Text="{Binding LogText, Mode=OneWay}"
-                         TextChanged="LogTextBox_TextChanged"
-                         Style="{StaticResource TechnicalLogTextBox}"/>
-            </DockPanel>
-        </Border>
+            <!-- Technical log text only; parchment frame comes from the background art. -->
+            <TextBox x:Name="LogTextBox"
+                     Canvas.Left="145"
+                     Canvas.Top="580"
+                     Width="925"
+                     Height="125"
+                     Text="{Binding LogText, Mode=OneWay}"
+                     TextChanged="LogTextBox_TextChanged"
+                     Style="{StaticResource TechnicalLogTextBox}"/>
 
-        <!-- FOOTER -->
-        <StatusBar Grid.Row="3" Background="#090909" Foreground="#D8D0C7" FontSize="11">
-            <StatusBarItem>
-                <TextBlock Text="NETWORK: standby"/>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBlock Text="CPU: pending"/>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBlock Text="ACTIVE PROFILE: selected per client"/>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBlock Text="{Binding StatusMessage}"/>
-            </StatusBarItem>
-        </StatusBar>
-    </Grid>
+            <!-- Footer readouts. -->
+            <StatusBar Canvas.Left="0" Canvas.Top="728" Width="1380" Height="24" Background="#AA000000" Foreground="#D8D0C7" FontSize="11">
+                <StatusBarItem>
+                    <TextBlock Text="NETWORK: standby"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Text="CPU: pending"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Text="ACTIVE PROFILE: selected per client"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Text="{Binding StatusMessage}"/>
+                </StatusBarItem>
+            </StatusBar>
+        </Canvas>
+    </Viewbox>
 </Window>

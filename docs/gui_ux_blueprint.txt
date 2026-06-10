@@ -217,9 +217,11 @@ Already present:
 - [x] lava/obsidian/gold color direction
 - [x] parchment-styled tactical map/log direction
 - [x] decorative lava seams behind the dashboard
+- [x] MainWindow converted to a fixed 1380x752 Canvas/Viewbox shell aligned to the cleaned background art
 - [x] live controls aligned closer to the cleaned background art
 - [x] duplicate live titles removed where the background art already contains labels
 - [x] live Tactical Map block removed; Client Attachment expanded into that debugging space
+- [x] most live panel borders/backgrounds removed so the background art acts as the frame
 - [x] application/window icon from `assets/PsychoBuddy.ico`
 - [x] custom minimize/close controls
 

@@ -134,6 +134,35 @@ Refer to LICENSE.MYCODE.txt for full terms.
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
+    <Style x:Key="ShellNavButton" TargetType="Button">
+        <Setter Property="Height" Value="82"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Background" Value="#22000000"/>
+        <Setter Property="Foreground" Value="{StaticResource GoldBrush}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Root" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#44FF4500"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#661E0200"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Inputs -->
     <Style x:Key="CompactCombo" TargetType="ComboBox">
         <Setter Property="Height" Value="26"/>
@@ -165,17 +194,17 @@ Refer to LICENSE.MYCODE.txt for full terms.
     </Style>
 
     <Style x:Key="FleetCardShell" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource CardBrush}"/>
-        <Setter Property="BorderBrush" Value="#7A3E22"/>
+        <Setter Property="Background" Value="#B6101820"/>
+        <Setter Property="BorderBrush" Value="#807A3E22"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CornerRadius" Value="6"/>
         <Setter Property="Padding" Value="8"/>
         <Setter Property="Margin" Value="2"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsRealClient}" Value="False">
-                <Setter Property="Background" Value="#7A171717"/>
-                <Setter Property="BorderBrush" Value="#555555"/>
-                <Setter Property="Opacity" Value="0.90"/>
+                <Setter Property="Background" Value="#22171717"/>
+                <Setter Property="BorderBrush" Value="#40555555"/>
+                <Setter Property="Opacity" Value="0.98"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>

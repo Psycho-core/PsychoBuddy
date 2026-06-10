@@ -79,7 +79,7 @@ For the first dashboard-only test:
    - A custom WPF Command Center window opens.
    - The dashboard uses the first obsidian/lava/parchment skin pass from src/UI/Themes/PsychoTheme.xaml.
    - A low-opacity cleaned UI underlay from assets/UI_Option_1_1.png may be visible behind the functional controls.
-   - Live controls should be aligned near the Fleet Monitor, Senses panels, and Technical Log areas of that background.
+   - MainWindow uses a fixed 1380x752 Canvas/Viewbox overlay so live controls align to the Fleet Monitor, Senses panels, and Technical Log areas of that background.
    - The background art provides most major titles; live duplicate titles such as Fleet Monitor/Senses Module/Senses Status are intentionally hidden.
    - The window icon should use the Psycho icon from assets/PsychoBuddy.ico.
    - The Fleet Monitor shows four fixed slots in a 2x2 layout.
@@ -113,7 +113,7 @@ TROUBLESHOOTING
   -> The dashboard is working. Open WoW, then click Scan Clients again.
 
 - MSB3021 / MSB3027 / MSB3026 / MSB3061 says PsychoBuddy.exe is locked by another process
-  -> A previous PsychoBuddy window is still running. Close the PsychoBuddy window, press Stop Debugging in Visual Studio, or end PsychoBuddy.exe in Task Manager, then rebuild.
+  -> A previous PsychoBuddy window is still running. The project now includes a Debug-build guard that attempts to run taskkill on PsychoBuddy.exe before building. If the error still appears, close the PsychoBuddy window, press Stop Debugging in Visual Studio, or end PsychoBuddy.exe in Task Manager, then rebuild. If the running app was launched as Administrator, run Visual Studio as Administrator or close it manually.
 
 - "Access Denied" or client starts then fails
   -> Close PsychoBuddy and run it as Administrator before testing memory-based Power Mode.

@@ -32,4 +32,16 @@ Refer to LICENSE.MYCODE.txt for full terms.
     <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
   </ItemGroup>
 
+  <!--
+    Debug-build guard:
+    If an older PsychoBuddy.exe is still running, Windows locks the output .exe/.dll and MSBuild raises
+    MSB3021 / MSB3026 / MSB3027 / MSB3061. This target tries to close any running PsychoBuddy.exe
+    before a Debug build copies the new apphost into bin\Debug\net8.0-windows.
+  -->
+  <Target Name="StopRunningPsychoBuddyBeforeDebugBuild"
+          BeforeTargets="PrepareForBuild"
+          Condition="'$(Configuration)' == 'Debug' and '$(OS)' == 'Windows_NT'">
+    <Exec Command="taskkill /IM PsychoBuddy.exe /F /T &gt;NUL 2&gt;NUL" IgnoreExitCode="true" />
+  </Target>
+
 </Project>
