@@ -4,13 +4,17 @@
         Title="PsychoBuddy - Command Center"
         Height="820"
         Width="1280"
-        MinHeight="720"
-        MinWidth="1100"
+        MinHeight="740"
+        MinWidth="1180"
         WindowStartupLocation="CenterScreen"
-        Background="#120B0B">
+        Icon="pack://application:,,,/assets/PsychoBuddy.ico"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        Background="#120B0B"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True">
 
     <Window.Resources>
-        <SolidColorBrush x:Key="ObsidianBrush" Color="#171717"/>
         <SolidColorBrush x:Key="ObsidianPanelBrush" Color="#D0151515"/>
         <SolidColorBrush x:Key="MagmaBrush" Color="#FF4500"/>
         <SolidColorBrush x:Key="GoldBrush" Color="#FFD27A"/>
@@ -29,14 +33,23 @@
         </Style>
 
         <Style x:Key="SmallFantasyButton" TargetType="Button" BasedOn="{StaticResource FantasyButton}">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="FontSize" Value="10.5"/>
             <Setter Property="Margin" Value="0,0,6,6"/>
+            <Setter Property="Padding" Value="4,2"/>
         </Style>
 
-        <Style TargetType="ComboBox">
-            <Setter Property="Height" Value="28"/>
-            <Setter Property="Margin" Value="0,4,0,8"/>
+        <Style x:Key="CompactCombo" TargetType="ComboBox">
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Margin" Value="0,2,0,6"/>
+        </Style>
+
+        <Style x:Key="FleetListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="Width" Value="260"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="4"/>
         </Style>
     </Window.Resources>
 
@@ -51,30 +64,32 @@
         </Grid.Background>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="72"/>
+            <RowDefinition Height="64"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="145"/>
+            <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
 
-        <!-- TOP BAR -->
-        <Border Grid.Row="0" Background="#2D0000" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="0,0,0,2">
-            <Grid Margin="18,0">
+        <!-- TOP BAR / CUSTOM WINDOW CHROME -->
+        <Border Grid.Row="0" Background="#2D0000" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="0,0,0,2" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <Grid Margin="14,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="190"/>
+                    <ColumnDefinition Width="165"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="330"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="☰" Foreground="{StaticResource GoldBrush}" FontSize="34" VerticalAlignment="Center"/>
+                <Button Grid.Column="0" Content="☰" Width="52" Height="44" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource FantasyButton}" Click="MenuButton_Click"/>
+
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="PsychoBuddy" Foreground="{StaticResource GoldBrush}" FontSize="34" FontFamily="Garamond" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="PsychoBuddy" Foreground="{StaticResource GoldBrush}" FontSize="32" FontFamily="Garamond" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <TextBlock Text="FLEET COMMAND INTERFACE" Foreground="#CCB7A0" FontSize="11" HorizontalAlignment="Center"/>
                 </StackPanel>
+
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="COMMAND CENTER" Foreground="{StaticResource GoldBrush}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,16,0"/>
-                    <Button Content="_" Width="34" Height="28" Style="{StaticResource SmallFantasyButton}"/>
-                    <Button Content="X" Width="34" Height="28" Style="{StaticResource SmallFantasyButton}"/>
+                    <Button Content="−" Width="40" Height="30" Style="{StaticResource SmallFantasyButton}" Click="MinimizeButton_Click"/>
+                    <Button Content="X" Width="40" Height="30" Style="{StaticResource SmallFantasyButton}" Click="CloseButton_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -82,17 +97,17 @@
         <!-- BODY -->
         <Grid Grid.Row="1" Margin="12">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="124"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="290"/>
+                <ColumnDefinition Width="292"/>
             </Grid.ColumnDefinitions>
 
             <!-- LEFT NAVIGATION -->
             <StackPanel Grid.Column="0" Margin="0,0,12,0">
-                <Button Content="PROFILES" Style="{StaticResource FantasyButton}"/>
-                <Button Content="NAVIGATION" Style="{StaticResource FantasyButton}"/>
-                <Button Content="SENSES" Style="{StaticResource FantasyButton}"/>
-                <Button Content="SETTINGS" Style="{StaticResource FantasyButton}"/>
+                <Button Content="PROFILES" Style="{StaticResource FantasyButton}" Click="ProfilesButton_Click"/>
+                <Button Content="NAVIGATION" Style="{StaticResource FantasyButton}" Click="NavigationButton_Click"/>
+                <Button Content="SENSES" Style="{StaticResource FantasyButton}" Click="SensesNavButton_Click"/>
+                <Button Content="SETTINGS" Style="{StaticResource FantasyButton}" Click="SettingsButton_Click"/>
                 <Button Content="SCAN" Style="{StaticResource FantasyButton}" Click="ScanButton_Click" Margin="0,22,0,8"/>
                 <Button Content="DEMO" Style="{StaticResource FantasyButton}" Click="DemoButton_Click"/>
                 <Button Content="TICK" Style="{StaticResource FantasyButton}" Click="TickButton_Click"/>
@@ -102,106 +117,107 @@
             <Border Grid.Column="1" BorderBrush="{StaticResource MagmaBrush}" BorderThickness="2" CornerRadius="8" Background="{StaticResource ObsidianPanelBrush}" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="34"/>
+                        <RowDefinition Height="32"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="0">
-                        <TextBlock Text="FLEET MONITOR" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding StatusMessage}" Foreground="#D6C7B7" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <DockPanel Grid.Row="0" LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Left" Text="FLEET MONITOR" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding StatusMessage}" Foreground="#D6C7B7" FontSize="12" TextAlignment="Right" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                     </DockPanel>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.35*"/>
+                            <ColumnDefinition Width="1.15*"/>
                             <ColumnDefinition Width="12"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
                         <!-- ATTACHED FLEET CARDS -->
-                        <ListBox Grid.Column="0"
-                                 ItemsSource="{Binding Fleet}"
-                                 SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="2"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="#DD101820" BorderBrush="#6A3A24" BorderThickness="1" Margin="6" CornerRadius="6" Padding="10">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="72"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" BorderBrush="#6A3A24" BorderThickness="1" Background="#33111111" Padding="4">
+                            <ListBox ItemsSource="{Binding Fleet}"
+                                     SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     ItemContainerStyle="{StaticResource FleetListBoxItem}"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel IsItemsHost="True" ItemWidth="260"/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#DD101820" BorderBrush="#7A3E22" BorderThickness="1" CornerRadius="6" Padding="10" MinHeight="162">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="78"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                            <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="62" Height="72" Background="#2E1E18" BorderBrush="{StaticResource GoldBrush}" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0">
-                                                <TextBlock Text="☠" Foreground="{StaticResource GoldBrush}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
+                                                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="64" Height="70" Background="#2E1E18" BorderBrush="{StaticResource GoldBrush}" BorderThickness="1" CornerRadius="3" Margin="0,0,10,0">
+                                                    <TextBlock Text="☠" Foreground="{StaticResource GoldBrush}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
 
-                                            <StackPanel Grid.Row="0" Grid.Column="1">
-                                                <TextBlock Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="20" FontWeight="Bold"/>
-                                                <TextBlock Text="{Binding Role}" Foreground="#D8D0C7" FontSize="13"/>
-                                                <TextBlock Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="11"/>
-                                            </StackPanel>
+                                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontSize="18" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Role}" Foreground="#D8D0C7" FontSize="12"/>
+                                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding AssignedProfile}" Foreground="#9AD9FF" FontSize="11" TextTrimming="CharacterEllipsis"/>
 
-                                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,8,0,0">
-                                                <DockPanel>
-                                                    <TextBlock Text="Health" Foreground="#D8D0C7" Width="55"/>
-                                                    <TextBlock Text="{Binding HealthPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right"/>
-                                                </DockPanel>
-                                                <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="12"/>
-                                                <DockPanel Margin="0,5,0,0">
-                                                    <TextBlock Text="Mana" Foreground="#D8D0C7" Width="55"/>
-                                                    <TextBlock Text="{Binding ManaPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right"/>
-                                                </DockPanel>
-                                                <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="12"/>
-                                            </StackPanel>
+                                                <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,0,0">
+                                                    <DockPanel>
+                                                        <TextBlock Text="Health" Foreground="#D8D0C7" Width="55"/>
+                                                        <TextBlock Text="{Binding HealthPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right"/>
+                                                    </DockPanel>
+                                                    <ProgressBar Value="{Binding HealthPercent}" Maximum="100" Foreground="#38C94A" Background="#2B1B1B" Height="12"/>
+                                                    <DockPanel Margin="0,5,0,0">
+                                                        <TextBlock Text="Mana" Foreground="#D8D0C7" Width="55"/>
+                                                        <TextBlock Text="{Binding ManaPercent, StringFormat={}{0:0}%}" Foreground="White" HorizontalAlignment="Right"/>
+                                                    </DockPanel>
+                                                    <ProgressBar Value="{Binding ManaPercent}" Maximum="100" Foreground="#3F6CFF" Background="#1A172B" Height="12"/>
+                                                </StackPanel>
 
-                                            <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="10"/>
-                                                <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="10"/>
-                                            </StackPanel>
-
-                                            <DockPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                                <TextBlock Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right"/>
-                                            </DockPanel>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                                                <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                                                    <TextBlock Text="{Binding ProcessIdText}" Foreground="#B8AA9C" FontSize="10" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Text="{Binding WindowHandleText}" Foreground="#B8AA9C" FontSize="10" TextTrimming="CharacterEllipsis"/>
+                                                    <DockPanel Margin="0,8,0,0">
+                                                        <TextBlock Text="RUNNING/IDLE" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding Status}" Foreground="#00FF99" FontSize="11" FontWeight="Bold" HorizontalAlignment="Right" TextTrimming="CharacterEllipsis"/>
+                                                    </DockPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Border>
 
                         <!-- MAP + CLIENT ATTACHMENT WORKFLOW -->
                         <Grid Grid.Column="2">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="12"/>
-                                <RowDefinition Height="1.15*"/>
+                                <RowDefinition Height="172"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <Border Grid.Row="0" Background="#E6D7B37A" BorderBrush="#8B4513" BorderThickness="2" CornerRadius="4" Padding="10">
+                            <Border Grid.Row="0" Background="#E6D7B37A" BorderBrush="#8B4513" BorderThickness="2" CornerRadius="4" Padding="8">
                                 <Grid>
                                     <TextBlock Text="TACTICAL MAP" Foreground="#4B2C20" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
-                                    <Canvas Margin="12,34,12,12">
-                                        <Rectangle Width="260" Height="140" Stroke="#704214" StrokeThickness="2" Fill="#22FFFFFF"/>
-                                        <Line X1="20" Y1="110" X2="230" Y2="25" Stroke="#A33A00" StrokeThickness="4"/>
-                                        <Line X1="35" Y1="20" X2="240" Y2="125" Stroke="#7A1B00" StrokeThickness="2"/>
-                                        <Ellipse Canvas.Left="122" Canvas.Top="58" Width="36" Height="36" Fill="#D88A00" Stroke="#4B2C20" StrokeThickness="3"/>
-                                        <Ellipse Canvas.Left="65" Canvas.Top="95" Width="10" Height="10" Fill="#00FF99"/>
-                                        <Ellipse Canvas.Left="180" Canvas.Top="45" Width="10" Height="10" Fill="#00CCFF"/>
-                                        <Ellipse Canvas.Left="210" Canvas.Top="100" Width="10" Height="10" Fill="#FF5555"/>
+                                    <Canvas Margin="10,30,10,8">
+                                        <Rectangle Width="260" Height="108" Stroke="#704214" StrokeThickness="2" Fill="#22FFFFFF"/>
+                                        <Line X1="24" Y1="84" X2="232" Y2="20" Stroke="#A33A00" StrokeThickness="4"/>
+                                        <Line X1="42" Y1="14" X2="242" Y2="94" Stroke="#7A1B00" StrokeThickness="2"/>
+                                        <Ellipse Canvas.Left="126" Canvas.Top="47" Width="34" Height="34" Fill="#D88A00" Stroke="#4B2C20" StrokeThickness="3"/>
+                                        <Ellipse Canvas.Left="72" Canvas.Top="82" Width="10" Height="10" Fill="#00FF99"/>
+                                        <Ellipse Canvas.Left="188" Canvas.Top="43" Width="10" Height="10" Fill="#00CCFF"/>
+                                        <Ellipse Canvas.Left="224" Canvas.Top="82" Width="10" Height="10" Fill="#FF5555"/>
                                     </Canvas>
                                 </Grid>
                             </Border>
@@ -210,17 +226,22 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Row="0" Text="CLIENT ATTACHMENT" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+                                    <TextBlock Grid.Row="0" Text="CLIENT ATTACHMENT" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" FontSize="15" Margin="0,0,0,4"/>
 
-                                    <Grid Grid.Row="1">
+                                    <StackPanel Grid.Row="1" Margin="0,0,0,6">
+                                        <TextBlock Text="{Binding SelectedAvailableClientText}" Foreground="#D8D0C7" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding SelectedFleetCardText}" Foreground="#9AD9FF" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+
+                                    <Grid Grid.Row="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="10"/>
-                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1.08*"/>
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Grid.Column="0">
@@ -230,37 +251,38 @@
                                             </DockPanel>
                                             <ListBox ItemsSource="{Binding AvailableClients}"
                                                      SelectedItem="{Binding SelectedAvailableClient, Mode=TwoWay}"
-                                                     Height="96"
+                                                     Height="74"
                                                      Background="#33111111"
-                                                     BorderBrush="#6A3A24">
+                                                     BorderBrush="#6A3A24"
+                                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                                 <ListBox.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel>
-                                                            <TextBlock Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontWeight="Bold"/>
+                                                            <TextBlock Text="{Binding CharacterName}" Foreground="{StaticResource GoldBrush}" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
                                                             <TextBlock Text="{Binding Pid, StringFormat=PID {0}}" Foreground="#CCCCCC" FontSize="10"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </ListBox.ItemTemplate>
                                             </ListBox>
 
-                                            <TextBlock Text="Role" Foreground="#D8D0C7" Margin="0,8,0,0"/>
-                                            <ComboBox ItemsSource="{Binding RoleOptions}" SelectedItem="{Binding SelectedRole, Mode=TwoWay}"/>
+                                            <TextBlock Text="Role" Foreground="#D8D0C7" Margin="0,6,0,0"/>
+                                            <ComboBox Style="{StaticResource CompactCombo}" ItemsSource="{Binding RoleOptions}" SelectedItem="{Binding SelectedRole, Mode=TwoWay}"/>
                                             <TextBlock Text="Profile" Foreground="#D8D0C7"/>
-                                            <ComboBox ItemsSource="{Binding ProfileOptions}" SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"/>
+                                            <ComboBox Style="{StaticResource CompactCombo}" ItemsSource="{Binding ProfileOptions}" SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="2">
-                                            <TextBlock Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold"/>
-                                            <Button Content="1. SCAN CLIENTS" Style="{StaticResource SmallFantasyButton}" Click="ScanButton_Click"/>
-                                            <Button Content="2. ATTACH SELECTED" Style="{StaticResource SmallFantasyButton}" Click="AttachButton_Click"/>
-                                            <Button Content="3. START SELECTED" Style="{StaticResource SmallFantasyButton}" Click="StartButton_Click"/>
-                                            <Button Content="PAUSE SELECTED" Style="{StaticResource SmallFantasyButton}" Click="PauseButton_Click"/>
-                                            <Button Content="STOP SELECTED" Style="{StaticResource SmallFantasyButton}" Click="StopButton_Click"/>
-                                            <Button Content="DETACH SELECTED" Style="{StaticResource SmallFantasyButton}" Click="DetachButton_Click"/>
-                                            <WrapPanel Margin="0,6,0,0">
-                                                <Button Content="START ALL" Width="86" Style="{StaticResource SmallFantasyButton}" Click="StartAllButton_Click"/>
-                                                <Button Content="STOP ALL" Width="78" Style="{StaticResource SmallFantasyButton}" Click="StopAllButton_Click"/>
-                                            </WrapPanel>
+                                            <TextBlock Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold" Margin="0,0,0,4"/>
+                                            <UniformGrid Rows="4" Columns="2">
+                                                <Button Content="1. SCAN" Style="{StaticResource SmallFantasyButton}" Click="ScanButton_Click"/>
+                                                <Button Content="2. ATTACH" Style="{StaticResource SmallFantasyButton}" Click="AttachButton_Click"/>
+                                                <Button Content="3. START" Style="{StaticResource SmallFantasyButton}" Click="StartButton_Click"/>
+                                                <Button Content="PAUSE" Style="{StaticResource SmallFantasyButton}" Click="PauseButton_Click"/>
+                                                <Button Content="STOP" Style="{StaticResource SmallFantasyButton}" Click="StopButton_Click"/>
+                                                <Button Content="DETACH" Style="{StaticResource SmallFantasyButton}" Click="DetachButton_Click"/>
+                                                <Button Content="START ALL" Style="{StaticResource SmallFantasyButton}" Click="StartAllButton_Click"/>
+                                                <Button Content="STOP ALL" Style="{StaticResource SmallFantasyButton}" Click="StopAllButton_Click"/>
+                                            </UniformGrid>
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
@@ -306,14 +328,25 @@
         </Grid>
 
         <!-- BOTTOM TECHNICAL LOG -->
-        <Border Grid.Row="2" Margin="132,0,312,10" Background="{StaticResource ParchmentBrush}" CornerRadius="5" BorderBrush="#8B4513" BorderThickness="3">
+        <Border Grid.Row="2" Margin="148,0,304,10" Background="{StaticResource ParchmentBrush}" CornerRadius="5" BorderBrush="#8B4513" BorderThickness="3">
             <DockPanel>
                 <Border DockPanel.Dock="Top" Background="#33100000" BorderBrush="#8B4513" BorderThickness="0,0,0,1" Padding="10,4">
                     <TextBlock Text="TECHNICAL LOG" Foreground="#3A1300" FontWeight="Bold" FontSize="16"/>
                 </Border>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBlock Text="{Binding LogText}" TextWrapping="Wrap" Foreground="#1F130D" FontFamily="Courier New" FontSize="14" Padding="12"/>
-                </ScrollViewer>
+                <TextBox x:Name="LogTextBox"
+                         Text="{Binding LogText, Mode=OneWay}"
+                         TextChanged="LogTextBox_TextChanged"
+                         IsReadOnly="True"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Disabled"
+                         Background="Transparent"
+                         Foreground="#1F130D"
+                         BorderThickness="0"
+                         FontFamily="Courier New"
+                         FontSize="14"
+                         Padding="12"/>
             </DockPanel>
         </Border>
 

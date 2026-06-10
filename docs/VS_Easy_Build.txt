@@ -69,11 +69,11 @@ For the first dashboard-only test:
    PsychoBuddy/bin/Debug/net8.0-windows/PsychoBuddy.exe
 
 2. Expected startup behavior:
-   - A WPF window titled "PsychoBuddy - Command Center" opens.
+   - A custom WPF Command Center window opens.
    - Demo/standby fleet cards appear if no WoW clients are open.
-   - The bottom Technical Log shows startup and scan messages.
+   - The bottom Technical Log shows startup and scan messages and can be selected/copied.
    - The Scan/Demo/Tick buttons are visible.
-   - The Client Attachment panel is visible.
+   - The Client Attachment panel is visible with Role, Profile, Attach, Start, Pause, Stop, Detach, Start All, and Stop All controls.
 
 3. You do NOT need Administrator mode just to confirm the dashboard opens.
 

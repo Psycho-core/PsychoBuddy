@@ -5,7 +5,7 @@ THIS file ('LICENSE.MYCODE') applies EXCLUSIVELY to the original modules,
 scripts, and .bat files authored by [Psycho-core].
 ========================================================================
 SOURCE-AVAILABLE DEVELOPMENT & EVALUATION LICENSE
-Copyright (c) 2026 [Psychostout]. All rights reserved.
+Copyright (c) 2026 [Psycho-core]. All rights reserved.
 
 1. PERMITTED DEVELOPMENT AND EVALUATION USE
 The author grants permission to the public and automated AI tools to download, view, compile, and execute the Software and its constituent Source Code for personal evaluation, testing, and debugging purposes ONLY while the project is in active development.

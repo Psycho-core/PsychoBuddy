@@ -68,6 +68,7 @@ namespace PsychoBuddy.UI
                 if (_selectedAvailableClient == value) return;
                 _selectedAvailableClient = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedAvailableClientText));
             }
         }
 
@@ -79,6 +80,7 @@ namespace PsychoBuddy.UI
                 if (_selectedFleetCard == value) return;
                 _selectedFleetCard = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedFleetCardText));
             }
         }
 
@@ -130,6 +132,12 @@ namespace PsychoBuddy.UI
 
         public string AvailableClientCountText => $"Available clients: {AvailableClients.Count}";
         public string FleetCountText => $"Attached fleet: {Fleet.Count(f => f.IsRealClient)}";
+        public string SelectedAvailableClientText => SelectedAvailableClient == null
+            ? "Selected available: none"
+            : $"Selected available: {SelectedAvailableClient.CharacterName ?? "Unknown"} (PID {SelectedAvailableClient.Pid})";
+        public string SelectedFleetCardText => SelectedFleetCard == null
+            ? "Selected fleet: none"
+            : $"Selected fleet: {SelectedFleetCard.CharacterName} [{SelectedFleetCard.Status}]";
         public string LogText => string.Join(Environment.NewLine, LogEntries);
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -139,6 +147,13 @@ namespace PsychoBuddy.UI
             AddLog("PsychoBuddy Command Center initialized.");
             LoadStandbyFleet("Dashboard ready. Scan for clients to begin attachment workflow.");
             RefreshClientScan();
+        }
+
+        public void NotifyPlaceholder(string featureName)
+        {
+            string message = $"{featureName} clicked. This panel/action is not implemented yet.";
+            StatusMessage = message;
+            AddLog(message);
         }
 
         public void RefreshClientScan()
@@ -300,6 +315,7 @@ namespace PsychoBuddy.UI
             card.SetStatus(BotStatus.Paused, "Paused");
             AddLog($"Paused {card.CharacterName}.");
             StatusMessage = $"Paused {card.CharacterName}.";
+            RefreshSelectionText();
         }
 
         public void StopSelectedFleetCard()
@@ -324,6 +340,7 @@ namespace PsychoBuddy.UI
 
             StatusMessage = started > 0 ? $"Started {started} attached client(s)." : "No attached clients were started.";
             AddLog(StatusMessage);
+            RefreshSelectionText();
         }
 
         public void StopAllAttached()
@@ -336,6 +353,7 @@ namespace PsychoBuddy.UI
 
             StatusMessage = stopped > 0 ? $"Stopped {stopped} attached client(s)." : "No attached clients were stopped.";
             AddLog(StatusMessage);
+            RefreshSelectionText();
         }
 
         public void LoadStandbyFleet(string statusMessage = "Standby/demo fleet slots loaded.")
@@ -405,6 +423,7 @@ namespace PsychoBuddy.UI
                 }
 
                 card.SetStatus(BotStatus.Running, "Running");
+                RefreshSelectionText();
                 if (!quiet)
                 {
                     AddLog($"Started {card.CharacterName} with profile '{card.AssignedProfile}'.");
@@ -415,6 +434,7 @@ namespace PsychoBuddy.UI
             catch (Exception ex)
             {
                 card.SetStatus(BotStatus.Attached, "Start failed");
+                RefreshSelectionText();
                 AddLog($"Failed to start {card.CharacterName}: {ex.Message}");
                 StatusMessage = $"Failed to start {card.CharacterName}. See technical log.";
                 return false;
@@ -435,6 +455,7 @@ namespace PsychoBuddy.UI
 
             _orchestrator.UnregisterBot(card.Binding.Pid);
             card.SetStatus(BotStatus.Stopped, "Stopped");
+            RefreshSelectionText();
 
             if (!quiet)
             {
@@ -498,6 +519,12 @@ namespace PsychoBuddy.UI
         {
             LogEntries.Add($"[{DateTime.Now:HH:mm:ss}] {message}");
             OnPropertyChanged(nameof(LogText));
+        }
+
+        private void RefreshSelectionText()
+        {
+            OnPropertyChanged(nameof(SelectedAvailableClientText));
+            OnPropertyChanged(nameof(SelectedFleetCardText));
         }
 
         private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

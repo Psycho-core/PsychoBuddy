@@ -201,9 +201,19 @@ Already present:
 - [x] parchment technical log
 - [x] lava/obsidian/gold color direction
 
+Latest usability pass:
+
+- [x] all attachment workflow controls kept visible in the Client Attachment panel
+- [x] visible Profile selector
+- [x] visible Detach button
+- [x] selectable/copyable Technical Log through a read-only TextBox
+- [x] placeholder navigation buttons log clear feedback instead of doing nothing
+- [x] custom minimize/close buttons wired in the WPF window chrome
+- [x] fleet card layout adjusted to reduce clipping and horizontal scrolling
+- [x] selected available/fleet client status shown near the workflow controls
+
 Pending polish:
 
-- [ ] custom window chrome buttons wired to minimize/close
 - [ ] custom portrait frames
 - [ ] class/role icons
 - [ ] ability/proc icon slots

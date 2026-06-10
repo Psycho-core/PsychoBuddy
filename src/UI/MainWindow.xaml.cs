@@ -6,7 +6,10 @@ Refer to LICENSE.MYCODE.txt for full terms.
 ========================================================================
 */
 
+using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PsychoBuddy.UI
 {
@@ -31,6 +34,70 @@ namespace PsychoBuddy.UI
 
             _initialized = true;
             _controller.InitializeFleet();
+        }
+
+        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton != MouseButton.Left) return;
+
+            try
+            {
+                if (e.ClickCount == 2)
+                {
+                    WindowState = WindowState == System.Windows.WindowState.Maximized
+                        ? System.Windows.WindowState.Normal
+                        : System.Windows.WindowState.Maximized;
+                }
+                else
+                {
+                    DragMove();
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // DragMove can throw if the mouse is no longer down; safe to ignore.
+            }
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.NotifyPlaceholder("Window minimize");
+            WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void LogTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LogTextBox.ScrollToEnd();
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.NotifyPlaceholder("Main menu");
+        }
+
+        private void ProfilesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.NotifyPlaceholder("Profiles panel");
+        }
+
+        private void NavigationButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.NotifyPlaceholder("Navigation panel");
+        }
+
+        private void SensesNavButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.NotifyPlaceholder("Senses settings panel");
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.NotifyPlaceholder("Settings panel");
         }
 
         private void ScanButton_Click(object sender, RoutedEventArgs e)

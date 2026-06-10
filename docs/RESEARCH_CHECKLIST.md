@@ -115,6 +115,7 @@ This document serves as the master checklist for every single technical and cont
 - [x] **Build Target:** .NET 8 / `net8.0-windows`
 - [x] **WPF Startup Shell:** `src/App.xaml` launches `MainWindow` and displays standby fleet cards when no clients are found.
 - [x] **Dashboard Attachment Workflow:** Scan available clients, choose role/profile, attach, start, pause, stop, and detach from the UI.
+- [x] **Dashboard Usability Pass:** Visible detach/profile controls, copyable technical log, placeholder-button feedback, custom minimize/close wiring, and reduced fleet-card clipping.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)
