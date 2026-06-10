@@ -15,6 +15,12 @@ The current working shell artwork used during the skin pass is:
 assets/UI_Option_1_5.png
 ```
 
+The current README screenshot is:
+
+```text
+assets/UI_test_17.png
+```
+
 The current WPF dashboard already follows this layout direction:
 
 - left-side navigation strip

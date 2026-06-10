@@ -5,13 +5,17 @@
 - **Framework:** .NET 8 / `net8.0-windows`.
 - **UI framework:** WPF.
 - **Application entry point:** `src/App.xaml` / `src/App.xaml.cs`, which opens `src/UI/MainWindow.xaml`.
-- **Dashboard startup:** MainWindow now initializes the dashboard controller and shows four empty/offline fleet slots when no clients are attached.
+- **Current shell:** `assets/UI_Option_1_5.png` in a fixed `1700x925` Canvas/Viewbox overlay.
+- **End-goal UI reference:** `assets/UI_Option_1.png`.
+- **Theme resources:** `src/UI/Themes/PsychoTheme.xaml`.
+- **Dashboard startup:** four empty/offline fleet slots are shown when no clients are attached.
 - **Dashboard attachment workflow:** Scan Clients → Choose Role/Profile → Attach → Start/Pause/Stop → Detach.
-- **Dashboard usability status:** fixed 2x2 Fleet Monitor slots, visible detach/profile controls, selectable/copyable technical log, placeholder navigation feedback, custom minimize/close controls, improved card spacing/portrait/status areas, selected-client status labels, and clearer tick logging are implemented.
+- **Confirmed build status:** `PsychoBuddy.exe` builds and launches; dashboard-level workflow is functional.
+- **Development status:** active prototype; not a complete/fully working bot platform yet.
 - **Application icon:** `assets/PsychoBuddy.ico`, generated from `assets/Psycho.JPG`, is configured as the executable and MainWindow icon.
-- **Primary UI target:** `assets/UI_Option_1.png`; first WPF skin pass has started with `src/UI/Themes/PsychoTheme.xaml`, obsidian/lava/parchment resources, styled buttons/panels/cards, decorative lava seams, `assets/UI_Option_1_5.png` as the primary Canvas/Viewbox shell, and adjusted grid/margins to align live controls to the reference artwork, converted MainWindow to a fixed 1380x752 Canvas/Viewbox overlay with fine-tuned Canvas positions and compact red/green fleet status indicators, removed most live panel borders/backgrounds, and positioned functional controls directly over the background art while keeping Client Attachment visible for debugging.
 - **Temporary build copy removed:** `PsychoBuddy-Built/` was only a test-build output folder and is no longer part of the source tree.
 - **License location:** `LICENSE.MYCODE.txt` in the repository root is the authoritative license referenced by source headers.
+- **Next functional milestone:** real Settings panel + `settings.json` persistence. See `docs/CURRENT_STATUS_AND_NEXT_STEPS.md`.
 
 ---
 

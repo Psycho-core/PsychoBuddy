@@ -6,7 +6,10 @@ This document serves as the master checklist for every single technical and cont
 - `[x]` in this roadmap means the research/specification document exists or the concept has a first-pass scaffold.
 - It does **not** necessarily mean the feature is production-complete.
 - Current codebase status: .NET 8 WPF foundation/prototype with core scaffolding for Attachment, Senses, Muscles, Brain, and UI.
+- `PsychoBuddy.exe` builds and launches; current dashboard-level scan/attach/start/pause/stop/detach workflow is functional.
+- The project is still in active development and is not a complete/fully working bot platform yet.
 - Removed legacy temporary build copy: `PsychoBuddy-Built/`. The repository root is now the canonical project location.
+- See `docs/CURRENT_STATUS_AND_NEXT_STEPS.md` for the current verified status and next functional milestone.
 
 ## 1. The Senses: Data Acquisition (The "Eyes")
 *How the bot perceives the game state.*
@@ -117,7 +120,7 @@ This document serves as the master checklist for every single technical and cont
 - [x] **Dashboard Attachment Workflow:** Scan available clients, choose role/profile, attach, start, pause, stop, and detach from the UI.
 - [x] **Dashboard Usability Pass:** Fixed 2x2 Fleet Monitor slots, empty/offline startup slots, visible detach/profile controls, copyable technical log, placeholder-button feedback, custom minimize/close wiring, selected-client status labels, clearer tick logging, and reduced fleet-card clipping.
 - [x] **Application Icon:** `assets/PsychoBuddy.ico` generated from `assets/Psycho.JPG` and configured in `PsychoBuddy.csproj` plus `MainWindow.xaml`.
-- [x] **UI Skin Pass 1:** Added `src/UI/Themes/PsychoTheme.xaml` and began moving the dashboard toward `assets/UI_Option_1.png` with obsidian/lava/parchment styling, themed buttons, panels, fleet cards, decorative lava seams, and `assets/UI_Option_1_1.png` as a low-opacity layout underlay. Empty/offline fleet cards now have their own simplified presentation, and MainWindow is now a fixed 1380x752 Canvas/Viewbox overlay aligned to `assets/UI_Option_1_5.png`, with invisible hitboxes over artwork-provided buttons, fine-tuned Canvas positions, and compact red/green fleet status indicators, with duplicate live labels removed and Client Attachment kept visible for debugging.
+- [x] **UI Skin Pass 1:** Added `src/UI/Themes/PsychoTheme.xaml` and moved the dashboard toward `assets/UI_Option_1.png` with obsidian/lava/parchment styling, a fixed `1700x925` Canvas/Viewbox shell based on `assets/UI_Option_1_5.png`, invisible hitboxes over artwork-provided buttons, compact red/green fleet status indicators, duplicate live labels removed, and Client Attachment kept visible for debugging.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)

@@ -10,6 +10,8 @@ CURRENT PROJECT FACTS
 - WPF entry point: src/App.xaml + src/App.xaml.cs
 - Dashboard window: src/UI/MainWindow.xaml
 - Application icon: assets/PsychoBuddy.ico, generated from assets/Psycho.JPG
+- Current screenshot shown in README: assets/UI_test_17.png
+- Current shell artwork: assets/UI_Option_1_5.png
 - Old PsychoBuddy-Built test folder: removed; do not use it
 
 ========================================================================
@@ -36,6 +38,7 @@ STEP 2: OPEN THE CORRECT PROJECT
     - PsychoBuddy.ico
     - UI_Option_1_1.png
     - UI_Option_1_5.png
+    - UI_test_17.png
   - src/
     - App.xaml
     - App.xaml.cs
@@ -79,7 +82,7 @@ For the first dashboard-only test:
 2. Expected startup behavior:
    - A custom WPF Command Center window opens.
    - The dashboard uses the first obsidian/lava/parchment skin pass from src/UI/Themes/PsychoTheme.xaml.
-   - A low-opacity cleaned UI underlay from assets/UI_Option_1_5.png should be visible behind the functional controls.
+   - assets/UI_Option_1_5.png is the primary visible Canvas/Viewbox shell.
    - MainWindow uses a fixed 1700x925 Canvas/Viewbox overlay so live controls align to the Fleet Monitor, Senses panels, and Technical Log areas of that background.
    - The background art provides most major titles; live duplicate titles such as Fleet Monitor/Senses Module/Senses Status are intentionally hidden.
    - The window icon should use the Psycho icon from assets/PsychoBuddy.ico.
