@@ -1,0 +1,64 @@
+{
+  "id": "legion-hunter-marksmanship",
+  "displayName": "Legion Hunter Marksmanship",
+  "description": "Auto-generated Hunter Marksmanship Legion_7_3_5 rotation scaffold from data/legion/hunter_legion.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "role": "DPS",
+  "version": "Legion_7_3_5",
+  "specialization": "Marksmanship",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": [
+    "legion",
+    "hunter",
+    "marksmanship",
+    "generated",
+    "rotation-scaffold"
+  ],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Trueshot",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 20,
+      "abilityName": "Rapid Fire",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 30,
+      "abilityName": "Aimed Shot",
+      "spellId": 0,
+      "keyCode": 51,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 40,
+      "abilityName": "Arcane Shot",
+      "spellId": 0,
+      "keyCode": 52,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 50,
+      "abilityName": "Steady Shot",
+      "spellId": 0,
+      "keyCode": 53,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

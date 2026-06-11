@@ -37,6 +37,7 @@ namespace PsychoBuddy.UI
                 OnPropertyChanged(nameof(ProcessIdText));
                 OnPropertyChanged(nameof(WindowHandleText));
                 OnPropertyChanged(nameof(IsRealClient));
+                OnPropertyChanged(nameof(IsMockClient));
                 OnPropertyChanged(nameof(LevelText));
                 OnPropertyChanged(nameof(PortraitGlyph));
                 OnPropertyChanged(nameof(HealthText));
@@ -63,6 +64,7 @@ namespace PsychoBuddy.UI
             get
             {
                 ClientBinding? binding = Binding;
+                if (binding?.IsMockClient == true) return "Mock session";
                 return binding != null && binding.Pid > 0 ? $"PID {binding.Pid}" : "No client attached";
             }
         }
@@ -72,6 +74,7 @@ namespace PsychoBuddy.UI
             get
             {
                 ClientBinding? binding = Binding;
+                if (binding?.IsMockClient == true) return "Offline simulation";
                 if (binding == null || binding.WindowHandle == IntPtr.Zero)
                 {
                     return "No window handle";
@@ -86,13 +89,14 @@ namespace PsychoBuddy.UI
             get
             {
                 ClientBinding? binding = Binding;
-                return binding != null && binding.Pid > 0 && binding.WindowHandle != IntPtr.Zero;
+                return binding != null && (binding.IsMockClient || (binding.Pid > 0 && binding.WindowHandle != IntPtr.Zero));
             }
         }
-        public string LevelText => IsRealClient ? "CLIENT" : "OFFLINE";
+        public bool IsMockClient => Binding?.IsMockClient == true;
+        public string LevelText => IsMockClient ? "MOCK" : (IsRealClient ? "CLIENT" : "OFFLINE");
         public string HealthText => IsRealClient ? $"{HealthPercent:0}%" : "—";
         public string ManaText => IsRealClient ? $"{ManaPercent:0}%" : "—";
-        public string PortraitGlyph => IsRealClient ? "◉" : "◇";
+        public string PortraitGlyph => IsMockClient ? "◎" : (IsRealClient ? "◉" : "◇");
         public string RoleIcon => Role.ToLowerInvariant() switch
         {
             "tank" => "🛡",

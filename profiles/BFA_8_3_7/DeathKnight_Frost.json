@@ -1,0 +1,64 @@
+{
+  "id": "bfa-deathknight-frost",
+  "displayName": "BFA DeathKnight Frost",
+  "description": "Auto-generated DeathKnight Frost BFA_8_3_7 rotation scaffold from data/bfa/deathknight_bfa.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "role": "DPS",
+  "version": "BFA_8_3_7",
+  "specialization": "Frost",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": [
+    "bfa",
+    "deathknight",
+    "frost",
+    "generated",
+    "rotation-scaffold"
+  ],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Obliterate",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 20,
+      "abilityName": "Frost Strike",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 30,
+      "abilityName": "Howling Blast",
+      "spellId": 0,
+      "keyCode": 51,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 40,
+      "abilityName": "Killing Machine",
+      "spellId": 0,
+      "keyCode": 52,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 50,
+      "abilityName": "Frost Fever",
+      "spellId": 0,
+      "keyCode": 53,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

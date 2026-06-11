@@ -48,7 +48,12 @@ Verified by user test builds/logs:
 - Stop All works.
 - Tick reports real running-client count or no running clients.
 - Power/Stealth UI toggle works.
+- Senses settings panel opens/saves/cancels and persists Power/Stealth acquisition configuration.
+- Navigation settings panel opens/saves/cancels and persists route/follow/formation scaffold settings.
+- Target game version setting supports Vanilla 1.12 through BFA 8.3.7.
+- Mock client/offline simulation can test fleet slots, start/stop/tick, and profile rules without a live WoW server.
 - Settings panel opens/saves/cancels and persists settings to `settings.json`.
+- Profiles panel opens/closes, reloads `profiles/**/*.json`, applies selected profiles to the dashboard dropdown, and builds executable placeholder `RotationProfile` rules from profile JSON. Generated Legion/BFA class/spec profile scaffolds exist under `profiles/Legion_7_3_5/` and `profiles/BFA_8_3_7/`.
 - Placeholder panels log clear messages for Profiles, Navigation, Senses, and Menu.
 
 ## 3. Known Limitations
@@ -57,15 +62,12 @@ The project is still in active development and is not a complete/fully working b
 
 Current limitations:
 
-- Profiles button is still a placeholder.
 - Navigation button is still a placeholder.
-- Senses settings page is still a placeholder.
-- Profile choices are still hardcoded.
 - Settings UI exists, but more validation/polish may be needed as features expand.
 - No real profile file loading yet.
 - Power Mode memory reading is still scaffold/placeholder-level.
 - Stealth Mode capture/addon pipeline is not implemented yet.
-- Navigation/pathfinding is documented but not implemented as live code.
+- Navigation/pathfinding execution is documented but not implemented as live movement code. A dashboard Navigation scaffold now exists.
 - Final UI cosmetics still need alignment/polish toward `assets/UI_Option_1.png`.
 
 ## 4. What We Were Working On Before The UI Cosmetic Rabbit Hole
@@ -91,13 +93,26 @@ That milestone has now been started/implemented at the dashboard level:
    - last window size/position
 5. The custom executable path is wired into `AttachmentManager` for scan fallback.
 
-The next planned feature is now:
+The Profiles page + JSON profile loading milestone has now been extended with placeholder rotation-rule loading/execution at dashboard/orchestrator level.
+
+Implemented:
 
 ```text
-Profiles page + JSON profile loading
+profiles/*.json
+src/Brain/ProfileDefinition.cs
+src/Brain/ProfileService.cs
+assets/Profiles_Panel.png
 ```
 
-That would replace the current hardcoded profile dropdown with profile files loaded from disk.
+The Senses settings page + real Power/Stealth mode configuration milestone has now been started/implemented at dashboard configuration level.
+
+The Navigation page scaffold milestone has now been started/implemented at dashboard configuration level.
+
+The current no-server development support now includes target game version selection and mock clients. The next planned functional feature is now:
+
+```text
+Expanded profile execution / real class rotation rules
+```
 
 ## 5. Recommended Next Functional Roadmap
 
@@ -116,24 +131,50 @@ settings.json (runtime generated)
 
 ### Step 2 — Real Profile Loading
 
-Implement:
+Status: **implemented with recursive JSON profile loading and placeholder executable rules**. Generated Legion/BFA class/spec rotation scaffolds exist, but exact spell IDs/keybinds, aura/proc logic, and target conditions are still pending.
+
+Implemented files:
 
 ```text
 profiles/*.json
-Profile loader service
-Dropdown populated from profile files
+src/Brain/ProfileDefinition.cs
+src/Brain/ProfileService.cs
+assets/Profiles_Panel.png
 ```
 
 ### Step 3 — Senses Settings Page
 
-Implement a UI for:
+Status: **implemented at dashboard configuration level**. Real backend capture/memory resolution is still pending.
+
+Implemented:
 
 - Power/Stealth mode choice
 - scan interval
-- pixel grid position
-- diagnostic readouts
+- pixel grid position/size
+- capture/reliability toggles
+- diagnostic/test log action
 
-### Step 4 — UI Cosmetic Pass 2
+### Step 4 — Navigation Page Scaffold
+
+Status: **implemented at dashboard configuration/scaffold level**. Real pathfinding, route recording, and movement execution are still pending.
+
+Implemented:
+
+- Navigation mode
+- route name
+- follow distance
+- formation spacing
+- waypoint radius
+- auto-follow/avoid-overlap/show-path toggles
+- placeholder waypoint list
+- add/remove/clear placeholder waypoints
+- test configuration log action
+
+### Step 5 — Profile Execution / Rotation Rules
+
+Implement loading and execution of real profile/rotation rules instead of metadata-only profile selection.
+
+### Step 6 — UI Cosmetic Pass 2
 
 Continue alignment/polish toward:
 

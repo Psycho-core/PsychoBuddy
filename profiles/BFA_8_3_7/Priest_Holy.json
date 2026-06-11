@@ -1,0 +1,64 @@
+{
+  "id": "bfa-priest-holy",
+  "displayName": "BFA Priest Holy",
+  "description": "Auto-generated Priest Holy BFA_8_3_7 rotation scaffold from data/bfa/priest_bfa.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "role": "Healer",
+  "version": "BFA_8_3_7",
+  "specialization": "Holy",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": [
+    "bfa",
+    "priest",
+    "holy",
+    "generated",
+    "rotation-scaffold"
+  ],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Holy Word",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 20,
+      "abilityName": "Holy Word",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 30,
+      "abilityName": "Prayer of Mending",
+      "spellId": 0,
+      "keyCode": 51,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 40,
+      "abilityName": "Flash Heal",
+      "spellId": 0,
+      "keyCode": 52,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 50,
+      "abilityName": "Prayer of Healing",
+      "spellId": 0,
+      "keyCode": 53,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

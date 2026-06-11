@@ -1,0 +1,64 @@
+{
+  "id": "legion-shaman-restoration",
+  "displayName": "Legion Shaman Restoration",
+  "description": "Auto-generated Shaman Restoration Legion_7_3_5 rotation scaffold from data/legion/shaman_legion.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "role": "Healer",
+  "version": "Legion_7_3_5",
+  "specialization": "Restoration",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": [
+    "legion",
+    "shaman",
+    "restoration",
+    "generated",
+    "rotation-scaffold"
+  ],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Riptide",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 20,
+      "abilityName": "Healing Wave",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 30,
+      "abilityName": "Chain Heal",
+      "spellId": 0,
+      "keyCode": 51,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 40,
+      "abilityName": "Healing Rain",
+      "spellId": 0,
+      "keyCode": 52,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 50,
+      "abilityName": "Healing Stream Totem",
+      "spellId": 0,
+      "keyCode": 53,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

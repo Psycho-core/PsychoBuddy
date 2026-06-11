@@ -1,0 +1,31 @@
+{
+  "id": "tank-assist",
+  "displayName": "Tank Assist",
+  "description": "Tank-oriented placeholder profile for future threat, mitigation, and pull-control behavior.",
+  "role": "Tank",
+  "version": "Legion/BFA",
+  "specialization": "Generic Tank",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": ["tank", "assist", "placeholder"],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Defensive Action",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 5.0,
+      "condition": "HealthBelow",
+      "threshold": 45
+    },
+    {
+      "priority": 100,
+      "abilityName": "Tank Filler",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

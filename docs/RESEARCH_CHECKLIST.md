@@ -122,6 +122,12 @@ This document serves as the master checklist for every single technical and cont
 - [x] **Application Icon:** `assets/PsychoBuddy.ico` generated from `assets/Psycho.JPG` and configured in `PsychoBuddy.csproj` plus `MainWindow.xaml`.
 - [x] **UI Skin Pass 1:** Added `src/UI/Themes/PsychoTheme.xaml` and moved the dashboard toward `assets/UI_Option_1.png` with obsidian/lava/parchment styling, a fixed `1700x925` Canvas/Viewbox shell based on `assets/UI_Option_1_5.png`, invisible hitboxes over artwork-provided buttons, compact red/green fleet status indicators, duplicate live labels removed, and Client Attachment kept visible for debugging.
 - [x] **Settings Panel / Persistence:** Added `assets/Settings-Panel-final.png`, `AppSettings`, `SettingsService`, runtime `settings.json` save/load, custom WoW executable path persistence, default role/profile, preferred Senses mode, auto-scan, debug/log settings, and window placement persistence.
+- [x] **Profiles Panel / JSON Loading:** Added `assets/Profiles_Panel.png`, `profiles/*.json`, `ProfileDefinition`, `ProfileService`, JSON profile loading, profile reload, and selected profile application to the dashboard dropdown.
+- [x] **Profile Execution / Rotation-Rule Loading:** Added JSON rule fields for priority, ability, key code, cooldown, condition, and threshold; `ProfileService` now recursively loads `profiles/**/*.json` and builds `RotationProfile` objects from profile JSON; start actions now register profile-built rotation rules with the orchestrator; generated Legion/BFA class/spec scaffold profiles from the existing `data/` sheets.
+- [x] **Senses Settings Panel:** Added `assets/Senses_Panel.png`, Power/Stealth mode configuration, scan interval, Stealth pixel grid offset/size, window capture toggle, flicker suppression, blackout/data-loss check, and test configuration log action.
+- [x] **Navigation Settings Scaffold:** Added `assets/Navigation_Panel.png`, navigation mode, route name, follow distance, formation spacing, waypoint radius, auto-follow/avoid-overlap/show-path toggles, placeholder waypoint list, and test configuration log action.
+- [x] **GameVersion Support:** Added target game version selection for Vanilla 1.12, TBC 2.4.3, WotLK 3.3.5a, Cataclysm 4.3.4, MoP 5.4.8, Legion 7.3.5, and BFA 8.3.7.
+- [x] **Mock Client / Offline Simulation:** Added mock client fleet slots, mock start/stop/tick simulation, and selected profile rule test logging for development without a live WoW server.
 
 - [x] **GUI Blueprint & UX Design:**
     - [x] Visual Concept Review (Command Center / Navigator)
@@ -138,3 +144,9 @@ This document serves as the master checklist for every single technical and cont
 - [ ] **Detection Vector Research:**
     - [ ] Study of current server-side detection methods (Heartbeats, Input patterns)
     - [ ] Implementation of mitigation strategies
+
+
+---
+
+## 7. Future AI / Ollama Integration
+- [ ] **Optional Ollama Support:** Local LLM integration for chat/whisper reply suggestions, log summarization, profile explanations, and debug assistance. This should remain disabled by default and should not directly control combat, movement, memory reads, or input decisions.

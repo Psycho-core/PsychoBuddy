@@ -1,0 +1,22 @@
+{
+  "id": "manual-follow",
+  "displayName": "Manual Follow",
+  "description": "Utility placeholder profile intended for follow/assist behavior without autonomous combat decisions.",
+  "role": "Utility",
+  "version": "Any",
+  "specialization": "Follow",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": ["utility", "follow", "placeholder"],
+  "rules": [
+    {
+      "priority": 100,
+      "abilityName": "Follow Pulse",
+      "spellId": 0,
+      "keyCode": 48,
+      "cooldownSeconds": 5.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

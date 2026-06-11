@@ -32,7 +32,10 @@ namespace PsychoBuddy.UI
         private readonly Orchestrator _orchestrator;
         private readonly AttachmentManager _attachment;
         private readonly SettingsService _settingsService;
+        private readonly ProfileService _profileService;
+        private readonly Random _mockRandom = new Random();
         private AppSettings _settings;
+        private int _mockClientCounter = 1;
 
         private string _statusMessage = "Command Center starting...";
         private string _sensesModeText = "Power Mode selected";
@@ -44,11 +47,32 @@ namespace PsychoBuddy.UI
         private string _customWowExecutablePath = string.Empty;
         private string _defaultRole = BotRole.DPS.ToString();
         private string _defaultProfile = "Basic Rotation";
+        private string _targetGameVersion = "BFA_8_3_7";
         private string _preferredSensesMode = "Power";
+        private int _sensesScanIntervalMs = 50;
+        private int _stealthPixelGridX;
+        private int _stealthPixelGridY;
+        private int _stealthPixelGridSize = 10;
+        private bool _enableFlickerSuppression = true;
+        private bool _enableBlackoutCheck = true;
+        private bool _useWindowCapture = true;
+        private bool _isSensesPanelVisible;
         private bool _autoScanOnStartup = true;
         private bool _debugMode = true;
         private string _logVerbosity = "Normal";
         private bool _rememberWindowPlacement = true;
+        private bool _isProfilesPanelVisible;
+        private bool _isNavigationPanelVisible;
+        private ProfileDefinition? _selectedProfileDefinition;
+        private string _navigationMode = "Follow";
+        private int _followDistance = 10;
+        private int _formationSpacing = 5;
+        private int _waypointRadius = 3;
+        private bool _autoFollowLeader = true;
+        private bool _avoidOverlap = true;
+        private bool _showNavigationPath = true;
+        private string _lastRouteName = "Default Route";
+        private string? _selectedNavigationWaypoint;
 
         public DashboardController()
         {
@@ -61,7 +85,9 @@ namespace PsychoBuddy.UI
             AvailableClients.CollectionChanged += (_, _) => OnPropertyChanged(nameof(AvailableClientCountText));
 
             _settingsService = new SettingsService();
+            _profileService = new ProfileService();
             _settings = _settingsService.Load();
+            ReloadProfiles(silent: true);
 
             var input = new InputManager();
             _orchestrator = new Orchestrator(input);
@@ -74,17 +100,12 @@ namespace PsychoBuddy.UI
         public ObservableCollection<ClientBinding> AvailableClients { get; } = new ObservableCollection<ClientBinding>();
         public ObservableCollection<FleetCardViewModel> Fleet { get; } = new ObservableCollection<FleetCardViewModel>();
         public ObservableCollection<string> LogEntries { get; } = new ObservableCollection<string>();
+        public ObservableCollection<ProfileDefinition> Profiles { get; } = new ObservableCollection<ProfileDefinition>();
+        public ObservableCollection<string> ProfileOptions { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> NavigationWaypoints { get; } = new ObservableCollection<string>();
 
         public IReadOnlyList<string> RoleOptions { get; } = Enum.GetNames<BotRole>();
 
-        public IReadOnlyList<string> ProfileOptions { get; } = new[]
-        {
-            "Basic Rotation",
-            "Tank Assist",
-            "Healer Assist",
-            "DPS Assist",
-            "Manual Follow"
-        };
 
         public IReadOnlyList<string> SensesModeOptions { get; } = new[]
         {
@@ -99,6 +120,16 @@ namespace PsychoBuddy.UI
             "Verbose",
             "Debug"
         };
+
+        public IReadOnlyList<string> NavigationModeOptions { get; } = new[]
+        {
+            "Follow",
+            "Waypoint",
+            "Formation",
+            "Manual"
+        };
+
+        public IReadOnlyList<string> GameVersionOptions => GameVersionCatalog.All;
 
         public ClientBinding? SelectedAvailableClient
         {
@@ -170,6 +201,30 @@ namespace PsychoBuddy.UI
             }
         }
 
+        public bool IsProfilesPanelVisible
+        {
+            get => _isProfilesPanelVisible;
+            private set
+            {
+                if (_isProfilesPanelVisible == value) return;
+                _isProfilesPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ProfileDefinition? SelectedProfileDefinition
+        {
+            get => _selectedProfileDefinition;
+            set
+            {
+                if (_selectedProfileDefinition == value) return;
+                _selectedProfileDefinition = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedProfileDetails));
+                OnPropertyChanged(nameof(SelectedProfileDescription));
+            }
+        }
+
         public bool IsSettingsPanelVisible
         {
             get => _isSettingsPanelVisible;
@@ -213,6 +268,18 @@ namespace PsychoBuddy.UI
                 string next = NormalizeProfile(value);
                 if (_defaultProfile == next) return;
                 _defaultProfile = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public string TargetGameVersion
+        {
+            get => _targetGameVersion;
+            set
+            {
+                string next = GameVersionCatalog.Normalize(value);
+                if (_targetGameVersion == next) return;
+                _targetGameVersion = next;
                 OnPropertyChanged();
             }
         }
@@ -277,6 +344,229 @@ namespace PsychoBuddy.UI
 
         public bool IsPowerModeSelected => !string.Equals(PreferredSensesMode, "Stealth", StringComparison.OrdinalIgnoreCase);
 
+        public bool IsNavigationPanelVisible
+        {
+            get => _isNavigationPanelVisible;
+            private set
+            {
+                if (_isNavigationPanelVisible == value) return;
+                _isNavigationPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string NavigationMode
+        {
+            get => _navigationMode;
+            set
+            {
+                string next = NavigationModeOptions.Contains(value) ? value : "Follow";
+                if (_navigationMode == next) return;
+                _navigationMode = next;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NavigationSummary));
+            }
+        }
+
+        public int FollowDistance
+        {
+            get => _followDistance;
+            set
+            {
+                int next = Math.Clamp(value, 1, 100);
+                if (_followDistance == next) return;
+                _followDistance = next;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NavigationSummary));
+            }
+        }
+
+        public int FormationSpacing
+        {
+            get => _formationSpacing;
+            set
+            {
+                int next = Math.Clamp(value, 1, 50);
+                if (_formationSpacing == next) return;
+                _formationSpacing = next;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NavigationSummary));
+            }
+        }
+
+        public int WaypointRadius
+        {
+            get => _waypointRadius;
+            set
+            {
+                int next = Math.Clamp(value, 1, 50);
+                if (_waypointRadius == next) return;
+                _waypointRadius = next;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NavigationSummary));
+            }
+        }
+
+        public bool AutoFollowLeader
+        {
+            get => _autoFollowLeader;
+            set
+            {
+                if (_autoFollowLeader == value) return;
+                _autoFollowLeader = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NavigationSummary));
+            }
+        }
+
+        public bool AvoidOverlap
+        {
+            get => _avoidOverlap;
+            set
+            {
+                if (_avoidOverlap == value) return;
+                _avoidOverlap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShowNavigationPath
+        {
+            get => _showNavigationPath;
+            set
+            {
+                if (_showNavigationPath == value) return;
+                _showNavigationPath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LastRouteName
+        {
+            get => _lastRouteName;
+            set
+            {
+                string next = string.IsNullOrWhiteSpace(value) ? "Default Route" : value;
+                if (_lastRouteName == next) return;
+                _lastRouteName = next;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NavigationSummary));
+            }
+        }
+
+        public string? SelectedNavigationWaypoint
+        {
+            get => _selectedNavigationWaypoint;
+            set
+            {
+                if (_selectedNavigationWaypoint == value) return;
+                _selectedNavigationWaypoint = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string NavigationSummary => $"{NavigationMode} • Follow {FollowDistance} yd • Spacing {FormationSpacing} yd • Radius {WaypointRadius} yd";
+
+        public bool IsSensesPanelVisible
+        {
+            get => _isSensesPanelVisible;
+            private set
+            {
+                if (_isSensesPanelVisible == value) return;
+                _isSensesPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int SensesScanIntervalMs
+        {
+            get => _sensesScanIntervalMs;
+            set
+            {
+                int next = Math.Clamp(value, 10, 1000);
+                if (_sensesScanIntervalMs == next) return;
+                _sensesScanIntervalMs = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public int StealthPixelGridX
+        {
+            get => _stealthPixelGridX;
+            set
+            {
+                int next = Math.Max(0, value);
+                if (_stealthPixelGridX == next) return;
+                _stealthPixelGridX = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public int StealthPixelGridY
+        {
+            get => _stealthPixelGridY;
+            set
+            {
+                int next = Math.Max(0, value);
+                if (_stealthPixelGridY == next) return;
+                _stealthPixelGridY = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public int StealthPixelGridSize
+        {
+            get => _stealthPixelGridSize;
+            set
+            {
+                int next = Math.Clamp(value, 1, 64);
+                if (_stealthPixelGridSize == next) return;
+                _stealthPixelGridSize = next;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool EnableFlickerSuppression
+        {
+            get => _enableFlickerSuppression;
+            set
+            {
+                if (_enableFlickerSuppression == value) return;
+                _enableFlickerSuppression = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool EnableBlackoutCheck
+        {
+            get => _enableBlackoutCheck;
+            set
+            {
+                if (_enableBlackoutCheck == value) return;
+                _enableBlackoutCheck = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool UseWindowCapture
+        {
+            get => _useWindowCapture;
+            set
+            {
+                if (_useWindowCapture == value) return;
+                _useWindowCapture = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SensesSummary => $"{PreferredSensesMode} • {SensesScanIntervalMs}ms • Grid {StealthPixelGridSize}x{StealthPixelGridSize} @ {StealthPixelGridX},{StealthPixelGridY}";
+
+        public string ProfileCountText => $"Profiles loaded: {Profiles.Count}";
+        public string SelectedProfileDetails => SelectedProfileDefinition == null
+            ? "No profile selected"
+            : $"{SelectedProfileDefinition.DisplayName} — {SelectedProfileDefinition.MetadataSummary}";
+        public string SelectedProfileDescription => SelectedProfileDefinition?.Description ?? "Select a profile to view details.";
+
         public string AvailableClientCountText => $"Available clients: {AvailableClients.Count}";
         public string FleetCountText => $"Attached fleet: {Fleet.Count(f => f.IsRealClient)} / {MaxFleetSlots}";
         public string SelectedAvailableClientText => SelectedAvailableClient == null
@@ -316,8 +606,201 @@ namespace PsychoBuddy.UI
             AddLog(message);
         }
 
+        public void OpenProfilesPanel()
+        {
+            IsSettingsPanelVisible = false;
+            IsSensesPanelVisible = false;
+            IsNavigationPanelVisible = false;
+            ReloadProfiles();
+            IsProfilesPanelVisible = true;
+            StatusMessage = "Profiles panel opened.";
+            AddLog("Profiles panel opened.");
+        }
+
+        public void CloseProfilesPanel()
+        {
+            IsProfilesPanelVisible = false;
+            StatusMessage = "Profiles panel closed.";
+            AddLog("Profiles panel closed.");
+        }
+
+        public void ReloadProfiles(bool silent = false)
+        {
+            string current = SelectedProfile;
+            List<ProfileDefinition> loadedProfiles = _profileService.LoadProfiles();
+
+            Profiles.Clear();
+            ProfileOptions.Clear();
+
+            foreach (ProfileDefinition profile in loadedProfiles)
+            {
+                Profiles.Add(profile);
+                ProfileOptions.Add(profile.DisplayName);
+            }
+
+            if (ProfileOptions.Count == 0)
+            {
+                ProfileDefinition fallback = new ProfileDefinition();
+                Profiles.Add(fallback);
+                ProfileOptions.Add(fallback.DisplayName);
+            }
+
+            SelectedProfileDefinition = Profiles.FirstOrDefault(profile => profile.DisplayName == current) ?? Profiles.FirstOrDefault();
+            if (SelectedProfileDefinition != null)
+            {
+                SelectedProfile = SelectedProfileDefinition.DisplayName;
+            }
+
+            OnPropertyChanged(nameof(ProfileCountText));
+
+            if (!silent)
+            {
+                StatusMessage = $"Reloaded {Profiles.Count} profile(s).";
+                AddLog(StatusMessage);
+            }
+        }
+
+        public void UseSelectedProfileFromProfilesPanel()
+        {
+            if (SelectedProfileDefinition == null)
+            {
+                StatusMessage = "No profile selected.";
+                AddLog("Profile selection skipped: no profile selected.");
+                return;
+            }
+
+            SelectedProfile = SelectedProfileDefinition.DisplayName;
+            DefaultProfile = SelectedProfileDefinition.DisplayName;
+            IsProfilesPanelVisible = false;
+            StatusMessage = $"Selected profile: {SelectedProfileDefinition.DisplayName}.";
+            AddLog(StatusMessage);
+        }
+
+        public void OpenNavigationPanel()
+        {
+            IsProfilesPanelVisible = false;
+            IsSettingsPanelVisible = false;
+            IsSensesPanelVisible = false;
+            ApplySettingsToControllerState(_settings);
+            EnsureNavigationPlaceholders();
+            IsNavigationPanelVisible = true;
+            StatusMessage = "Navigation panel opened.";
+            AddLog("Navigation panel opened.");
+        }
+
+        public void CancelNavigationPanel()
+        {
+            ApplySettingsToControllerState(_settings);
+            IsNavigationPanelVisible = false;
+            StatusMessage = "Navigation changes cancelled.";
+            AddLog("Navigation panel closed without saving.");
+        }
+
+        public void SaveNavigationPanel()
+        {
+            _settings.NavigationMode = NavigationMode;
+            _settings.FollowDistance = FollowDistance;
+            _settings.FormationSpacing = FormationSpacing;
+            _settings.WaypointRadius = WaypointRadius;
+            _settings.AutoFollowLeader = AutoFollowLeader;
+            _settings.AvoidOverlap = AvoidOverlap;
+            _settings.ShowNavigationPath = ShowNavigationPath;
+            _settings.LastRouteName = LastRouteName;
+            _settingsService.Save(_settings);
+            IsNavigationPanelVisible = false;
+            StatusMessage = $"Navigation settings saved. {NavigationSummary}.";
+            AddLog(StatusMessage);
+        }
+
+        public void TestNavigationConfiguration()
+        {
+            EnsureNavigationPlaceholders();
+            StatusMessage = $"Navigation test: {NavigationSummary}. Pathfinding backend is still scaffolded.";
+            AddLog(StatusMessage);
+        }
+
+        public void AddNavigationWaypoint()
+        {
+            int next = NavigationWaypoints.Count + 1;
+            string waypoint = $"Waypoint {next}: awaiting live position";
+            NavigationWaypoints.Add(waypoint);
+            SelectedNavigationWaypoint = waypoint;
+            StatusMessage = $"Added placeholder {waypoint}.";
+            AddLog(StatusMessage);
+        }
+
+        public void RemoveNavigationWaypoint()
+        {
+            if (SelectedNavigationWaypoint == null)
+            {
+                StatusMessage = "No waypoint selected.";
+                AddLog("Remove waypoint skipped: no waypoint selected.");
+                return;
+            }
+
+            string removed = SelectedNavigationWaypoint;
+            NavigationWaypoints.Remove(removed);
+            SelectedNavigationWaypoint = NavigationWaypoints.FirstOrDefault();
+            StatusMessage = $"Removed {removed}.";
+            AddLog(StatusMessage);
+        }
+
+        public void ClearNavigationWaypoints()
+        {
+            NavigationWaypoints.Clear();
+            SelectedNavigationWaypoint = null;
+            StatusMessage = "Navigation waypoint list cleared.";
+            AddLog(StatusMessage);
+        }
+
+        public void OpenSensesPanel()
+        {
+            IsProfilesPanelVisible = false;
+            IsSettingsPanelVisible = false;
+            IsNavigationPanelVisible = false;
+            ApplySettingsToControllerState(_settings);
+            IsSensesPanelVisible = true;
+            StatusMessage = "Senses settings panel opened.";
+            AddLog("Senses settings panel opened.");
+        }
+
+        public void CancelSensesPanel()
+        {
+            ApplySettingsToControllerState(_settings);
+            IsSensesPanelVisible = false;
+            StatusMessage = "Senses settings changes cancelled.";
+            AddLog("Senses settings panel closed without saving.");
+        }
+
+        public void SaveSensesPanel()
+        {
+            _settings.PreferredSensesMode = PreferredSensesMode;
+            _settings.SensesScanIntervalMs = SensesScanIntervalMs;
+            _settings.StealthPixelGridX = StealthPixelGridX;
+            _settings.StealthPixelGridY = StealthPixelGridY;
+            _settings.StealthPixelGridSize = StealthPixelGridSize;
+            _settings.EnableFlickerSuppression = EnableFlickerSuppression;
+            _settings.EnableBlackoutCheck = EnableBlackoutCheck;
+            _settings.UseWindowCapture = UseWindowCapture;
+
+            _settingsService.Save(_settings);
+            ToggleSensesMode(IsPowerModeSelected);
+            IsSensesPanelVisible = false;
+            StatusMessage = $"Senses settings saved. {SensesSummary}.";
+            AddLog(StatusMessage);
+        }
+
+        public void TestSensesConfiguration()
+        {
+            StatusMessage = $"Senses test: {SensesSummary}. Backend capture is still scaffolded.";
+            AddLog(StatusMessage);
+        }
+
         public void OpenSettingsPanel()
         {
+            IsProfilesPanelVisible = false;
+            IsSensesPanelVisible = false;
+            IsNavigationPanelVisible = false;
             ApplySettingsToControllerState(_settings);
             IsSettingsPanelVisible = true;
             StatusMessage = "Settings panel opened.";
@@ -337,7 +820,23 @@ namespace PsychoBuddy.UI
             _settings.CustomWowExecutablePath = CustomWowExecutablePath.Trim();
             _settings.DefaultRole = NormalizeRole(DefaultRole);
             _settings.DefaultProfile = NormalizeProfile(DefaultProfile);
+            _settings.TargetGameVersion = GameVersionCatalog.Normalize(TargetGameVersion);
             _settings.PreferredSensesMode = PreferredSensesMode;
+            _settings.SensesScanIntervalMs = SensesScanIntervalMs;
+            _settings.StealthPixelGridX = StealthPixelGridX;
+            _settings.StealthPixelGridY = StealthPixelGridY;
+            _settings.StealthPixelGridSize = StealthPixelGridSize;
+            _settings.EnableFlickerSuppression = EnableFlickerSuppression;
+            _settings.EnableBlackoutCheck = EnableBlackoutCheck;
+            _settings.UseWindowCapture = UseWindowCapture;
+            _settings.NavigationMode = NavigationMode;
+            _settings.FollowDistance = FollowDistance;
+            _settings.FormationSpacing = FormationSpacing;
+            _settings.WaypointRadius = WaypointRadius;
+            _settings.AutoFollowLeader = AutoFollowLeader;
+            _settings.AvoidOverlap = AvoidOverlap;
+            _settings.ShowNavigationPath = ShowNavigationPath;
+            _settings.LastRouteName = LastRouteName;
             _settings.AutoScanOnStartup = AutoScanOnStartup;
             _settings.DebugMode = DebugMode;
             _settings.LogVerbosity = LogVerbosity;
@@ -474,6 +973,7 @@ namespace PsychoBuddy.UI
                 WindowHandle = SelectedAvailableClient.WindowHandle,
                 CharacterName = SelectedAvailableClient.CharacterName,
                 AssignedProfile = SelectedProfile,
+                TargetGameVersion = TargetGameVersion,
                 Status = BotStatus.Attached
             };
 
@@ -603,6 +1103,73 @@ namespace PsychoBuddy.UI
             RefreshSelectionText();
         }
 
+        public void TestSelectedProfileExecution()
+        {
+            RotationProfile profile = _profileService.BuildRotationProfile(SelectedProfile);
+            UnitData simulatedState = new UnitData
+            {
+                HealthCurrent = 50,
+                HealthMax = 100,
+                ManaCurrent = 90,
+                ManaMax = 100,
+                Level = 80
+            };
+
+            Ability? next = profile.GetNextAbility(simulatedState);
+            string abilityName = next?.Name ?? "none";
+            StatusMessage = $"Profile test: {profile.ProfileName} selected '{abilityName}' from {profile.Rules.Count} rule(s).";
+            AddLog(StatusMessage);
+        }
+
+        public void AddMockClient()
+        {
+            EnsureFleetSlots();
+            int slotIndex = FindFirstNonRealSlotIndex();
+            if (slotIndex < 0)
+            {
+                StatusMessage = "Fleet is full. Detach a client before adding a mock client.";
+                AddLog("Mock client skipped: all four fleet slots are occupied.");
+                return;
+            }
+
+            string role = NormalizeRole(SelectedRole);
+            string profile = NormalizeProfile(SelectedProfile);
+            int mockId = 900000 + _mockClientCounter++;
+            var binding = new ClientBinding
+            {
+                Pid = mockId,
+                WindowHandle = IntPtr.Zero,
+                CharacterName = $"Mock {role} {slotIndex + 1}",
+                AssignedProfile = profile,
+                TargetGameVersion = TargetGameVersion,
+                IsMockClient = true,
+                Status = BotStatus.Attached
+            };
+
+            var card = new FleetCardViewModel
+            {
+                Binding = binding,
+                Role = role,
+                AssignedProfile = profile,
+                Level = 80,
+                Status = "Mock / Idle"
+            };
+
+            card.Update(new UnitData
+            {
+                HealthCurrent = 100,
+                HealthMax = 100,
+                ManaCurrent = 100,
+                ManaMax = 100,
+                Level = 80
+            });
+
+            ReplaceFleetSlot(slotIndex, card);
+            SelectedFleetCard = card;
+            StatusMessage = $"Added mock client in fleet slot {slotIndex + 1}.";
+            AddLog($"Added mock client '{binding.CharacterName}' with profile '{profile}' for {TargetGameVersion}.");
+        }
+
         public void LoadStandbyFleet(string statusMessage = "Empty/offline fleet slots loaded.")
         {
             if (Fleet.Any(f => f.IsRealClient))
@@ -639,15 +1206,30 @@ namespace PsychoBuddy.UI
 
             try
             {
-                _orchestrator.UpdateFleet();
+                var realRunningCards = runningCards
+                    .Where(card => card.Binding?.IsMockClient != true)
+                    .ToList();
+                var mockRunningCards = runningCards
+                    .Where(card => card.Binding?.IsMockClient == true)
+                    .ToList();
 
-                foreach (var card in runningCards)
+                if (realRunningCards.Count > 0)
                 {
-                    UnitData? data = _orchestrator.GetLastUnitData(card.Binding!.Pid);
-                    if (data != null) card.Update(data);
+                    _orchestrator.UpdateFleet();
+
+                    foreach (var card in realRunningCards)
+                    {
+                        UnitData? data = _orchestrator.GetLastUnitData(card.Binding!.Pid);
+                        if (data != null) card.Update(data);
+                    }
                 }
 
-                StatusMessage = $"Fleet tick processed: {runningCards.Count} running client(s).";
+                foreach (var card in mockRunningCards)
+                {
+                    SimulateMockClientTick(card);
+                }
+
+                StatusMessage = $"Fleet tick processed: {runningCards.Count} running client(s) ({mockRunningCards.Count} mock).";
                 AddLog(StatusMessage);
             }
             catch (Exception ex)
@@ -659,13 +1241,17 @@ namespace PsychoBuddy.UI
 
         public void ToggleSensesMode(bool powerMode)
         {
+            PreferredSensesMode = powerMode ? "Power" : "Stealth";
             SensesModeText = powerMode ? "Power Mode selected" : "Stealth Mode selected";
+            OnPropertyChanged(nameof(SensesSummary));
+            OnPropertyChanged(nameof(NavigationSummary));
             AddLog($"Senses mode changed: {SensesModeText}.");
         }
 
         private bool StartFleetCard(FleetCardViewModel card, bool quiet = false)
         {
-            if (card.Binding == null || !card.IsRealClient)
+            ClientBinding? binding = card.Binding;
+            if (binding == null || !card.IsRealClient)
             {
                 if (!quiet)
                 {
@@ -675,14 +1261,26 @@ namespace PsychoBuddy.UI
                 return false;
             }
 
+            if (binding.IsMockClient)
+            {
+                card.SetStatus(BotStatus.Running, "Running");
+                RefreshSelectionText();
+                if (!quiet)
+                {
+                    StatusMessage = $"Started mock client {card.CharacterName}.";
+                    AddLog($"Started mock client {card.CharacterName} with profile '{card.AssignedProfile}'.");
+                }
+                return true;
+            }
+
             try
             {
                 BotRole role = ParseRole(card.Role);
-                RotationProfile profile = CreateBasicProfile(card.AssignedProfile);
+                RotationProfile profile = _profileService.BuildRotationProfile(card.AssignedProfile);
 
-                if (!_orchestrator.IsRegistered(card.Binding.Pid))
+                if (!_orchestrator.IsRegistered(binding.Pid))
                 {
-                    _orchestrator.RegisterBot(card.Binding, profile, role);
+                    _orchestrator.RegisterBot(binding, profile, role);
                 }
 
                 card.SetStatus(BotStatus.Running, "Running");
@@ -706,7 +1304,8 @@ namespace PsychoBuddy.UI
 
         private bool StopFleetCard(FleetCardViewModel card, bool quiet = false)
         {
-            if (card.Binding == null || !card.IsRealClient)
+            ClientBinding? binding = card.Binding;
+            if (binding == null || !card.IsRealClient)
             {
                 if (!quiet)
                 {
@@ -716,7 +1315,10 @@ namespace PsychoBuddy.UI
                 return false;
             }
 
-            _orchestrator.UnregisterBot(card.Binding.Pid);
+            if (!binding.IsMockClient)
+            {
+                _orchestrator.UnregisterBot(binding.Pid);
+            }
             card.SetStatus(BotStatus.Stopped, "Stopped");
             RefreshSelectionText();
 
@@ -756,7 +1358,8 @@ namespace PsychoBuddy.UI
                     Status = BotStatus.Disconnected,
                     WindowHandle = IntPtr.Zero,
                     Pid = 0,
-                    AssignedProfile = "No Profile"
+                    AssignedProfile = "No Profile",
+                    TargetGameVersion = TargetGameVersion
                 },
                 SlotNumber = slotIndex + 1,
                 Role = "No Session",
@@ -811,15 +1414,30 @@ namespace PsychoBuddy.UI
             return Enum.TryParse(role, ignoreCase: true, out BotRole parsed) ? parsed : BotRole.DPS;
         }
 
-        private static RotationProfile CreateBasicProfile(string profileName)
+        private void SimulateMockClientTick(FleetCardViewModel card)
         {
-            var profile = new RotationProfile { ProfileName = profileName };
-            profile.Rules.Add(new PriorityRule
+            float health = Math.Clamp(card.HealthPercent + _mockRandom.Next(-8, 5), 5, 100);
+            float mana = Math.Clamp(card.ManaPercent + _mockRandom.Next(-6, 7), 0, 100);
+
+            card.Update(new UnitData
             {
-                AbilityToCast = new Ability { Name = "Basic Action", KeyCode = 0x31, Cooldown = 1.0f },
-                Condition = _ => true
+                HealthCurrent = health,
+                HealthMax = 100,
+                ManaCurrent = mana,
+                ManaMax = 100,
+                Level = card.Level > 0 ? card.Level : 80,
+                IsDead = health <= 0
             });
-            return profile;
+        }
+
+        private void EnsureNavigationPlaceholders()
+        {
+            if (NavigationWaypoints.Count > 0) return;
+
+            NavigationWaypoints.Add("Waypoint 1: awaiting live position");
+            NavigationWaypoints.Add("Waypoint 2: awaiting live position");
+            NavigationWaypoints.Add("Waypoint 3: awaiting live position");
+            SelectedNavigationWaypoint = NavigationWaypoints.FirstOrDefault();
         }
 
         private void ApplySettingsToControllerState(AppSettings settings)
@@ -827,7 +1445,23 @@ namespace PsychoBuddy.UI
             CustomWowExecutablePath = settings.CustomWowExecutablePath;
             DefaultRole = NormalizeRole(settings.DefaultRole);
             DefaultProfile = NormalizeProfile(settings.DefaultProfile);
+            TargetGameVersion = GameVersionCatalog.Normalize(settings.TargetGameVersion);
             PreferredSensesMode = string.Equals(settings.PreferredSensesMode, "Stealth", StringComparison.OrdinalIgnoreCase) ? "Stealth" : "Power";
+            SensesScanIntervalMs = settings.SensesScanIntervalMs;
+            StealthPixelGridX = settings.StealthPixelGridX;
+            StealthPixelGridY = settings.StealthPixelGridY;
+            StealthPixelGridSize = settings.StealthPixelGridSize;
+            EnableFlickerSuppression = settings.EnableFlickerSuppression;
+            EnableBlackoutCheck = settings.EnableBlackoutCheck;
+            UseWindowCapture = settings.UseWindowCapture;
+            NavigationMode = string.IsNullOrWhiteSpace(settings.NavigationMode) ? "Follow" : settings.NavigationMode;
+            FollowDistance = settings.FollowDistance;
+            FormationSpacing = settings.FormationSpacing;
+            WaypointRadius = settings.WaypointRadius;
+            AutoFollowLeader = settings.AutoFollowLeader;
+            AvoidOverlap = settings.AvoidOverlap;
+            ShowNavigationPath = settings.ShowNavigationPath;
+            LastRouteName = settings.LastRouteName;
             AutoScanOnStartup = settings.AutoScanOnStartup;
             DebugMode = settings.DebugMode;
             LogVerbosity = string.IsNullOrWhiteSpace(settings.LogVerbosity) ? "Normal" : settings.LogVerbosity;
@@ -835,6 +1469,8 @@ namespace PsychoBuddy.UI
             SelectedRole = DefaultRole;
             SelectedProfile = DefaultProfile;
             SensesModeText = IsPowerModeSelected ? "Power Mode selected" : "Stealth Mode selected";
+            OnPropertyChanged(nameof(SensesSummary));
+            OnPropertyChanged(nameof(NavigationSummary));
         }
 
         private string NormalizeRole(string? role)

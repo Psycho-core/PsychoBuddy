@@ -1,0 +1,31 @@
+{
+  "id": "dps-assist",
+  "displayName": "DPS Assist",
+  "description": "Damage-dealer placeholder profile for future target assist, cooldown, and rotation behavior.",
+  "role": "DPS",
+  "version": "Legion/BFA",
+  "specialization": "Generic DPS",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": ["dps", "assist", "placeholder"],
+  "rules": [
+    {
+      "priority": 20,
+      "abilityName": "Resource Dump",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "ManaAbove",
+      "threshold": 80
+    },
+    {
+      "priority": 100,
+      "abilityName": "DPS Filler",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "bfa-warrior-protection",
+  "displayName": "BFA Warrior Protection",
+  "description": "Auto-generated Warrior Protection BFA_8_3_7 rotation scaffold from data/bfa/warrior_bfa.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "role": "Tank",
+  "version": "BFA_8_3_7",
+  "specialization": "Protection",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": [
+    "bfa",
+    "warrior",
+    "protection",
+    "generated",
+    "rotation-scaffold"
+  ],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Shield Slam",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 20,
+      "abilityName": "Revenge",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 30,
+      "abilityName": "Thunder Clap",
+      "spellId": 0,
+      "keyCode": 51,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 40,
+      "abilityName": "Devastate",
+      "spellId": 0,
+      "keyCode": 52,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 50,
+      "abilityName": "Shield Block",
+      "spellId": 0,
+      "keyCode": 53,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

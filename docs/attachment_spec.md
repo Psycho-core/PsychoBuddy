@@ -50,7 +50,7 @@ The client is moved from `Available Clients` to the attached fleet list.
 ### Step 4: Start / Pause / Stop
 The selected fleet card can be controlled from the dashboard.
 
-* **Start Selected:** Registers the client with the `Orchestrator`, creates a basic `RotationProfile`, and marks status as `Running`.
+* **Start Selected:** Registers the client with the `Orchestrator`, builds a `RotationProfile` from the selected JSON profile through `ProfileService`, and marks status as `Running`.
 * **Pause Selected:** Leaves the client attached but marks status as `Paused`.
 * **Stop Selected:** Unregisters the client from the `Orchestrator` and marks status as `Stopped`.
 * **Start All / Stop All:** Applies start/stop to all real attached clients.

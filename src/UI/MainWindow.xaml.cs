@@ -87,17 +87,17 @@ namespace PsychoBuddy.UI
 
         private void ProfilesButton_Click(object sender, RoutedEventArgs e)
         {
-            _controller.NotifyPlaceholder("Profiles panel");
+            _controller.OpenProfilesPanel();
         }
 
         private void NavigationButton_Click(object sender, RoutedEventArgs e)
         {
-            _controller.NotifyPlaceholder("Navigation panel");
+            _controller.OpenNavigationPanel();
         }
 
         private void SensesNavButton_Click(object sender, RoutedEventArgs e)
         {
-            _controller.NotifyPlaceholder("Senses settings panel");
+            _controller.OpenSensesPanel();
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -105,6 +105,68 @@ namespace PsychoBuddy.UI
             _controller.OpenSettingsPanel();
         }
 
+
+        private void UseSelectedProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.UseSelectedProfileFromProfilesPanel();
+        }
+
+        private void ReloadProfilesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ReloadProfiles();
+        }
+
+        private void CloseProfilesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CloseProfilesPanel();
+        }
+
+        private void SaveNavigationButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SaveNavigationPanel();
+        }
+
+        private void CancelNavigationButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CancelNavigationPanel();
+        }
+
+        private void TestNavigationButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.TestNavigationConfiguration();
+        }
+
+        private void AddWaypointButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.AddNavigationWaypoint();
+        }
+
+        private void RemoveWaypointButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.RemoveNavigationWaypoint();
+        }
+
+        private void ClearWaypointsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ClearNavigationWaypoints();
+        }
+
+        private void SaveSensesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SaveSensesPanel();
+            SensesToggle.IsChecked = _controller.IsPowerModeSelected;
+        }
+
+        private void CancelSensesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CancelSensesPanel();
+            SensesToggle.IsChecked = _controller.IsPowerModeSelected;
+        }
+
+        private void TestSensesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.TestSensesConfiguration();
+        }
 
         private void BrowseWowPathButton_Click(object sender, RoutedEventArgs e)
         {
@@ -152,6 +214,16 @@ namespace PsychoBuddy.UI
         private void AttachButton_Click(object sender, RoutedEventArgs e)
         {
             _controller.AttachSelectedClient();
+        }
+
+        private void AddMockClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.AddMockClient();
+        }
+
+        private void TestProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.TestSelectedProfileExecution();
         }
 
         private void DetachButton_Click(object sender, RoutedEventArgs e)

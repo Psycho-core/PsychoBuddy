@@ -20,7 +20,11 @@ namespace PsychoBuddy.Core
         public string? AssignedProfile { get; set; }
         public BotStatus Status { get; set; } = BotStatus.Disconnected;
         public bool IsForeground { get; set; }
+        public bool IsMockClient { get; set; }
+        public string? TargetGameVersion { get; set; }
 
-        public override string ToString() => $"[{Status}] {CharacterName ?? "Unknown"} (PID: {Pid})";
+        public override string ToString() => IsMockClient
+            ? $"[{Status}] {CharacterName ?? "Mock Client"} (Mock)"
+            : $"[{Status}] {CharacterName ?? "Unknown"} (PID: {Pid})";
     }
 }

@@ -28,10 +28,17 @@ Refer to LICENSE.MYCODE.txt for full terms.
     <Resource Include="assets\UI_Option_1_1.png" />
     <Resource Include="assets\UI_Option_1_5.png" />
     <Resource Include="assets\Settings-Panel-final.png" />
+    <Resource Include="assets\Profiles_Panel.png" />
+    <Resource Include="assets\Senses_Panel.png" />
+    <Resource Include="assets\Navigation_Panel.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="profiles\**\*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <!--

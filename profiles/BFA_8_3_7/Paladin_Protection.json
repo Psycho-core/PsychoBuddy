@@ -1,0 +1,64 @@
+{
+  "id": "bfa-paladin-protection",
+  "displayName": "BFA Paladin Protection",
+  "description": "Auto-generated Paladin Protection BFA_8_3_7 rotation scaffold from data/bfa/paladin_bfa.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "role": "Tank",
+  "version": "BFA_8_3_7",
+  "specialization": "Protection",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": [
+    "bfa",
+    "paladin",
+    "protection",
+    "generated",
+    "rotation-scaffold"
+  ],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Hammer of Wrath",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 20,
+      "abilityName": "Judgment",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 2.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 30,
+      "abilityName": "Avenger's Shield",
+      "spellId": 0,
+      "keyCode": 51,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 40,
+      "abilityName": "Hammer of the Righteous / Blessed Hammer",
+      "spellId": 0,
+      "keyCode": 52,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    },
+    {
+      "priority": 50,
+      "abilityName": "Shield of the Righteous",
+      "spellId": 0,
+      "keyCode": 53,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

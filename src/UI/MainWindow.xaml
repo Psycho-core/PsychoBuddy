@@ -54,7 +54,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
             <Button Canvas.Left="8" Canvas.Top="544" Width="118" Height="128" Style="{StaticResource InvisibleHitboxButton}" Click="SettingsButton_Click"/>
 
             <!-- Fleet Monitor live cards aligned to the four parchment card slots. -->
-            <ListBox Canvas.Left="174" Canvas.Top="166" Width="700" Height="472"
+            <ListBox Canvas.Left="184" Canvas.Top="172" Width="670" Height="438"
                      ItemsSource="{Binding Fleet}"
                      SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
                      Background="Transparent"
@@ -195,7 +195,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
             </ListBox>
 
             <!-- Client Attachment remains visible for debugging in the map/parchment area. -->
-            <Grid Canvas.Left="895" Canvas.Top="170" Width="380" Height="430">
+            <Grid Canvas.Left="922" Canvas.Top="170" Width="360" Height="430">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -249,7 +249,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
 
                     <StackPanel Grid.Row="1" Grid.Column="2">
                         <TextBlock Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold" Margin="0,0,0,6"/>
-                        <UniformGrid Rows="5" Columns="2">
+                        <UniformGrid Rows="6" Columns="2">
                             <Button Content="1. SCAN" Style="{StaticResource SmallFantasyButton}" Click="ScanButton_Click"/>
                             <Button Content="2. ATTACH" Style="{StaticResource SmallFantasyButton}" Click="AttachButton_Click"/>
                             <Button Content="3. START" Style="{StaticResource SmallFantasyButton}" Click="StartButton_Click"/>
@@ -258,8 +258,10 @@ Refer to LICENSE.MYCODE.txt for full terms.
                             <Button Content="DETACH" Style="{StaticResource SmallFantasyButton}" Click="DetachButton_Click"/>
                             <Button Content="START ALL" Style="{StaticResource SmallFantasyButton}" Click="StartAllButton_Click"/>
                             <Button Content="STOP ALL" Style="{StaticResource SmallFantasyButton}" Click="StopAllButton_Click"/>
-                            <Button Content="EMPTY" Style="{StaticResource SmallFantasyButton}" Click="EmptyButton_Click"/>
+                            <Button Content="ADD MOCK" Style="{StaticResource SmallFantasyButton}" Click="AddMockClientButton_Click"/>
                             <Button Content="TICK" Style="{StaticResource SmallFantasyButton}" Click="TickButton_Click"/>
+                            <Button Content="EMPTY" Style="{StaticResource SmallFantasyButton}" Click="EmptyButton_Click"/>
+                            <Button Content="TEST PROFILE" Style="{StaticResource SmallFantasyButton}" Click="TestProfileButton_Click"/>
                         </UniformGrid>
                     </StackPanel>
                 </Grid>
@@ -277,14 +279,38 @@ Refer to LICENSE.MYCODE.txt for full terms.
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="STEALTH&#x0a;MODE" Foreground="#D8D0C7" TextAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="STEALTH&#x0a;MODE" TextAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#8C8278"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPowerModeSelected}" Value="False">
+                                        <Setter Property="Foreground" Value="#FFB090"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <ToggleButton Grid.Column="1" x:Name="SensesToggle" Content="SENSE" IsChecked="True" Width="86" Height="34" Click="SensesToggle_Click"/>
-                    <TextBlock Grid.Column="2" Text="POWER&#x0a;MODE" Foreground="#FFB090" TextAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Text="POWER&#x0a;MODE" TextAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#8C8278"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPowerModeSelected}" Value="True">
+                                        <Setter Property="Foreground" Value="#FFB090"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </Grid>
                 <TextBlock Grid.Row="1" Text="{Binding SensesModeText}" Foreground="#CCCCCC" TextAlignment="Center" FontSize="12"/>
             </Grid>
 
-            <StackPanel Canvas.Left="1325" Canvas.Top="345" Width="300">
+            <StackPanel Canvas.Left="1340" Canvas.Top="345" Width="290">
                 <TextBlock Text="◉ Scan Range             120m" Foreground="#D8D0C7" Margin="0,0,0,8"/>
                 <TextBlock Text="⚠ Threat Level           Standby" Foreground="#D8D0C7" Margin="0,0,0,8"/>
                 <TextBlock Text="❖ Nearby Hostiles        0" Foreground="#D8D0C7" Margin="0,0,0,8"/>
@@ -320,6 +346,196 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     <TextBlock Text="{Binding StatusMessage}"/>
                 </StatusBarItem>
             </StatusBar>
+
+
+            <!-- Navigation modal panel. Background art supplies the visible frame; controls remain functional overlays. -->
+            <Canvas Canvas.Left="0" Canvas.Top="0" Width="1700" Height="925">
+                <Canvas.Style>
+                    <Style TargetType="Canvas">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsNavigationPanelVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Canvas.Style>
+
+                <Image Source="pack://application:,,,/assets/Navigation_Panel.png"
+                       Width="1700"
+                       Height="925"
+                       Stretch="Fill"
+                       IsHitTestVisible="False"/>
+
+                <Grid Canvas.Left="285" Canvas.Top="180" Width="1130" Height="560">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Navigation Configuration" Foreground="#3D2D18" FontSize="22" FontWeight="Bold" Margin="0,0,0,16"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="Navigation Mode" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <ComboBox ItemsSource="{Binding NavigationModeOptions}" SelectedItem="{Binding NavigationMode, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
+
+                        <TextBlock Text="Route Name" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <TextBox Text="{Binding LastRouteName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,16"/>
+
+                        <Grid Margin="0,0,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Follow Distance (yd)" Foreground="#3D2D18" FontWeight="Bold"/>
+                                <TextBox Text="{Binding FollowDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Formation Spacing (yd)" Foreground="#3D2D18" FontWeight="Bold"/>
+                                <TextBox Text="{Binding FormationSpacing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <TextBlock Text="Waypoint Radius (yd)" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <TextBox Text="{Binding WaypointRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,16"/>
+
+                        <CheckBox Content="Auto-follow leader" IsChecked="{Binding AutoFollowLeader, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <CheckBox Content="Avoid overlap / local collision" IsChecked="{Binding AvoidOverlap, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <CheckBox Content="Show navigation path overlay" IsChecked="{Binding ShowNavigationPath, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,10"/>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Waypoint Scaffold" Foreground="#3D2D18" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding NavigationWaypoints}"
+                                 SelectedItem="{Binding SelectedNavigationWaypoint, Mode=TwoWay}"
+                                 Background="#55F5DEB3"
+                                 BorderBrush="#8B4513"
+                                 BorderThickness="1"
+                                 Foreground="#2B1B12"/>
+
+                        <UniformGrid Grid.Row="2" Rows="1" Columns="3" Margin="0,12,0,18">
+                            <Button Content="ADD" Height="30" Style="{StaticResource SmallFantasyButton}" Click="AddWaypointButton_Click"/>
+                            <Button Content="REMOVE" Height="30" Style="{StaticResource SmallFantasyButton}" Click="RemoveWaypointButton_Click"/>
+                            <Button Content="CLEAR" Height="30" Style="{StaticResource SmallFantasyButton}" Click="ClearWaypointsButton_Click"/>
+                        </UniformGrid>
+
+                        <StackPanel Grid.Row="3">
+                            <TextBlock Text="Summary" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding NavigationSummary}" Foreground="#4B3920" TextWrapping="Wrap"/>
+                            <TextBlock Text="Navigation is currently a configuration/scaffold page. Real pathfinding, route recording, and movement execution are future work." Foreground="#6E2E1A" TextWrapping="Wrap" Margin="0,12,0,0"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                        <Button Content="TEST CONFIG" Width="130" Height="34" Style="{StaticResource SmallFantasyButton}" Click="TestNavigationButton_Click"/>
+                        <Button Content="SAVE NAV" Width="130" Height="34" Style="{StaticResource SmallFantasyButton}" Click="SaveNavigationButton_Click"/>
+                        <Button Content="CANCEL" Width="110" Height="34" Style="{StaticResource SmallFantasyButton}" Click="CancelNavigationButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Invisible hitbox over the art-provided bottom X. -->
+                <Button Canvas.Left="806" Canvas.Top="790" Width="88" Height="88" Style="{StaticResource InvisibleHitboxButton}" Click="CancelNavigationButton_Click"/>
+            </Canvas>
+
+
+            <!-- Senses modal panel. Background art supplies the visible frame; controls remain functional overlays. -->
+            <Canvas Canvas.Left="0" Canvas.Top="0" Width="1700" Height="925">
+                <Canvas.Style>
+                    <Style TargetType="Canvas">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSensesPanelVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Canvas.Style>
+
+                <Image Source="pack://application:,,,/assets/Senses_Panel.png"
+                       Width="1700"
+                       Height="925"
+                       Stretch="Fill"
+                       IsHitTestVisible="False"/>
+
+                <Grid Canvas.Left="285" Canvas.Top="180" Width="1130" Height="560">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Senses Configuration" Foreground="#3D2D18" FontSize="22" FontWeight="Bold" Margin="0,0,0,16"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="Acquisition Mode" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <ComboBox ItemsSource="{Binding SensesModeOptions}" SelectedItem="{Binding PreferredSensesMode, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
+
+                        <TextBlock Text="Scan Interval (ms)" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <TextBox Text="{Binding SensesScanIntervalMs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,16"/>
+
+                        <TextBlock Text="Stealth Pixel Grid Offset" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <Grid Margin="0,4,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="X" Foreground="#3D2D18" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox Grid.Column="1" Text="{Binding StealthPixelGridX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+                            <TextBlock Grid.Column="3" Text="Y" Foreground="#3D2D18" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox Grid.Column="4" Text="{Binding StealthPixelGridY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+                        </Grid>
+
+                        <TextBlock Text="Pixel Grid Size" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <TextBox Text="{Binding StealthPixelGridSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,16"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Reliability / Capture" Foreground="#3D2D18" FontWeight="Bold" FontSize="18" Margin="0,0,0,12"/>
+                        <CheckBox Content="Use window capture for Stealth Mode" IsChecked="{Binding UseWindowCapture, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,12"/>
+                        <CheckBox Content="Enable 2-frame flicker suppression" IsChecked="{Binding EnableFlickerSuppression, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,12"/>
+                        <CheckBox Content="Enable blackout/data-loss check" IsChecked="{Binding EnableBlackoutCheck, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,18"/>
+
+                        <TextBlock Text="Current Summary" Foreground="#3D2D18" FontWeight="Bold" Margin="0,20,0,4"/>
+                        <TextBlock Text="{Binding SensesSummary}" Foreground="#4B3920" TextWrapping="Wrap" Width="500"/>
+
+                        <TextBlock Text="Note" Foreground="#3D2D18" FontWeight="Bold" Margin="0,22,0,4"/>
+                        <TextBlock Text="These settings configure the active dashboard mode and future Power/Stealth acquisition pipeline. The real capture/addon backend is still under development." Foreground="#6E2E1A" TextWrapping="Wrap" Width="500"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                        <Button Content="TEST CONFIG" Width="130" Height="34" Style="{StaticResource SmallFantasyButton}" Click="TestSensesButton_Click"/>
+                        <Button Content="SAVE SENSES" Width="140" Height="34" Style="{StaticResource SmallFantasyButton}" Click="SaveSensesButton_Click"/>
+                        <Button Content="CANCEL" Width="110" Height="34" Style="{StaticResource SmallFantasyButton}" Click="CancelSensesButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Invisible hitbox over the art-provided bottom X. -->
+                <Button Canvas.Left="806" Canvas.Top="790" Width="88" Height="88" Style="{StaticResource InvisibleHitboxButton}" Click="CancelSensesButton_Click"/>
+            </Canvas>
 
 
             <!-- Settings modal panel. Background art supplies the visible frame; controls remain functional overlays. -->
@@ -370,6 +586,9 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     <ComboBox Grid.Row="4" Grid.Column="2" ItemsSource="{Binding ProfileOptions}" SelectedItem="{Binding DefaultProfile, Mode=TwoWay}" Height="30" Margin="0,4,0,14"/>
 
                     <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,10,8,0">
+                        <TextBlock Text="Target Game Version" Foreground="#3D2D18" FontWeight="Bold"/>
+                        <ComboBox ItemsSource="{Binding GameVersionOptions}" SelectedItem="{Binding TargetGameVersion, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
+
                         <TextBlock Text="Preferred Senses Mode" Foreground="#3D2D18" FontWeight="Bold"/>
                         <ComboBox ItemsSource="{Binding SensesModeOptions}" SelectedItem="{Binding PreferredSensesMode, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
 
@@ -394,6 +613,86 @@ Refer to LICENSE.MYCODE.txt for full terms.
 
                 <!-- Invisible hitbox over the art-provided bottom X. -->
                 <Button Canvas.Left="806" Canvas.Top="790" Width="88" Height="88" Style="{StaticResource InvisibleHitboxButton}" Click="CancelSettingsButton_Click"/>
+            </Canvas>
+
+
+            <!-- Profiles modal panel. Background art supplies the visible frame; controls remain functional overlays. -->
+            <Canvas Canvas.Left="0" Canvas.Top="0" Width="1700" Height="925">
+                <Canvas.Style>
+                    <Style TargetType="Canvas">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsProfilesPanelVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Canvas.Style>
+
+                <Image Source="pack://application:,,,/assets/Profiles_Panel.png"
+                       Width="1700"
+                       Height="925"
+                       Stretch="Fill"
+                       IsHitTestVisible="False"/>
+
+                <Grid Canvas.Left="285" Canvas.Top="180" Width="1130" Height="560">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="420"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,16">
+                        <TextBlock Text="Profile Library" Foreground="#3D2D18" FontSize="22" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ProfileCountText}" Foreground="#5C4930" FontSize="12"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="1" Grid.Column="0"
+                             ItemsSource="{Binding Profiles}"
+                             SelectedItem="{Binding SelectedProfileDefinition, Mode=TwoWay}"
+                             Background="#55F5DEB3"
+                             BorderBrush="#8B4513"
+                             BorderThickness="1"
+                             Foreground="#2B1B12"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="8" Margin="2" BorderBrush="#7A5A2A" BorderThickness="0,0,0,1">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" FontSize="15" Foreground="#3D2D18"/>
+                                        <TextBlock Text="{Binding MetadataSummary}" FontSize="11" Foreground="#5C4930"/>
+                                        <TextBlock Text="{Binding TagSummary}" FontSize="10" Foreground="#6E5532" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Selected Profile" Foreground="#3D2D18" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding SelectedProfileDetails}" Foreground="#3D2D18" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" Margin="0,0,0,6"/>
+                        <TextBlock Text="{Binding SelectedProfileDefinition.RuleSummary}" Foreground="#5C4930" FontSize="12" FontWeight="Bold" Margin="0,0,0,12"/>
+                        <TextBlock Text="Description" Foreground="#3D2D18" FontWeight="Bold" Margin="0,10,0,4"/>
+                        <TextBlock Text="{Binding SelectedProfileDescription}" Foreground="#4B3920" TextWrapping="Wrap" FontSize="13" Width="590"/>
+
+                        <TextBlock Text="Current dashboard profile dropdown is populated from these JSON files." Foreground="#4B3920" TextWrapping="Wrap" Margin="0,28,0,0"/>
+                        <TextBlock Text="Profile behavior is still placeholder-level until real rotation/profile execution is implemented." Foreground="#6E2E1A" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                        <Button Content="USE SELECTED" Width="140" Height="34" Style="{StaticResource SmallFantasyButton}" Click="UseSelectedProfileButton_Click"/>
+                        <Button Content="RELOAD" Width="100" Height="34" Style="{StaticResource SmallFantasyButton}" Click="ReloadProfilesButton_Click"/>
+                        <Button Content="CLOSE" Width="100" Height="34" Style="{StaticResource SmallFantasyButton}" Click="CloseProfilesButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Invisible hitbox over the art-provided bottom X. -->
+                <Button Canvas.Left="806" Canvas.Top="790" Width="88" Height="88" Style="{StaticResource InvisibleHitboxButton}" Click="CloseProfilesButton_Click"/>
             </Canvas>
 
         </Canvas>

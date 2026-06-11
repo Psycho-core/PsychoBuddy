@@ -16,7 +16,12 @@
 - **Temporary build copy removed:** `PsychoBuddy-Built/` was only a test-build output folder and is no longer part of the source tree.
 - **License location:** `LICENSE.MYCODE.txt` in the repository root is the authoritative license referenced by source headers.
 - **Settings milestone:** real Settings panel + `settings.json` persistence has been started/implemented at dashboard level. See `docs/CURRENT_STATUS_AND_NEXT_STEPS.md`.
-- **Next functional milestone:** Profiles page + JSON profile loading.
+- **Profiles milestone:** Profiles panel + recursive JSON profile loading has been started/implemented; profile JSON can now build placeholder executable `RotationProfile` rules; generated Legion/BFA class/spec scaffold profiles exist under `profiles/Legion_7_3_5/` and `profiles/BFA_8_3_7/`.
+- **Senses milestone:** Senses settings panel + Power/Stealth configuration has been started/implemented at dashboard configuration level.
+- **Navigation milestone:** Navigation settings scaffold has been started/implemented at dashboard configuration level.
+- **GameVersion milestone:** target game version selection now covers 1.12, 2.4.3, 3.3.5a, 4.3.4, 5.4.8, 7.3.5, and 8.3.7.
+- **Offline testing milestone:** mock client simulation and selected profile rule test logging are available for no-server development.
+- **Next functional milestone:** Expand generated class/spec profile scaffolds with exact spell IDs, keybind mapping, aura/proc conditions, target conditions, and validated class logic.
 
 ---
 

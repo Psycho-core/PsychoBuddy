@@ -1,0 +1,31 @@
+{
+  "id": "healer-assist",
+  "displayName": "Healer Assist",
+  "description": "Healer-oriented placeholder profile for future party triage and tank-priority healing behavior.",
+  "role": "Healer",
+  "version": "Legion/BFA",
+  "specialization": "Generic Healer",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": ["healer", "assist", "placeholder"],
+  "rules": [
+    {
+      "priority": 10,
+      "abilityName": "Emergency Heal",
+      "spellId": 0,
+      "keyCode": 50,
+      "cooldownSeconds": 3.0,
+      "condition": "HealthBelow",
+      "threshold": 55
+    },
+    {
+      "priority": 100,
+      "abilityName": "Healer Filler",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 1.5,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "basic-rotation",
+  "displayName": "Basic Rotation",
+  "description": "Starter profile used for dashboard testing. Uses a basic action placeholder until real rotations are implemented.",
+  "role": "DPS",
+  "version": "Any",
+  "specialization": "Generic",
+  "author": "Psycho-core",
+  "isEnabled": true,
+  "tags": ["starter", "test", "generic"],
+  "rules": [
+    {
+      "priority": 100,
+      "abilityName": "Basic Action",
+      "spellId": 0,
+      "keyCode": 49,
+      "cooldownSeconds": 1.0,
+      "condition": "Always",
+      "threshold": 0
+    }
+  ]
+}

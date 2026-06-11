@@ -15,6 +15,24 @@ The current working shell artwork used during the skin pass is:
 assets/UI_Option_1_5.png
 ```
 
+The Profiles modal artwork is:
+
+```text
+assets/Profiles_Panel.png
+```
+
+The Navigation modal artwork is:
+
+```text
+assets/Navigation_Panel.png
+```
+
+The Senses modal artwork is:
+
+```text
+assets/Senses_Panel.png
+```
+
 The Settings modal artwork is:
 
 ```text
@@ -237,6 +255,11 @@ Already present:
 - [x] most live panel borders/backgrounds removed so the background art acts as the frame
 - [x] artwork-provided menu/profile/navigation/senses/settings/minimize/close buttons use invisible WPF hitboxes
 - [x] Settings button opens a real settings panel using `assets/Settings-Panel-final.png`
+- [x] Profiles button opens a real profiles panel using `assets/Profiles_Panel.png`, recursively loads `profiles/**/*.json`, and supports placeholder executable rotation rules including generated Legion/BFA class/spec scaffolds
+- [x] Senses button opens a real Senses settings panel using `assets/Senses_Panel.png`
+- [x] Navigation button opens a real navigation scaffold panel using `assets/Navigation_Panel.png`
+- [x] Settings includes target game version selection
+- [x] Client Attachment includes ADD MOCK and TEST PROFILE debug actions for offline testing
 - [x] application/window icon from `assets/PsychoBuddy.ico`
 - [x] custom minimize/close controls
 

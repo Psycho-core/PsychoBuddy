@@ -40,14 +40,22 @@ STEP 2: OPEN THE CORRECT PROJECT
     - UI_Option_1_5.png
     - UI_test_17.png
     - Settings-Panel-final.png
+    - Profiles_Panel.png
+    - Senses_Panel.png
+    - Navigation_Panel.png
+  - profiles/                 (JSON profile files, including generated Legion/BFA class/spec scaffolds)
   - src/
     - App.xaml
     - App.xaml.cs
     - Program.cs              (entry-point note only; no Main method)
-    - Brain/                  (all .cs files)
+    - Brain/
+      - ProfileDefinition.cs
+      - ProfileService.cs
+      - other Brain .cs files
     - Core/
       - AppSettings.cs
       - SettingsService.cs
+      - GameVersion.cs
       - other Core .cs files
     - Muscles/                (all .cs files)
     - Senses/                 (all .cs files)
@@ -95,7 +103,12 @@ For the first dashboard-only test:
    - The bottom Technical Log shows startup and scan messages and can be selected/copied.
    - The Scan/Empty/Tick buttons are visible.
    - The Client Attachment panel is visible with Role, Profile, Attach, Start, Pause, Stop, Detach, Start All, and Stop All controls.
-   - Profiles/Navigation/Senses/Menu log a "not implemented yet" message when clicked.
+   - Profiles opens a real profile panel, recursively loads profiles/**/*.json, and selected profiles can build placeholder executable rotation rules.
+   - Senses opens a real Senses configuration panel and can save Power/Stealth settings to settings.json.
+   - Navigation opens a real scaffold panel and can save route/follow/formation settings to settings.json.
+   - Settings includes target game version selection.
+   - Client Attachment includes ADD MOCK and TEST PROFILE for offline/no-server testing.
+   - Menu logs a "not implemented yet" message when clicked.
    - Settings opens a real settings panel and can save settings.json beside the built executable.
 
 3. You do NOT need Administrator mode just to confirm the dashboard opens.

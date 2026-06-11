@@ -26,18 +26,22 @@ The current build supports the following dashboard-level behavior:
 - Power/Stealth mode toggle UI state.
 - Selectable/copyable technical log.
 - Real Settings panel with settings.json persistence.
+- Profiles panel with JSON profile loading and executable placeholder rotation rules from `profiles/*.json`.
+- Generated Legion/BFA class/spec rotation scaffold profiles from the existing `data/` sheets.
+- Senses settings panel for Power/Stealth mode configuration.
+- Navigation settings scaffold for follow/waypoint/formation configuration.
+- Target game version selection for Vanilla 1.12 through BFA 8.3.7.
+- Mock client/offline simulation mode for dashboard/profile testing without a WoW server.
 - Placeholder feedback for Profiles, Navigation, Senses, and Menu buttons.
 
 ## 🚧 Still In Development / Not Fully Working Yet
 
 The following are currently placeholders, scaffolds, or research-backed plans rather than finished production features:
 
-- Real profile loading from disk.
-- Real Navigation page/pathing implementation.
-- Real Senses configuration page.
+- Real navigation pathfinding/movement execution. The Navigation settings page exists as a scaffold.
 - Real Power Mode memory signatures/offset resolution.
 - Real Stealth Mode Lua addon + capture pipeline.
-- Real class rotation profile system.
+- Full class-specific rotation execution system. Generated class/spec profile rules exist, but exact spell IDs, keybind mapping, auras/procs, target conditions, and validated class logic are still under development.
 - Real role coordination behavior beyond current scaffolding.
 - Final `UI_Option_1.png` cosmetic polish.
 
@@ -52,8 +56,11 @@ The following are currently placeholders, scaffolds, or research-backed plans ra
 - **Theme resources:** `src/UI/Themes/PsychoTheme.xaml`
 - **Primary project file:** `PsychoBuddy.csproj`
 - **Canonical source folder:** `src/`
+- **Target versions supported in settings:** Vanilla 1.12, TBC 2.4.3, WotLK 3.3.5a, Cataclysm 4.3.4, MoP 5.4.8, Legion 7.3.5, BFA 8.3.7
 - **Current shell artwork:** `assets/UI_Option_1_5.png`
 - **Settings panel artwork:** `assets/Settings-Panel-final.png`
+- **Senses panel artwork:** `assets/Senses_Panel.png`
+- **Navigation panel artwork:** `assets/Navigation_Panel.png`
 - **End-goal UI reference:** `assets/UI_Option_1.png`
 
 ---
@@ -155,6 +162,7 @@ settings.json
 Settings currently support:
 
 - custom WoW executable path
+- target game version
 - default role
 - default profile
 - preferred Senses mode
@@ -164,6 +172,112 @@ Settings currently support:
 - remember last window size/position
 
 At runtime, `settings.json` is saved beside the built executable.
+
+---
+
+## 📁 Profiles
+
+The Profiles panel is now implemented using:
+
+```text
+assets/Profiles_Panel.png
+profiles/*.json
+src/Brain/ProfileDefinition.cs
+src/Brain/ProfileService.cs
+```
+
+The dashboard profile dropdown is populated from JSON files. Profiles can include executable placeholder rules with:
+
+- priority
+- ability name
+- spell id metadata
+- key code
+- cooldown seconds
+- simple condition
+- threshold
+
+Current default profiles are placeholder profiles:
+
+- Basic Rotation
+- Tank Assist
+- Healer Assist
+- DPS Assist
+- Manual Follow
+
+Generated Legion/BFA class/spec profiles are located under:
+
+```text
+profiles/Legion_7_3_5/
+profiles/BFA_8_3_7/
+```
+
+Profile execution now supports JSON rotation rules with priority, cooldown, key code, and simple conditions. Legion/BFA class/spec scaffold profiles have been generated from `data/`, but full class-specific behavior still needs validation and expansion.
+
+---
+
+## 👁️ Senses Settings
+
+The Senses panel is now implemented using:
+
+```text
+assets/Senses_Panel.png
+settings.json
+```
+
+Senses settings currently support:
+
+- preferred acquisition mode: Power or Stealth
+- scan interval in milliseconds
+- Stealth pixel grid X/Y offset
+- Stealth pixel grid size
+- window capture toggle
+- flicker suppression toggle
+- blackout/data-loss check toggle
+- test configuration log action
+
+The real Power Mode memory resolution and Stealth Mode capture/addon backend are still under development.
+
+---
+
+## 🧭 Navigation Settings
+
+The Navigation panel is now scaffolded using:
+
+```text
+assets/Navigation_Panel.png
+settings.json
+```
+
+Navigation settings currently support:
+
+- navigation mode: Follow, Waypoint, Formation, Manual
+- route name
+- follow distance
+- formation spacing
+- waypoint radius
+- auto-follow leader
+- avoid overlap/local collision
+- show navigation path overlay
+- placeholder waypoint list
+- add/remove/clear placeholder waypoints
+- test configuration log action
+
+Real pathfinding, route recording, and movement execution are still under development.
+
+---
+
+## 🧪 Mock Client / Offline Simulation
+
+The dashboard now includes an offline mock client mode so profile rules and fleet ticks can be tested without a running WoW server/client.
+
+Current mock behavior:
+
+- `ADD MOCK` fills the first available fleet slot with a simulated client.
+- Mock clients can Start, Pause, Stop, Detach, Start All, and Stop All.
+- Tick simulates health/mana changes.
+- `TEST PROFILE` evaluates the selected profile against a simulated state and logs the selected rule.
+
+This is intended for development and debugging only.
 
 ---
 
