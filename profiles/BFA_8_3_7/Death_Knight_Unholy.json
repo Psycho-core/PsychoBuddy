@@ -1,23 +1,23 @@
 {
-  "id": "legion-rogue-outlaw",
-  "displayName": "Legion Rogue Outlaw",
-  "description": "Auto-generated Rogue Outlaw Legion_7_3_5 rotation scaffold from data/legion/rogue_legion.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
-  "role": "DPS",
-  "version": "Legion_7_3_5",
-  "specialization": "Outlaw",
+  "id": "bfa-death-knight-unholy",
+  "displayName": "BFA Death Knight Unholy",
+  "description": "Auto-generated Death Knight Unholy BFA_8_3_7 rotation scaffold from data/bfa/deathknight_bfa.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
+  "role": "Healer",
+  "version": "BFA_8_3_7",
+  "specialization": "Unholy",
   "author": "Psycho-core",
   "isEnabled": true,
   "tags": [
-    "legion",
-    "rogue",
-    "outlaw",
+    "bfa",
+    "death-knight",
+    "unholy",
     "generated",
     "rotation-scaffold"
   ],
   "rules": [
     {
       "priority": 10,
-      "abilityName": "Roll the Bones",
+      "abilityName": "Festering Strike: Build wounds",
       "spellId": 0,
       "keyCode": 49,
       "keyBinding": "1",
@@ -31,11 +31,11 @@
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Maintenance rule; future aura checks should be added."
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 20,
-      "abilityName": "Between the Eyes",
+      "abilityName": "Scourge Strike: Consume wounds",
       "spellId": 0,
       "keyCode": 50,
       "keyBinding": "2",
@@ -53,7 +53,7 @@
     },
     {
       "priority": 30,
-      "abilityName": "Dispatch",
+      "abilityName": "Death Coil: Runic Power spender",
       "spellId": 0,
       "keyCode": 51,
       "keyBinding": "3",
@@ -71,7 +71,7 @@
     },
     {
       "priority": 40,
-      "abilityName": "Pistol Shot",
+      "abilityName": "Unholy Frenzy",
       "spellId": 0,
       "keyCode": 52,
       "keyBinding": "4",
@@ -85,11 +85,11 @@
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
+      "notes": "Maintenance rule; future aura checks should be added."
     },
     {
       "priority": 50,
-      "abilityName": "Saber Slash",
+      "abilityName": "Army of the Dead",
       "spellId": 0,
       "keyCode": 53,
       "keyBinding": "5",

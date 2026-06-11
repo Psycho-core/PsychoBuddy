@@ -1,41 +1,41 @@
 {
-  "id": "legion-rogue-outlaw",
-  "displayName": "Legion Rogue Outlaw",
-  "description": "Auto-generated Rogue Outlaw Legion_7_3_5 rotation scaffold from data/legion/rogue_legion.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
-  "role": "DPS",
-  "version": "Legion_7_3_5",
-  "specialization": "Outlaw",
+  "id": "bfa-demon-hunter-vengeance",
+  "displayName": "BFA Demon Hunter Vengeance",
+  "description": "Auto-generated Demon Hunter Vengeance BFA_8_3_7 rotation scaffold from data/bfa/demonhunter_bfa.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
+  "role": "Tank",
+  "version": "BFA_8_3_7",
+  "specialization": "Vengeance",
   "author": "Psycho-core",
   "isEnabled": true,
   "tags": [
-    "legion",
-    "rogue",
-    "outlaw",
+    "bfa",
+    "demon-hunter",
+    "vengeance",
     "generated",
     "rotation-scaffold"
   ],
   "rules": [
     {
       "priority": 10,
-      "abilityName": "Roll the Bones",
+      "abilityName": "Spirit Bomb",
       "spellId": 0,
       "keyCode": 49,
       "keyBinding": "1",
-      "cooldownSeconds": 2.0,
-      "condition": "Always",
-      "threshold": 0,
-      "actionType": "Spell",
-      "target": "Enemy",
+      "cooldownSeconds": 3.0,
+      "condition": "HealthBelow",
+      "threshold": 75,
+      "actionType": "Heal",
+      "target": "Ally",
       "minTargets": 1,
       "maxTargets": 1,
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Maintenance rule; future aura checks should be added."
+      "notes": "Heuristic healing condition; future work should use party/fleet health."
     },
     {
       "priority": 20,
-      "abilityName": "Between the Eyes",
+      "abilityName": "Immolation Aura",
       "spellId": 0,
       "keyCode": 50,
       "keyBinding": "2",
@@ -49,11 +49,11 @@
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
+      "notes": "Maintenance rule; future aura checks should be added."
     },
     {
       "priority": 30,
-      "abilityName": "Dispatch",
+      "abilityName": "Fracture",
       "spellId": 0,
       "keyCode": 51,
       "keyBinding": "3",
@@ -71,25 +71,25 @@
     },
     {
       "priority": 40,
-      "abilityName": "Pistol Shot",
+      "abilityName": "Soul Cleave: Spend Fury for healing/damage",
       "spellId": 0,
       "keyCode": 52,
       "keyBinding": "4",
       "cooldownSeconds": 1.0,
-      "condition": "Always",
-      "threshold": 0,
-      "actionType": "Spell",
+      "condition": "TargetsAtLeast",
+      "threshold": 3,
+      "actionType": "AoE",
       "target": "Enemy",
-      "minTargets": 1,
-      "maxTargets": 1,
+      "minTargets": 3,
+      "maxTargets": 99,
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
+      "notes": "Heuristic healing condition; future work should use party/fleet health. Requires future nearby-target count sensing."
     },
     {
       "priority": 50,
-      "abilityName": "Saber Slash",
+      "abilityName": "Demon Spikes",
       "spellId": 0,
       "keyCode": 53,
       "keyBinding": "5",
@@ -103,7 +103,25 @@
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
+      "notes": "Maintenance rule; future aura checks should be added."
+    },
+    {
+      "priority": 60,
+      "abilityName": "Infernal Strike",
+      "spellId": 0,
+      "keyCode": 54,
+      "keyBinding": "6",
+      "cooldownSeconds": 1.0,
+      "condition": "TargetsAtLeast",
+      "threshold": 3,
+      "actionType": "AoE",
+      "target": "Enemy",
+      "minTargets": 3,
+      "maxTargets": 99,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Requires future nearby-target count sensing."
     }
   ]
 }

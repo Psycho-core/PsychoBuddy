@@ -209,17 +209,17 @@ Refer to LICENSE.MYCODE.txt for full terms.
     </Style>
 
     <Style x:Key="FleetCardShell" TargetType="Border">
-        <Setter Property="Background" Value="#B6101820"/>
-        <Setter Property="BorderBrush" Value="#807A3E22"/>
+        <Setter Property="Background" Value="#8C101820"/>
+        <Setter Property="BorderBrush" Value="#407A3E22"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CornerRadius" Value="6"/>
-        <Setter Property="Padding" Value="8"/>
-        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="Margin" Value="1"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsRealClient}" Value="False">
-                <Setter Property="Background" Value="#22171717"/>
-                <Setter Property="BorderBrush" Value="#40555555"/>
-                <Setter Property="Opacity" Value="0.98"/>
+                <Setter Property="Background" Value="#11171717"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Opacity" Value="1"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -256,6 +256,13 @@ Refer to LICENSE.MYCODE.txt for full terms.
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="TechnicalLogTextBox" TargetType="TextBox">

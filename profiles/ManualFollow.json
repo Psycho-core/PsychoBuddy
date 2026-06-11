@@ -7,16 +7,29 @@
   "specialization": "Follow",
   "author": "Psycho-core",
   "isEnabled": true,
-  "tags": ["utility", "follow", "placeholder"],
+  "tags": [
+    "utility",
+    "follow",
+    "placeholder"
+  ],
   "rules": [
     {
-      "priority": 100,
+      "priority": 10,
       "abilityName": "Follow Pulse",
       "spellId": 0,
-      "keyCode": 48,
-      "cooldownSeconds": 5.0,
+      "keyCode": 49,
+      "keyBinding": "1",
+      "cooldownSeconds": 2.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     }
   ]
 }

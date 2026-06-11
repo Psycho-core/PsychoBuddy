@@ -1,7 +1,7 @@
 {
   "id": "legion-paladin-retribution",
   "displayName": "Legion Paladin Retribution",
-  "description": "Auto-generated Paladin Retribution Legion_7_3_5 rotation scaffold from data/legion/paladin_legion.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "description": "Auto-generated Paladin Retribution Legion_7_3_5 rotation scaffold from data/legion/paladin_legion.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
   "role": "DPS",
   "version": "Legion_7_3_5",
   "specialization": "Retribution",
@@ -17,57 +17,111 @@
   "rules": [
     {
       "priority": 10,
-      "abilityName": "Judgment",
+      "abilityName": "Judgment: Keep on cooldown",
       "spellId": 0,
       "keyCode": 49,
+      "keyBinding": "1",
       "cooldownSeconds": 2.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 20,
       "abilityName": "Justicar's Vengeance",
       "spellId": 0,
       "keyCode": 50,
+      "keyBinding": "2",
       "cooldownSeconds": 2.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 30,
       "abilityName": "Templar's Verdict",
       "spellId": 0,
       "keyCode": 51,
+      "keyBinding": "3",
       "cooldownSeconds": 1.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 40,
       "abilityName": "Crusader Strike / Zeal",
       "spellId": 0,
       "keyCode": 52,
+      "keyBinding": "4",
       "cooldownSeconds": 1.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 50,
       "abilityName": "Blade of Justice",
       "spellId": 0,
       "keyCode": 53,
+      "keyBinding": "5",
       "cooldownSeconds": 1.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 60,
       "abilityName": "Consecration",
       "spellId": 0,
       "keyCode": 54,
+      "keyBinding": "6",
       "cooldownSeconds": 1.0,
-      "condition": "Always",
-      "threshold": 0
+      "condition": "TargetsAtLeast",
+      "threshold": 3,
+      "actionType": "AoE",
+      "target": "Enemy",
+      "minTargets": 3,
+      "maxTargets": 99,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Requires future nearby-target count sensing. Maintenance rule; future aura checks should be added."
     }
   ]
 }

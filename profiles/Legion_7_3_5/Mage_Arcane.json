@@ -1,7 +1,7 @@
 {
   "id": "legion-mage-arcane",
   "displayName": "Legion Mage Arcane",
-  "description": "Auto-generated Mage Arcane Legion_7_3_5 rotation scaffold from data/legion/mage_legion.txt. Uses priority-ordered placeholder key actions until exact spell/keybind mapping is finalized.",
+  "description": "Auto-generated Mage Arcane Legion_7_3_5 rotation scaffold from data/legion/mage_legion.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
   "role": "DPS",
   "version": "Legion_7_3_5",
   "specialization": "Arcane",
@@ -17,48 +17,93 @@
   "rules": [
     {
       "priority": 10,
-      "abilityName": "Arcane Power / Rune of Power",
+      "abilityName": "Arcane Power / Rune of Power: Activate first",
       "spellId": 0,
       "keyCode": 49,
+      "keyBinding": "1",
       "cooldownSeconds": 2.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 20,
-      "abilityName": "Arcane Blast",
+      "abilityName": "Arcane Blast: Build to 4 charges",
       "spellId": 0,
       "keyCode": 50,
+      "keyBinding": "2",
       "cooldownSeconds": 2.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 30,
       "abilityName": "Arcane Missiles",
       "spellId": 0,
       "keyCode": 51,
+      "keyBinding": "3",
       "cooldownSeconds": 1.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 40,
       "abilityName": "Arcane Blast",
       "spellId": 0,
       "keyCode": 52,
+      "keyBinding": "4",
       "cooldownSeconds": 1.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Maintenance rule; future aura checks should be added."
     },
     {
       "priority": 50,
       "abilityName": "Arcane Barrage",
       "spellId": 0,
       "keyCode": 53,
+      "keyBinding": "5",
       "cooldownSeconds": 1.0,
-      "condition": "Always",
-      "threshold": 0
+      "condition": "ResourceAbove",
+      "threshold": 70,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "Primary",
+      "notes": "Heuristic resource dump threshold."
     }
   ]
 }

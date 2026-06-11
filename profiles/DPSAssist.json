@@ -3,29 +3,51 @@
   "displayName": "DPS Assist",
   "description": "Damage-dealer placeholder profile for future target assist, cooldown, and rotation behavior.",
   "role": "DPS",
-  "version": "Legion/BFA",
+  "version": "Any",
   "specialization": "Generic DPS",
   "author": "Psycho-core",
   "isEnabled": true,
-  "tags": ["dps", "assist", "placeholder"],
+  "tags": [
+    "dps",
+    "assist",
+    "placeholder"
+  ],
   "rules": [
     {
-      "priority": 20,
+      "priority": 10,
       "abilityName": "Resource Dump",
       "spellId": 0,
-      "keyCode": 50,
+      "keyCode": 49,
+      "keyBinding": "1",
       "cooldownSeconds": 2.0,
-      "condition": "ManaAbove",
-      "threshold": 80
+      "condition": "ResourceAbove",
+      "threshold": 70,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "Primary",
+      "notes": "Heuristic resource dump threshold."
     },
     {
-      "priority": 100,
+      "priority": 20,
       "abilityName": "DPS Filler",
       "spellId": 0,
-      "keyCode": 49,
-      "cooldownSeconds": 1.0,
+      "keyCode": 50,
+      "keyBinding": "2",
+      "cooldownSeconds": 2.0,
       "condition": "Always",
-      "threshold": 0
+      "threshold": 0,
+      "actionType": "Spell",
+      "target": "Enemy",
+      "minTargets": 1,
+      "maxTargets": 1,
+      "requiredAura": "",
+      "forbiddenAura": "",
+      "resourceType": "",
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     }
   ]
 }

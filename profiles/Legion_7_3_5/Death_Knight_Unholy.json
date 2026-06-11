@@ -1,23 +1,23 @@
 {
-  "id": "legion-rogue-outlaw",
-  "displayName": "Legion Rogue Outlaw",
-  "description": "Auto-generated Rogue Outlaw Legion_7_3_5 rotation scaffold from data/legion/rogue_legion.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
-  "role": "DPS",
+  "id": "legion-death-knight-unholy",
+  "displayName": "Legion Death Knight Unholy",
+  "description": "Auto-generated Death Knight Unholy Legion_7_3_5 rotation scaffold from data/legion/deathknight_legion.txt. Rules include heuristic condition/action metadata and must be validated against real client/server behavior.",
+  "role": "Healer",
   "version": "Legion_7_3_5",
-  "specialization": "Outlaw",
+  "specialization": "Unholy",
   "author": "Psycho-core",
   "isEnabled": true,
   "tags": [
     "legion",
-    "rogue",
-    "outlaw",
+    "death-knight",
+    "unholy",
     "generated",
     "rotation-scaffold"
   ],
   "rules": [
     {
       "priority": 10,
-      "abilityName": "Roll the Bones",
+      "abilityName": "Festering Strike: Apply festering wounds",
       "spellId": 0,
       "keyCode": 49,
       "keyBinding": "1",
@@ -31,11 +31,11 @@
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Maintenance rule; future aura checks should be added."
+      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
     },
     {
       "priority": 20,
-      "abilityName": "Between the Eyes",
+      "abilityName": "Scourge Strike: Consume wounds for high damage",
       "spellId": 0,
       "keyCode": 50,
       "keyBinding": "2",
@@ -53,25 +53,25 @@
     },
     {
       "priority": 30,
-      "abilityName": "Dispatch",
+      "abilityName": "Death Coil: Runic power spender/healing for pets",
       "spellId": 0,
       "keyCode": 51,
       "keyBinding": "3",
-      "cooldownSeconds": 1.0,
-      "condition": "Always",
-      "threshold": 0,
-      "actionType": "Spell",
-      "target": "Enemy",
+      "cooldownSeconds": 3.0,
+      "condition": "HealthBelow",
+      "threshold": 75,
+      "actionType": "Heal",
+      "target": "Ally",
       "minTargets": 1,
       "maxTargets": 1,
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
+      "notes": "Heuristic healing condition; future work should use party/fleet health."
     },
     {
       "priority": 40,
-      "abilityName": "Pistol Shot",
+      "abilityName": "Unholy Frenzy",
       "spellId": 0,
       "keyCode": 52,
       "keyBinding": "4",
@@ -85,11 +85,11 @@
       "requiredAura": "",
       "forbiddenAura": "",
       "resourceType": "",
-      "notes": "Generated scaffold rule; requires validation against real client/server behavior."
+      "notes": "Maintenance rule; future aura checks should be added."
     },
     {
       "priority": 50,
-      "abilityName": "Saber Slash",
+      "abilityName": "Army of the Dead: Massive burst summon",
       "spellId": 0,
       "keyCode": 53,
       "keyBinding": "5",

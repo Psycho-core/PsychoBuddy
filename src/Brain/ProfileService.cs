@@ -133,6 +133,16 @@ namespace PsychoBuddy.Brain
                 "manaabove" => state => state.ManaPercentage > threshold,
                 "isdead" => state => state.IsDead,
                 "isalive" => state => !state.IsDead,
+                "resourcebelow" => state => state.ManaPercentage < threshold,
+                "resourceabove" => state => state.ManaPercentage > threshold,
+                "targethealthbelow" => _ => true, // Target data is not wired yet; rule is accepted as a scaffold.
+                "targethealthabove" => _ => true,
+                "targetexists" => _ => true,
+                "incombat" => _ => true,
+                "targetsinrange" => _ => true,
+                "targetsatleast" => _ => true,
+                "hasaura" => _ => true,
+                "missingaura" => _ => true,
                 _ => _ => true
             };
         }
@@ -147,8 +157,12 @@ namespace PsychoBuddy.Brain
                 AbilityName = "Basic Action",
                 SpellId = 0,
                 KeyCode = 0x31,
+                KeyBinding = "1",
                 CooldownSeconds = 1.0f,
-                Condition = "Always"
+                Condition = "Always",
+                ActionType = "Spell",
+                Target = "Enemy",
+                Notes = "Fallback rule automatically added when a profile has no rules."
             });
         }
 

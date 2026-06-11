@@ -35,9 +35,36 @@ namespace PsychoBuddy.Brain
         public int Priority { get; set; } = 100;
         public string AbilityName { get; set; } = "Basic Action";
         public int SpellId { get; set; }
+
+        /// <summary>
+        /// Win32 virtual key code. 49='1', 50='2', etc. This is the value currently used by InputManager.
+        /// </summary>
         public int KeyCode { get; set; } = 0x31;
+
+        /// <summary>
+        /// Human-readable keybind label retained for editors/profile UI.
+        /// </summary>
+        public string KeyBinding { get; set; } = "1";
+
         public float CooldownSeconds { get; set; } = 1.0f;
         public string Condition { get; set; } = "Always";
         public float Threshold { get; set; }
+
+        /// <summary>
+        /// Spell, Buff, Defensive, Interrupt, Movement, Utility, etc.
+        /// </summary>
+        public string ActionType { get; set; } = "Spell";
+
+        /// <summary>
+        /// Enemy, Self, Ally, Party, Ground, None, etc.
+        /// </summary>
+        public string Target { get; set; } = "Enemy";
+
+        public int MinTargets { get; set; } = 1;
+        public int MaxTargets { get; set; } = 1;
+        public string RequiredAura { get; set; } = string.Empty;
+        public string ForbiddenAura { get; set; } = string.Empty;
+        public string ResourceType { get; set; } = string.Empty;
+        public string Notes { get; set; } = string.Empty;
     }
 }

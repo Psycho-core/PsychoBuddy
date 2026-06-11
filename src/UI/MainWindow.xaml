@@ -54,7 +54,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
             <Button Canvas.Left="8" Canvas.Top="544" Width="118" Height="128" Style="{StaticResource InvisibleHitboxButton}" Click="SettingsButton_Click"/>
 
             <!-- Fleet Monitor live cards aligned to the four parchment card slots. -->
-            <ListBox Canvas.Left="184" Canvas.Top="172" Width="670" Height="438"
+            <ListBox Canvas.Left="178" Canvas.Top="172" Width="680" Height="430"
                      ItemsSource="{Binding Fleet}"
                      SelectedItem="{Binding SelectedFleetCard, Mode=TwoWay}"
                      Background="Transparent"
@@ -69,7 +69,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Style="{StaticResource FleetCardShell}" Padding="6" Margin="6">
+                        <Border Style="{StaticResource FleetCardShell}">
                             <Grid>
                                 <!-- Empty/offline slot: minimal overlay so the artwork card remains dominant. -->
                                 <Grid>
@@ -195,7 +195,7 @@ Refer to LICENSE.MYCODE.txt for full terms.
             </ListBox>
 
             <!-- Client Attachment remains visible for debugging in the map/parchment area. -->
-            <Grid Canvas.Left="922" Canvas.Top="170" Width="360" Height="430">
+            <Grid Canvas.Left="945" Canvas.Top="168" Width="380" Height="430">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -220,16 +220,20 @@ Refer to LICENSE.MYCODE.txt for full terms.
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,4">
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,4">
                         <TextBlock Text="AVAILABLE" Foreground="#D8D0C7" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding AvailableClientCountText}" Foreground="#AAA" FontSize="10" HorizontalAlignment="Right"/>
-                    </DockPanel>
+                        <TextBlock Text="{Binding AvailableClientCountText}" Foreground="#F3C6A0" FontSize="12" FontWeight="Bold" Margin="0,1,0,0"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold" Margin="0,0,0,4"/>
 
                     <StackPanel Grid.Row="1" Grid.Column="0">
                         <ListBox ItemsSource="{Binding AvailableClients}"
                                  SelectedItem="{Binding SelectedAvailableClient, Mode=TwoWay}"
-                                 Height="120"
-                                 Style="{StaticResource AttachmentListBox}"
+                                 Height="118"
+                                 Background="#E0111111"
+                                 BorderBrush="#D8B56D35"
+                                 BorderThickness="1"
+                                 Foreground="#FFF2D6"
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -248,7 +252,6 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Grid.Column="2">
-                        <TextBlock Text="WORKFLOW" Foreground="#D8D0C7" FontWeight="Bold" Margin="0,0,0,6"/>
                         <UniformGrid Rows="6" Columns="2">
                             <Button Content="1. SCAN" Style="{StaticResource SmallFantasyButton}" Click="ScanButton_Click"/>
                             <Button Content="2. ATTACH" Style="{StaticResource SmallFantasyButton}" Click="AttachButton_Click"/>
@@ -310,43 +313,36 @@ Refer to LICENSE.MYCODE.txt for full terms.
                 <TextBlock Grid.Row="1" Text="{Binding SensesModeText}" Foreground="#CCCCCC" TextAlignment="Center" FontSize="12"/>
             </Grid>
 
-            <StackPanel Canvas.Left="1340" Canvas.Top="345" Width="290">
+            <StackPanel Canvas.Left="1360" Canvas.Top="345" Width="285">
                 <TextBlock Text="◉ Scan Range             120m" Foreground="#D8D0C7" Margin="0,0,0,8"/>
                 <TextBlock Text="⚠ Threat Level           Standby" Foreground="#D8D0C7" Margin="0,0,0,8"/>
                 <TextBlock Text="❖ Nearby Hostiles        0" Foreground="#D8D0C7" Margin="0,0,0,8"/>
                 <TextBlock Text="➜ Navigation Path        Idle" Foreground="#D8D0C7" Margin="0,0,0,12"/>
                 <Separator Margin="0,0,0,12"/>
                 <TextBlock Text="{Binding FleetCountText}" Foreground="#CCCCCC" Margin="0,0,0,5"/>
-                <TextBlock Text="Build Target: .NET 8" Foreground="#CCCCCC" Margin="0,0,0,5"/>
-                <TextBlock Text="Active automation: Manual Start" Foreground="#FFAA55"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <TextBlock Text="Build Target: .NET 8" Foreground="#CCCCCC"/>
+                    <TextBlock Text="  |  Active: Manual" Foreground="#FFAA55"/>
+                </StackPanel>
             </StackPanel>
 
             <!-- Technical log text only; parchment frame comes from the background art. -->
             <TextBox x:Name="LogTextBox"
                      Canvas.Left="160"
                      Canvas.Top="690"
-                     Width="1125"
+                     Width="1150"
                      Height="165"
                      Text="{Binding LogText, Mode=OneWay}"
                      TextChanged="LogTextBox_TextChanged"
                      Style="{StaticResource TechnicalLogTextBox}"/>
 
-            <!-- Footer readouts. -->
-            <StatusBar Canvas.Left="0" Canvas.Top="895" Width="1700" Height="30" Background="#66000000" Foreground="#D8D0C7" FontSize="11">
-                <StatusBarItem>
-                    <TextBlock Text="NETWORK: standby"/>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <TextBlock Text="CPU: pending"/>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <TextBlock Text="ACTIVE PROFILE: selected per client"/>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <TextBlock Text="{Binding StatusMessage}"/>
-                </StatusBarItem>
-            </StatusBar>
-
+            <!-- Footer values aligned next to artwork-provided labels. -->
+            <Canvas Canvas.Left="0" Canvas.Top="890" Width="1700" Height="35" IsHitTestVisible="False">
+                <TextBlock Canvas.Left="150" Canvas.Top="9" Text="standby" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold"/>
+                <TextBlock Canvas.Left="350" Canvas.Top="9" Text="pending" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold"/>
+                <TextBlock Canvas.Left="560" Canvas.Top="9" Text="--:--:--" Foreground="#F3C6A0" FontSize="13" FontWeight="Bold"/>
+                <TextBlock Canvas.Left="1625" Canvas.Top="9" Text="{Binding SelectedProfile}" Foreground="#F3C6A0" FontSize="12" FontWeight="Bold" Width="70" TextTrimming="CharacterEllipsis"/>
+            </Canvas>
 
             <!-- Navigation modal panel. Background art supplies the visible frame; controls remain functional overlays. -->
             <Canvas Canvas.Left="0" Canvas.Top="0" Width="1700" Height="925">
@@ -384,10 +380,8 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     <StackPanel Grid.Row="1" Grid.Column="0">
                         <TextBlock Text="Navigation Mode" Foreground="#3D2D18" FontWeight="Bold"/>
                         <ComboBox ItemsSource="{Binding NavigationModeOptions}" SelectedItem="{Binding NavigationMode, Mode=TwoWay}" Height="30" Margin="0,4,0,16"/>
-
                         <TextBlock Text="Route Name" Foreground="#3D2D18" FontWeight="Bold"/>
                         <TextBox Text="{Binding LastRouteName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,16"/>
-
                         <Grid Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -403,10 +397,8 @@ Refer to LICENSE.MYCODE.txt for full terms.
                                 <TextBox Text="{Binding FormationSpacing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,0"/>
                             </StackPanel>
                         </Grid>
-
                         <TextBlock Text="Waypoint Radius (yd)" Foreground="#3D2D18" FontWeight="Bold"/>
                         <TextBox Text="{Binding WaypointRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="0,4,0,16"/>
-
                         <CheckBox Content="Auto-follow leader" IsChecked="{Binding AutoFollowLeader, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,10"/>
                         <CheckBox Content="Avoid overlap / local collision" IsChecked="{Binding AvoidOverlap, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,10"/>
                         <CheckBox Content="Show navigation path overlay" IsChecked="{Binding ShowNavigationPath, Mode=TwoWay}" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,10"/>
@@ -419,22 +411,13 @@ Refer to LICENSE.MYCODE.txt for full terms.
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-
                         <TextBlock Grid.Row="0" Text="Waypoint Scaffold" Foreground="#3D2D18" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
-                        <ListBox Grid.Row="1"
-                                 ItemsSource="{Binding NavigationWaypoints}"
-                                 SelectedItem="{Binding SelectedNavigationWaypoint, Mode=TwoWay}"
-                                 Background="#55F5DEB3"
-                                 BorderBrush="#8B4513"
-                                 BorderThickness="1"
-                                 Foreground="#2B1B12"/>
-
+                        <ListBox Grid.Row="1" ItemsSource="{Binding NavigationWaypoints}" SelectedItem="{Binding SelectedNavigationWaypoint, Mode=TwoWay}" Background="#55F5DEB3" BorderBrush="#8B4513" BorderThickness="1" Foreground="#2B1B12"/>
                         <UniformGrid Grid.Row="2" Rows="1" Columns="3" Margin="0,12,0,18">
                             <Button Content="ADD" Height="30" Style="{StaticResource SmallFantasyButton}" Click="AddWaypointButton_Click"/>
                             <Button Content="REMOVE" Height="30" Style="{StaticResource SmallFantasyButton}" Click="RemoveWaypointButton_Click"/>
                             <Button Content="CLEAR" Height="30" Style="{StaticResource SmallFantasyButton}" Click="ClearWaypointsButton_Click"/>
                         </UniformGrid>
-
                         <StackPanel Grid.Row="3">
                             <TextBlock Text="Summary" Foreground="#3D2D18" FontWeight="Bold" Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding NavigationSummary}" Foreground="#4B3920" TextWrapping="Wrap"/>
@@ -449,7 +432,6 @@ Refer to LICENSE.MYCODE.txt for full terms.
                     </StackPanel>
                 </Grid>
 
-                <!-- Invisible hitbox over the art-provided bottom X. -->
                 <Button Canvas.Left="806" Canvas.Top="790" Width="88" Height="88" Style="{StaticResource InvisibleHitboxButton}" Click="CancelNavigationButton_Click"/>
             </Canvas>
 
